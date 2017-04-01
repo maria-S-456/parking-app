@@ -1,0 +1,84 @@
+body{
+	background-image: url('../pictures/bright.jpg');
+}
+h1{
+	float:left;
+}
+img{
+	float:left;
+	margin-right: 10px;
+
+}
+input[type="button"]{
+	margin-top: 10px;
+	border-radius: 5px;
+	width: 100px;
+	
+}
+input[type="text"]{
+	border-radius: 10px;
+	width: 100%;
+	height: 30px;
+}
+#content{
+	position: absolute;
+	
+	height: 70%;
+	width: 40%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(210,180,140, 0.5); 
+	
+}
+/*
+.picture-display{
+	border: 2px solid orange;
+	
+	height: 80%;
+	width: 70%;
+	float: left;
+}
+*/
+.login-box{
+	
+	padding: 3%;
+	
+	height: 85%;
+	width: 45%;
+	margin: auto;
+
+}
+.logo-banner{
+	background:rgba(0, 79, 143, 1);
+	height: 15%;
+	width: 100%;
+	padding-left: 20px;
+	
+	color: silver;
+	font-family: "Times New Roman";
+	box-shadow:5px 5px 50px 5px black inset;  
+}
+@media only screen and (max-width: 750px){
+	
+	#content{
+		width: 100%;
+	}
+	.login-box{
+		min-width: 90%;
+		width:90%;
+		height: 50%;
+		float: none;
+		margin: auto;
+		background: rgba(210,180,140, 0.5);
+	}
+
+	h1{
+		font-size: 30px;
+	}
+}
+.ui-datepicker .ui-widget-content{
+	background: red;
+}
