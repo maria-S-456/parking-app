@@ -57,3 +57,5 @@ app.post('/help', function(req, res){
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Your app is listening on port ${process.env.PORT || 8000}`);
 });
+
+exports.app = app; //export app so mocha can test it

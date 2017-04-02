@@ -1,12 +1,42 @@
-var assert = require('assert');
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+var server = require('../server.js');
 
-describe('make sure this array works', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
+var should = chai.should();
+var app = server.app;
+var storage = server.storage;
+
+chai.use(chaiHttp);
+
+
+describe('login page', function() {
+  it('should exist', function(done) {
+    chai.request(app)
+      .get('/login')
+      .end(function(err, res) {
+        res.should.have.status(200);
+        res.should.be.html;
+        done();
     });
-
-
   });
+});
 
+describe('help page', function(){
+	it('should exist', function(done){
+		chai.request(app).get('/help').end(function(err,res){
+			res.should.have.status(200);
+			res.should.be.html;
+			done();
+		});
+	});
+});
+
+describe('search page', function(){
+	it('should exist', function(done){
+		chai.request(app).get('/search').end(function(err,res){
+			res.should.have.status(200);
+			res.should.be.html;
+			done();
+		});
+	});
 });
