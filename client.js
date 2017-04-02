@@ -1,4 +1,5 @@
 var PARKING_URL = ('/api')
+var config = require('./config.js');
 
 function addParkingData(item) {
   console.log('Adding parking data: ' + item);

@@ -5,7 +5,7 @@ var server = require('../server.js');
 var should = chai.should();
 var app = server.app;
 var storage = server.storage;
-var config = require('../config.js');
+
 chai.use(chaiHttp);
 
 
