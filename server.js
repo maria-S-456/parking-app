@@ -8,7 +8,7 @@ const {DATABASE_URL} = require('./config.js');
 mongoose.Promise = global.Promise;
 var db = mongoose.connect(DATABASE_URL);
 const parkingcollection = require('./models'); //"parking collection is not defined" error will occur without this.
-
+app.use(bodyParser.json()); //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined" will occur without this when posting new info
 
 app.use(express.static('public'));
 
@@ -33,7 +33,9 @@ app.get('/api', function(req, res) {
 	});
 });
 
-app.post('/help', function(req, res){
+
+//error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined"
+app.post('/api', function(req, res){
 	const requiredFields = ['location', 'vacant','capacity'];
 	for(var i=0; i< requiredFields.length; i++){
 		const field = requiredFields[i];
