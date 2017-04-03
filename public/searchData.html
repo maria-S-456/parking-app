@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="bootstrap.min.css"> 
+	<link rel="stylesheet" href="../styles/style.css">
 	<title>Search</title>
 </head>
 <body>
-	<h2>Search for a location</h2>
-	<form id="js-search-form">
-		<select id="js-park">
-			
-		</select>
-		<br>
-		<button>Search</button>
-	</form>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		
+		<ul class="nav navbar-nav">
+			<li><a href="login.html">Login</a></li>
+			<li class="active"><a href="searchData.html">Search</a></li>
+			<li><a href="helpData.html">New</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</div>
+</nav>
+<div class="container-fluid main-background">
+	<div class="inner-container container-fluid">
+		<h1>Search for a location</h1>
+		<form id="js-search-form">
+			<select id="js-park">
+				
+			</select>
+			<br>
+			<button>Search</button>
+		</form>
+	</div>
+</div>
+	<script src="/client.js"></script>
 </body>
 </html>

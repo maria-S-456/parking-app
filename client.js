@@ -1,8 +1,8 @@
 var parkingDataTemplate = (
   '<option class="park-data">'+
-  '<p class="js-location">' + '</p>'+
-  '<p class="js-vacant">' + '</p>'+
-  '<p class="js-capacity">' + '</p>'
+  '<p><span class="js-location">' + '</span></p>'+
+  '<p><span class="js-vacant">' + '</span></p>'+
+  '<p><span class="js-capacity">' + '</span></p>'
   +'</option>');
 
 var PARKING_URL = '/api';
@@ -54,7 +54,8 @@ function handleAddingParking()
 }
 
 $(function() {
+  getAndDisplayData();
   addParkingData();
   handleAddingParking();
-  getAndDisplayData();
+  
 });

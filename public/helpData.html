@@ -2,35 +2,47 @@
 <html lang="en">
 <head>
 
-	<script src="//code.jquery.com/jquery-3.1.1.min.js"</script>
+	
 	<script src="../parking-app/client.js"></script>
 	<link rel="stylesheet" href="bootstrap.min.css"> 
 	<link rel="stylesheet" href="../styles/style.css">
 
-	<title>Help</title>
+	<title>New Location</title>
 </head>
 <body>
-<div class="fluid" id="content">
-	
-	<h2>Help with data</h2>
-	<div class="login-box">
-		<form id="parking-help-form">
-			<label value="location">Location</label>
-			<input type="text" id="js-new-location"></input>
-			<br>
-			<label value="vacancies">Vacancies</label>
-			<input type="text" id="js-new-vacant"></input>
-		
-			<br>
-			<label value="capacity" for="capacity">Capacity</label>
-			<input type="text" name="capacity" id="js-new-capacity"></input>
-			<br>
-			<input type="button" value="Submit"></input>
-		</form>
 
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		
+		<ul class="nav navbar-nav">
+			<li><a href="login.html">Login</a></li>
+			<li><a href="searchData.html">Search</a></li>
+			<li class="active"><a href="helpData.html">New</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</div>
+</nav>
+	<div class="container-fluid main-background">
+		<div class="inner-container container-fluid">
+			<h1>Add a new location</h1>
+		
+			<form id="parking-help-form">
+				<label value="location">Location</label>
+				<input type="text" id="js-new-location"></input>
+				<br>
+				<label value="vacancies">Vacancies</label>
+				<input type="text" id="js-new-vacant"></input>
+		
+				<br>
+				<label value="capacity" for="capacity">Capacity</label>
+				<input type="text" name="capacity" id="js-new-capacity"></input>
+				<br>
+				<input type="button" value="Submit"></input>
+			</form>
+		
+		</div>
 	</div>
 
-</div>
-
+<script src="../parking-app/client.js"></script>
 </body>
 </html>
