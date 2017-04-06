@@ -11,6 +11,11 @@ const parkingcollection = require('./models'); //"parking collection is not defi
 app.use(bodyParser.json()); //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined" will occur without this when posting new info
 
 app.use(express.static('public'));
+app.use(express.static('styles'));
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/about.html');
+});
 
 app.get('/help', (req, res) => {
   res.sendFile(__dirname + '/public/helpData.html');

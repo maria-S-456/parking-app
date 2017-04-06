@@ -1,8 +1,6 @@
 var parkingDataTemplate = (
   '<option class="park-data">'+
-  '<p><span class="js-location">' + '</span></p>'+
-  '<p><span class="js-vacant">' + '</span></p>'+
-  '<p><span class="js-capacity">' + '</span></p>'
+  '<p><span class="js-location">' + '</span></p>'
   +'</option>');
 
 var PARKING_URL = '/api';
@@ -28,7 +26,7 @@ function getAndDisplayData(){
 }
 
 function addParkingData(item) {
-  console.log('Adding parking data: ' + item);
+  console.log('Adding parking data: ' + item); //.stringify
   $.ajax({
     method: 'POST',
     url: PARKING_URL,
@@ -43,7 +41,8 @@ function addParkingData(item) {
 
 function handleAddingParking() 
 {
-  $('#parking-help-form').submit(function(e) {
+  $('#id-input-button').on('click',function(e) {
+    console.log('submit clicked');
     e.preventDefault();
     addParkingData({
       location: $(e.currentTarget).find('#js-new-location').val(),
@@ -54,8 +53,9 @@ function handleAddingParking()
 }
 
 $(function() {
+  console.log('are you working.');
   getAndDisplayData();
-  addParkingData();
+ 
   handleAddingParking();
   
 });

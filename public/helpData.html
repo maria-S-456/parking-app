@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 	
-	<script src="../parking-app/client.js"></script>
 	<link rel="stylesheet" href="bootstrap.min.css"> 
-	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="/styles/style.css">
 
 	<title>New Location</title>
 </head>
@@ -15,10 +18,12 @@
 	<div class="container-fluid">
 		
 		<ul class="nav navbar-nav">
+			<li><a href="about.html">About</a></li>
 			<li><a href="login.html">Login</a></li>
 			<li><a href="searchData.html">Search</a></li>
 			<li class="active"><a href="helpData.html">New</a></li>
 			<li><a href="contact.html">Contact</a></li>
+
 		</ul>
 	</div>
 </nav>
@@ -37,12 +42,12 @@
 				<label value="capacity" for="capacity">Capacity</label>
 				<input type="text" name="capacity" id="js-new-capacity"></input>
 				<br>
-				<input type="button" value="Submit"></input>
+				<input id="id-input-button" type="button" value="Submit"></input>
 			</form>
 		
 		</div>
 	</div>
 
-<script src="../parking-app/client.js"></script>
+<script src="/new-client.js"></script>
 </body>
 </html>

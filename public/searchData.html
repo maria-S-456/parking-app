@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="bootstrap.min.css"> 
-	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="/styles/style.css">
 	<title>Search</title>
 </head>
 <body>
@@ -10,10 +14,12 @@
 	<div class="container-fluid">
 		
 		<ul class="nav navbar-nav">
+			<li><a href="about.html">About</a></li>
 			<li><a href="login.html">Login</a></li>
 			<li class="active"><a href="searchData.html">Search</a></li>
 			<li><a href="helpData.html">New</a></li>
 			<li><a href="contact.html">Contact</a></li>
+
 		</ul>
 	</div>
 </nav>
@@ -25,10 +31,10 @@
 				
 			</select>
 			<br>
-			<button>Search</button>
+			<button id="search-button">Search</button>
 		</form>
 	</div>
 </div>
-	<script src="/client.js"></script>
+	<script src="/search-client.js"></script>
 </body>
 </html>
