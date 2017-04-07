@@ -1,3 +1,5 @@
+//all html pages must have a different client js page
+
 var PARKING_URL = '/api';
 
 function submitAddParking() 

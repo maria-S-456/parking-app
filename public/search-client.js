@@ -1,6 +1,12 @@
+//every page must have a different client file
+
 var dropdownItem = (
 '<option class="listItem">' +'</option>'
 	);
+
+var displayItem = (
+	'<span class="park-loc">' + '</span>' + '<br>' + '<span class="park-capacity">' + '</span>' +
+	'<br>' + '<span class="park-vacant">' + '</span>');
 
 var PARKING_URL = '/api';
 
@@ -8,17 +14,20 @@ function getListItem() {
  //console.log('Retrieving location names')
   $.getJSON(PARKING_URL, function(locations) {
     //console.log('Rendering locations');
-    var locationElement = locations.map(function(place) {
+    var locationElement = locations.map(function(place) { //map function gets ALL data
       var element = $(dropdownItem);
       element.attr('id', place.id);
       element.find('.listItem').text(place.location);
-  		//console.log(place.location);
-      $('#js-park').append('<option>' + place.location + '</option>');
-      return element;
 
+  		
+      $('#js-park').append('<option>' + place.location + '</option>');
+      //console.log(place.location);
+      return element;
     });
-   
-  });
+   });
+
+
+
 }
 
 function showLocationData()
@@ -26,7 +35,32 @@ function showLocationData()
 	$('#search-button').on('click',function(e) {
 		//be sure to include e.preventdefault. will flash console quickly before disappearing
 		e.preventDefault();
-		console.log('You are clicked!');
+		$('#location-data').empty();   //gets rid of previous data
+		//console.log('You are clicked!');
+
+		var locale = $('#js-park').val(); //gets current value selected in dropdown box
+
+		$.getJSON(PARKING_URL + '/' + locale, function(data){
+			//console.log(data); //data is an array of an object. must access the array, then the object
+			var parkElement = $('displayItem');
+			console.log(JSON.stringify(data));
+			console.log(data[0].capacity);
+			parkElement.find('.park-loc').text(locale);
+			//console.log(data.location);
+			$('#location-data').append('<p>' + data[0].location + '</p>' + '<p>' + data[0].vacant + '</p>' + '<p>' + data[0].capacity + '</p>');
+			return parkElement;
+		});
+	/*	$.getJSON(PARKING_URL, function(data){
+			var locationData = data.map(function(loc){
+				var element = $(displayItem);
+				element.attr('id', loc.id);
+				element.find('.park-loc').text(loc.location);
+				$('#location-data').append('<p>' + loc.location + '</p>');
+				return element;
+			});			
+		}); */
+
+
 	});
 }
 

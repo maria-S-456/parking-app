@@ -38,6 +38,14 @@ app.get('/api', function(req, res) {
 	});
 });
 
+app.get('/api/:location', function(req, res) {
+	parkingcollection.find({location:req.params.location}).exec().then(spots => {
+		res.json(spots.map(spot =>spot.apiRepr()));
+	}).catch(err => {
+		console.error(err);
+		res.status(500).json({error: 'GET failed'});
+	});
+});
 
 //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined"
 app.post('/api', function(req, res){

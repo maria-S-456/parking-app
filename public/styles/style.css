@@ -49,6 +49,7 @@ input[type="text"]{
 .main-background{
 	width: 100%;
 	background-image: url('../car.jpeg');
+	
 	margin-top: -20px;
 	height: 500px;
 }
