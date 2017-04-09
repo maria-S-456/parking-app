@@ -21,6 +21,12 @@ input[type="text"]{
 	height: 30px;
 	margin-bottom: 10px;
 }
+#message-id{
+	border-radius: 10px;
+	width: 100%;
+	height: 30px;
+	margin-bottom: 10px;
+}
 
 .inner-container-about{
 	width: 600px;
@@ -52,6 +58,9 @@ input[type="text"]{
 	
 	margin-top: -20px;
 	height: 500px;
+}
+#message-id{
+	height: 60px;
 }
 
 @media only screen and (max-width: 768px){

@@ -2,13 +2,27 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 var mongoose = require('mongoose');
-
 const {DATABASE_URL} = require('./config.js');
-
 mongoose.Promise = global.Promise;
 var db = mongoose.connect(DATABASE_URL);
 const parkingcollection = require('./models'); //"parking collection is not defined" error will occur without this.
 app.use(bodyParser.json()); //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined" will occur without this when posting new info
+
+//*****************************
+
+var nodemailer = require('nodemailer');
+const config = require('./authConfig.js');
+
+var smtpTransport = nodemailer.createTransport({
+	service: "gmail",
+	host: "smtp.gmail.com",
+	auth:{
+		user:config.mailer.auth.user,
+		pass:config.mailer.auth.pass
+	}
+});
+
+//***********************
 
 app.use(express.static('public'));
 app.use(express.static('styles'));
@@ -46,7 +60,28 @@ app.get('/api/:location', function(req, res) {
 		res.status(500).json({error: 'GET failed'});
 	});
 });
+//***********************
 
+app.get('/send', function(req,res){
+	var mailOptions = {
+		subject: req.query.subject,
+		to: req.query.to,
+		text: req.query.text
+	}
+	console.log(mailOptions);
+	smtpTransport.sendMail(mailOptions, function(error,response){
+		if(error){
+			console.log(error);
+			res.end("error");
+		}else{
+			console.log("Message sent: " + response.message);
+			res.end("sent");
+		}
+	});
+
+});
+
+//***************************
 //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined"
 app.post('/api', function(req, res){
 	const requiredFields = ['location', 'vacant','capacity'];

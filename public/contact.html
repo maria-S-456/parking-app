@@ -7,7 +7,7 @@
   crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="bootstrap.min.css"> 
 	<link rel="stylesheet" href="/styles/style.css">
-	<script src="/client.js"></script>
+	<script src="/contact-client.js"></script>
 	<title>Contact</title>
 </head>
 <body>
@@ -29,15 +29,15 @@
 		<h1>Contact us</h1>
 		<p>found an issue? Send us a message</p>
 		<label value="name">Name</label>
-		<input type="text" name="name-input"></input>
+		<input type="text" name="name-input" id="name-id"></input>
 		<br>
 		<label value="email">Email</label>
-		<input type="text" name="email-input"></input>
+		<input type="text" name="email-input" id="email-id"></input>
 		<br>
-		<label value="message"></label>
-		<input type="text" id="message-input" name="message-input"></input>
+		<label value="message">Message</label>
+		<textarea type="text" name="message-input" id="message-id"></textarea>
 		<br>
-		<button>Submit</button>
+		<button id="contact-submit">Submit</button>
 	</div>
 </div>
 

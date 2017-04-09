@@ -43,10 +43,9 @@ function showLocationData()
 		$.getJSON(PARKING_URL + '/' + locale, function(data){
 			//console.log(data); //data is an array of an object. must access the array, then the object
 			var parkElement = $('displayItem');
-			console.log(JSON.stringify(data));
-			console.log(data[0].capacity);
+			//console.log(JSON.stringify(data));
+			
 			parkElement.find('.park-loc').text(locale);
-			//console.log(data.location);
 			$('#location-data').append('<p>' + data[0].location + '</p>' + '<p>' + data[0].vacant + '</p>' + '<p>' + data[0].capacity + '</p>');
 			return parkElement;
 		});
