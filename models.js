@@ -39,5 +39,5 @@ userSchema.methods.apiRepr = function() {
 var users = mongoose.model('siteUsers', userSchema, 'userscollection');
 var spots = mongoose.model('parkAvail', parkingSchema, 'parkingcollection');
 
-module.exports = users;
-module.exports = spots;
+module.exports = {users: users, spots: spots};
+//module.exports = spots;

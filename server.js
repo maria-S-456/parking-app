@@ -6,13 +6,12 @@ const {DATABASE_URL, PORT} = require('./config.js');
 mongoose.Promise = global.Promise;
 var db = mongoose.connect(DATABASE_URL);
 
-
+/*
 const parkingcollection = require('./models'); //"parking collection is not defined" error will occur without this.
 const userscollection = require('./models');
+*/
 
-
-
-//const Models = require('./models');
+const Models = require('./models');
 app.use(bodyParser.json()); //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined" will occur without this when posting new info
 
 
@@ -54,7 +53,7 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/api', function(req, res) {
-	parkingcollection.find().exec().then(spots => {
+	Models.spots.find().exec().then(spots => {
 		res.json(spots.map(spot =>spot.apiRepr()));
 	}).catch(err => {
 		console.error(err);
@@ -63,7 +62,7 @@ app.get('/api', function(req, res) {
 });
 
 app.get('/user', function(req, res) {
-	userscollection.find().exec().then(users => {
+	Models.users.find().exec().then(users => {
 		res.json(users.map(user =>user.apiRepr()));
 	}).catch(err => {
 		console.error(err);
@@ -73,7 +72,7 @@ app.get('/user', function(req, res) {
 
 
 app.get('/api/:location', function(req, res) {
-	parkingcollection.find({location:req.params.location}).exec().then(spots => {
+	Models.spots.find({location:req.params.location}).exec().then(spots => {
 		res.json(spots.map(spot =>spot.apiRepr()));
 	}).catch(err => {
 		console.error(err);
@@ -118,7 +117,7 @@ app.post('/api', function(req, res){
 		}
 	}
 
-	parkingcollection.create({
+	Models.spots.create({
 		location: req.body.location,
 		vacant: req.body.vacant,
 		capacity: req.body.capacity
@@ -141,7 +140,7 @@ app.post('/user', function(req, res){
 			return res.status(400).send(message);
 		}
 	}
-	userscollection.create({
+	Models.users.create({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		username: req.body.username,
