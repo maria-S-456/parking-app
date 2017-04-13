@@ -15,6 +15,7 @@ function submitAddParking()
     //console.log($('#js-new-location').val());
 
   });
+  
 }
 
 function postData(data){

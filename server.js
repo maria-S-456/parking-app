@@ -2,12 +2,22 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 var mongoose = require('mongoose');
-const {DATABASE_URL} = require('./config.js');
+const {DATABASE_URL, PORT} = require('./config.js');
 mongoose.Promise = global.Promise;
 var db = mongoose.connect(DATABASE_URL);
+
+
 const parkingcollection = require('./models'); //"parking collection is not defined" error will occur without this.
+const userscollection = require('./models');
+
+
+
+//const Models = require('./models');
 app.use(bodyParser.json()); //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined" will occur without this when posting new info
 
+
+
+//nodemailer code
 //*****************************
 
 var nodemailer = require('nodemailer');
@@ -17,8 +27,8 @@ var smtpTransport = nodemailer.createTransport({
 	service: "gmail",
 	host: "smtp.gmail.com",
 	auth:{
-		user:config.mailer.auth.user,
-		pass:config.mailer.auth.pass
+		user : config.mailer.auth.user,
+		pass : config.mailer.auth.pass
 	}
 });
 
@@ -52,6 +62,16 @@ app.get('/api', function(req, res) {
 	});
 });
 
+app.get('/user', function(req, res) {
+	userscollection.find().exec().then(users => {
+		res.json(users.map(user =>user.apiRepr()));
+	}).catch(err => {
+		console.error(err);
+		res.status(500).json({error: 'GET failed'});
+	});
+});
+
+
 app.get('/api/:location', function(req, res) {
 	parkingcollection.find({location:req.params.location}).exec().then(spots => {
 		res.json(spots.map(spot =>spot.apiRepr()));
@@ -60,13 +80,14 @@ app.get('/api/:location', function(req, res) {
 		res.status(500).json({error: 'GET failed'});
 	});
 });
+//nodemailer code
 //***********************
 
 app.get('/send', function(req,res){
 	var mailOptions = {
-		subject: req.query.subject,
-		to: req.query.to,
-		text: req.query.text
+		subject: req.query.subject, //name
+		to: req.query.to,		//email
+		text: req.query.text		//message
 	}
 	console.log(mailOptions);
 	smtpTransport.sendMail(mailOptions, function(error,response){
@@ -87,6 +108,9 @@ app.post('/api', function(req, res){
 	const requiredFields = ['location', 'vacant','capacity'];
 	for(var i=0; i< requiredFields.length; i++){
 		const field = requiredFields[i];
+		//console.log(req.body.location);
+		//console.log(req.body.vacant);
+		//console.log(req.body.capacity);
 		if(!(field in req.body)) {
 			const message = `missing \`${field}\` in request body`;
 			console.error(message);
@@ -103,6 +127,33 @@ app.post('/api', function(req, res){
 		res.status(500).json({error: 'Failed adding new data'});
 		});
 });
+
+//*****CREATING A USER****************
+
+app.post('/user', function(req, res){
+	const reqFields = ['firstName', 'lastName', 'username', 'email', 'password'];
+	for(var i=0; i < reqFields.length; i++){
+		let field = reqFields[i];
+
+		if(!(field in req.body)) {
+			let message = `missing \'${field}\' in request body`;
+			console.log(message);
+			return res.status(400).send(message);
+		}
+	}
+	userscollection.create({
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		username: req.body.username,
+		email: req.body.email,
+		password: req.body.password
+	})
+	.then(user => res.status(201).json(user.apiRepr())).catch(err => { console.error(err);
+		res.status(500).json({error: 'Failed adding new user'});
+		});
+});
+
+//************************************
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Your app is listening on port ${process.env.PORT || 8000}`);

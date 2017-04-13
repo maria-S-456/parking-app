@@ -17,4 +17,27 @@ parkingSchema.methods.apiRepr = function(){
   };
 }
 
-module.exports = mongoose.model('parkAvail', parkingSchema, 'parkingcollection');
+var userSchema = new Schema({
+	firstName: {type: String, required:true},
+	lastName: {type: String, required: true},
+	username: {type: String, required: true, unique: true},
+	email: {type: String, required: true, unique: true},
+	password: {type: String, required: true}
+});
+
+userSchema.methods.apiRepr = function() {
+	return {
+		id: this._id,
+		firstName: this.firstName,
+		lastName: this.lastName,
+		username: this.userName,
+		email: this.email,
+		password: this.password
+	};
+}
+
+var users = mongoose.model('siteUsers', userSchema, 'userscollection');
+var spots = mongoose.model('parkAvail', parkingSchema, 'parkingcollection');
+
+module.exports = users;
+module.exports = spots;
