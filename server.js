@@ -131,7 +131,7 @@ app.post('/api', function(req, res){
 
 
 const basicStrategy = new BasicStrategy((username, password, callback) => {
-	console.log('in basic strategy');
+	//console.log('in basic strategy');
   let user;
   Models.users
     .findOne({username: username})
@@ -139,12 +139,19 @@ const basicStrategy = new BasicStrategy((username, password, callback) => {
     .then(_user => {
       user = _user;
       if (!user) {
+      	//console.log('incorrect username');
         return callback(null, false, {message: 'Incorrect username'});
       }
       return user.validatePassword(password);
+      
     })
     .then(isValid => {
+    	console.log(isValid);
       if (!isValid) {
+      	//console.log('username:' + username);
+      	//console.log('password:' + password);
+      	//console.log('incorrect password');
+      	
         return callback(null, false, {message: 'Incorrect password'});
 
       }
@@ -152,6 +159,7 @@ const basicStrategy = new BasicStrategy((username, password, callback) => {
         return callback(null, user)
       }
     });
+    //console.log(password);
 
 });
 
@@ -160,7 +168,10 @@ passport.use(basicStrategy);
 app.use(passport.initialize());
 
 app.post('/user', function(req, res){
-	
+	if(!req.body){
+		return res.status(400).json({message: 'No request body'});
+	}
+
 	const reqFields = ['firstName', 'lastName', 'username', 'email', 'password'];
 	for(var i=0; i < reqFields.length; i++){
 		let field = reqFields[i];
