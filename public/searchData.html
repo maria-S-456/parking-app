@@ -25,6 +25,7 @@
 </nav>
 <div class="container-fluid main-background">
 	<div class="inner-container container-fluid">
+	<!--
 		<h1>Search for a location</h1>
 		<form id="js-search-form">
 			<select id="js-park">
@@ -36,8 +37,65 @@
 		<div id='location-data'>
 
 		</div>
+	-->
+	<div id="floating-panel">
+      <input id="address" type="textbox">
+      <input id="submit" type="button" value="Search">
+    </div>
+
+    <div id="map"></div>
+
+   
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 41.8781, lng: -87.6298}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+        	
+          geocodeAddress(geocoder, map);
+        });
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+           
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+
+
+
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+
+        });
+      }
+    </script>
+   <script>
+      var chic = new XMLHttpRequest();
+      chic.open("GET", "https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20", false);
+      chic.send(null)
+
+      var r = JSON.parse(chic.response);
+      var loc = "Parking location: " + r.parking_listings.location_name;
+      document.getElementById("location").innerHTML = loc;
+   </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1LtFblFXwmbDhOmP2dF-rl_Wkm1OqrZM&callback=initMap">
+    </script>
 	</div>
 </div>
-	<script src="/search-client.js"></script>
+<!--	<script src="/search-client.js"></script> -->
+
 </body>
 </html>

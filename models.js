@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 Schema = mongoose.Schema;
 
@@ -30,14 +31,21 @@ userSchema.methods.apiRepr = function() {
 		id: this._id,
 		firstName: this.firstName,
 		lastName: this.lastName,
-		username: this.userName,
+		username: this.username,
 		email: this.email,
 		password: this.password
 	};
+}
+
+userSchema.methods.validatePassword = function(password){
+	return bcrypt.compare(password, this.password);
+}
+
+userSchema.statics.hashPassword = function(password){
+	return bcrypt.hash(password, 10);
 }
 
 var users = mongoose.model('siteUsers', userSchema, 'userscollection');
 var spots = mongoose.model('parkAvail', parkingSchema, 'parkingcollection');
 
 module.exports = {users: users, spots: spots};
-//module.exports = spots;

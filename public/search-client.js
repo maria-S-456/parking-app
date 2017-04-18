@@ -49,17 +49,6 @@ function showLocationData()
 			$('#location-data').append('<p>' + data[0].location + '</p>' + '<p>' + data[0].vacant + '</p>' + '<p>' + data[0].capacity + '</p>');
 			return parkElement;
 		});
-	/*	$.getJSON(PARKING_URL, function(data){
-			var locationData = data.map(function(loc){
-				var element = $(displayItem);
-				element.attr('id', loc.id);
-				element.find('.park-loc').text(loc.location);
-				$('#location-data').append('<p>' + loc.location + '</p>');
-				return element;
-			});			
-		}); */
-
-
 	});
 }
 

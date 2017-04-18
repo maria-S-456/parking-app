@@ -77,3 +77,7 @@ input[type="text"]{
 		width: 100%;
 	}	
 }
+#map {
+        height: 400px;
+        width: 400px;
+      }

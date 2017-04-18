@@ -1,20 +1,16 @@
 const bodyParser = require('body-parser');
+
 const express = require('express');
 const app = express();
 var mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config.js');
 mongoose.Promise = global.Promise;
 var db = mongoose.connect(DATABASE_URL);
-
-/*
-const parkingcollection = require('./models'); //"parking collection is not defined" error will occur without this.
-const userscollection = require('./models');
-*/
+var passport = require('passport');
+const {BasicStrategy} = require('passport-http');
 
 const Models = require('./models');
 app.use(bodyParser.json()); //error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined" will occur without this when posting new info
-
-
 
 //nodemailer code
 //*****************************
@@ -55,11 +51,14 @@ app.get('/search', (req, res) => {
 app.get('/api', function(req, res) {
 	Models.spots.find().exec().then(spots => {
 		res.json(spots.map(spot =>spot.apiRepr()));
+
 	}).catch(err => {
 		console.error(err);
 		res.status(500).json({error: 'GET failed'});
 	});
+	
 });
+
 
 app.get('/user', function(req, res) {
 	Models.users.find().exec().then(users => {
@@ -129,7 +128,39 @@ app.post('/api', function(req, res){
 
 //*****CREATING A USER****************
 
+
+
+const basicStrategy = new BasicStrategy((username, password, callback) => {
+	console.log('in basic strategy');
+  let user;
+  Models.users
+    .findOne({username: username})
+    .exec()
+    .then(_user => {
+      user = _user;
+      if (!user) {
+        return callback(null, false, {message: 'Incorrect username'});
+      }
+      return user.validatePassword(password);
+    })
+    .then(isValid => {
+      if (!isValid) {
+        return callback(null, false, {message: 'Incorrect password'});
+
+      }
+      else {
+        return callback(null, user)
+      }
+    });
+
+});
+
+//this block must come after basicStrategy is made to work
+passport.use(basicStrategy);
+app.use(passport.initialize());
+
 app.post('/user', function(req, res){
+	
 	const reqFields = ['firstName', 'lastName', 'username', 'email', 'password'];
 	for(var i=0; i < reqFields.length; i++){
 		let field = reqFields[i];
@@ -139,6 +170,7 @@ app.post('/user', function(req, res){
 			console.log(message);
 			return res.status(400).send(message);
 		}
+		
 	}
 	Models.users.create({
 		firstName: req.body.firstName,
@@ -151,6 +183,12 @@ app.post('/user', function(req, res){
 		res.status(500).json({error: 'Failed adding new user'});
 		});
 });
+
+app.get('/user/me',
+  passport.authenticate('basic', {session: false}),
+  (req, res) => res.json({user: req.user.apiRepr()})
+);
+
 
 //************************************
 
