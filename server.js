@@ -59,7 +59,6 @@ app.get('/api', function(req, res) {
 	
 });
 
-
 app.get('/user', function(req, res) {
 	Models.users.find().exec().then(users => {
 		res.json(users.map(user =>user.apiRepr()));
@@ -78,6 +77,7 @@ app.get('/api/:location', function(req, res) {
 		res.status(500).json({error: 'GET failed'});
 	});
 });
+
 //nodemailer code
 //***********************
 
@@ -106,16 +106,12 @@ app.post('/api', function(req, res){
 	const requiredFields = ['location', 'vacant','capacity'];
 	for(var i=0; i< requiredFields.length; i++){
 		const field = requiredFields[i];
-		//console.log(req.body.location);
-		//console.log(req.body.vacant);
-		//console.log(req.body.capacity);
 		if(!(field in req.body)) {
 			const message = `missing \`${field}\` in request body`;
 			console.error(message);
 			return res.status(400).send(message);
 		}
 	}
-
 	Models.spots.create({
 		location: req.body.location,
 		vacant: req.body.vacant,
@@ -127,8 +123,6 @@ app.post('/api', function(req, res){
 });
 
 //*****CREATING A USER****************
-
-
 
 const basicStrategy = new BasicStrategy((username, password, callback) => {
 	//console.log('in basic strategy');
@@ -167,32 +161,88 @@ const basicStrategy = new BasicStrategy((username, password, callback) => {
 passport.use(basicStrategy);
 app.use(passport.initialize());
 
-app.post('/user', function(req, res){
-	if(!req.body){
-		return res.status(400).json({message: 'No request body'});
-	}
+//returns users. this is just for testing
+app.get('/user', function(req, res) {
+	Models.users.find().exec().then(spots => {
+		res.json(spots.map(spot =>spot.apiRepr()));
 
-	const reqFields = ['firstName', 'lastName', 'username', 'email', 'password'];
-	for(var i=0; i < reqFields.length; i++){
-		let field = reqFields[i];
+	}).catch(err => {
+		console.error(err);
+		res.status(500).json({error: 'GET failed'});
+	});
+	
+});
 
-		if(!(field in req.body)) {
-			let message = `missing \'${field}\' in request body`;
-			console.log(message);
-			return res.status(400).send(message);
-		}
-		
-	}
-	Models.users.create({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		username: req.body.username,
-		email: req.body.email,
-		password: req.body.password
-	})
-	.then(user => res.status(201).json(user.apiRepr())).catch(err => { console.error(err);
-		res.status(500).json({error: 'Failed adding new user'});
-		});
+app.post('/user', (req, res) => {
+  if (!req.body) {
+    return res.status(400).json({message: 'No request body'});
+  }
+
+  if (!('username' in req.body)) {
+    return res.status(422).json({message: 'Missing field: username'});
+  }
+
+  let {firstName, lastName, username, email, password} = req.body;
+
+  if (typeof username !== 'string') {
+    return res.status(422).json({message: 'Incorrect field type: username'});
+  }
+
+  username = username.trim();
+
+  if (username === '') {
+    return res.status(422).json({message: 'Incorrect field length: username'});
+  }
+
+  if (!(password)) {
+    return res.status(422).json({message: 'Missing field: password'});
+  }
+
+  if (typeof password !== 'string') {
+    return res.status(422).json({message: 'Incorrect field type: password'});
+  }
+
+  password = password.trim();
+
+  if (password === '') {
+    return res.status(422).json({message: 'Incorrect field length: password'});
+  }
+
+  // check for existing user
+  return Models.users
+    .find({username})
+    .count()
+    .exec()
+    .then(count => {
+      if (count > 0) {
+        return res.status(422).json({message: 'username already taken'});
+      }
+      // if no existing user, hash password
+      return Models.users.hashPassword(password)
+    })
+    .then(hash => {
+      return Models.users
+        .create({
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          email: email,
+          password: hash
+        })
+    })
+    .then(user => {
+      return res.status(201).json(user.apiRepr());
+    })
+    .catch(err => {
+      res.status(500).json({message: 'Internal server error'})
+    });
+});
+
+app.delete('/user/:id', (req, res) => {
+	console.log(req.params.id);
+	Models.users.delete(req.params.id);
+	console(`Deleted user \`${req.params.id}\``);
+	res.status(204).end();
 });
 
 app.get('/user/me',
