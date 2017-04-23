@@ -63,6 +63,22 @@ $(function(){
 
 var SUGGESTION_URL = '/suggestionurl';
 
+function getEmailData(){
+
+	$('#email-button').click(function(){
+		//MUST have to,subject,text pattern!
+		var to,subject,text;
+    	subject = $('#js-email-name').val();
+    	to = $('#js-emailaddress').val();
+    	text = $('#js-email-message').val();
+    	   		
+    	$.get("http://localhost:8000/send", {subject:subject, to:to, text:text},
+		function(data){
+			console.log(data);
+		});
+	});
+}
+
 function submitAddSuggestion()
 {
 	$('#submit-suggestion').on('click', function(e) {
@@ -91,5 +107,6 @@ function postSuggestion(data){
 
 $(function(){
 	submitAddSuggestion();
+	getEmailData();
 	postSuggestion();
 });

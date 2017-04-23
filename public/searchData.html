@@ -107,11 +107,12 @@
 
 <div class="container-fluid page">
   <p>Find a problem? Send me an email</p>
-  <input type="text" placeholder="Name"></input>
-  <input type="text" placeholder="Email"></input>
-  <input type="text" placeholder="message">
-  <input type="button" value="Send"></input>
-  </div>
+  <form id="email-form">
+    <input type="text" placeholder="Name" id="js-email-name"></input>
+    <input type="text" placeholder="Email" id="js-emailaddress"></input>
+    <input type="text" placeholder="message" id="js-email-message"></input>
+    <input type="button" value="Send" id="email-button"></input>
+  </form>
 </div>
 
 <script src="/search-client.js"></script>
