@@ -68,6 +68,14 @@ app.get('/user', function(req, res) {
 	});
 });
 
+app.get('/suggestionurl', function(req, res) {
+	Models.suggestions.find().exec().then(suggestions => {
+		res.json(suggestions.map(suggestion =>suggestion.apiRepr()));
+	}).catch(err => {
+		console.error(err);
+		res.status(500).json({error: 'GET failed'});
+	});
+});
 
 app.get('/api/:location', function(req, res) {
 	Models.spots.find({location:req.params.location}).exec().then(spots => {
@@ -101,7 +109,8 @@ app.get('/send', function(req,res){
 });
 
 //***************************
-//error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined"
+
+/*//error: "TypeError: Cannot use &#39;in&#39; operator to search for &#39;location&#39; in undefined"
 app.post('/api', function(req, res){
 	const requiredFields = ['location', 'vacant','capacity'];
 	for(var i=0; i< requiredFields.length; i++){
@@ -121,6 +130,31 @@ app.post('/api', function(req, res){
 		res.status(500).json({error: 'Failed adding new data'});
 		});
 });
+*/
+
+
+
+app.post('/suggestionurl', function(req, res){
+	const requiredFields = ['location', 'name', 'email'];
+	for(var i=0; i< requiredFields.length; i++){
+		const field = requiredFields[i];
+		if(!(field in req.body)){
+			const message = `missing \`${field}\` in request body`;
+			console.log(message);
+			return res.status(400).send(message);
+		}
+	}
+	Models.suggestions.create({
+		location: req.body.location,
+		name: req.body.name,
+		email: req.body.email
+	})
+	.then(suggest => res.status(201).json(suggest.apiRepr())).catch(err => { console.error(err);
+		res.status(500).json({error: 'Failed adding new data'});
+		});
+});
+
+
 
 //*****CREATING A USER****************
 
@@ -237,13 +271,14 @@ app.post('/user', (req, res) => {
       res.status(500).json({message: 'Internal server error'})
     });
 });
-
+/* NOT YET WORKING
 app.delete('/user/:id', (req, res) => {
 	console.log(req.params.id);
 	Models.users.delete(req.params.id);
 	console(`Deleted user \`${req.params.id}\``);
 	res.status(204).end();
 });
+*/
 
 app.get('/user/me',
   passport.authenticate('basic', {session: false}),

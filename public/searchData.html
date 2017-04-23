@@ -10,7 +10,7 @@
 	<title>Search</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		
 		<ul class="nav navbar-nav">
@@ -24,21 +24,15 @@
 	</div>
 </nav>
 <div class="container-fluid main-background">
+  <div class="overlay-background container-fluid">
+  </div>
 	<div class="inner-container container-fluid">
-	<!--
-		<h1>Search for a location</h1>
-		<form id="js-search-form">
-			<select id="js-park">
-				
-			</select>
-			<br>
-			<input type="button" value="Search" id="search-button"></input>
-		</form>
-		<div id='location-data'>
-
-		</div>
-	-->
+	
 	<div id="floating-panel">
+    <div id="about-div">
+      <h1>ParkingSpot</h1>
+      <p>
+    </div>
       <input id="address" type="textbox">
       <input id="submit" type="button" value="Search">
     </div>
@@ -81,21 +75,45 @@
         });
       }
     </script>
-   <script>
-      var chic = new XMLHttpRequest();
-      chic.open("GET", "https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20", false);
-      chic.send(null)
-
-      var r = JSON.parse(chic.response);
-      var loc = "Parking location: " + r.parking_listings.location_name;
-      document.getElementById("location").innerHTML = loc;
-   </script>
+   
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1LtFblFXwmbDhOmP2dF-rl_Wkm1OqrZM&callback=initMap">
     </script>
 	</div>
+  
 </div>
-<!--	<script src="/search-client.js"></script> -->
 
+<div class="container-fluid page featured-cities">
+
+  <h1 class="title">Currently featured cities</h1>
+  <div class="img-div">
+
+    <img class="picture" src="styles/chicago.jpg"></img>
+    <div class="pic-label"><span>Chicago</span></div>
+  </div>
+</div>
+
+<div class="container-fluid page">
+  <div class="container-fluid inner-page">
+    <p>Didn't find your city? Send me a suggestion! We're always looking forward to expanding ParkingSpot to other locations!</p>
+    <form id="suggestion-form">
+      <input type="text" placeholder="location" class="suggestion-input" id="js-new-location"></input>
+      <input type="text" placeholder="Name" class="suggestion-input" id="js-new-name"> </input>
+      <input type="text" placeholder="email" class="suggestion-input" id="js-new-email">  </input>
+      <input type="button" value="Send" id="submit-suggestion"></input>
+    </form>
+  </div>
+</div>
+
+<div class="container-fluid page">
+  <p>Find a problem? Send me an email</p>
+  <input type="text" placeholder="Name"></input>
+  <input type="text" placeholder="Email"></input>
+  <input type="text" placeholder="message">
+  <input type="button" value="Send"></input>
+  </div>
+</div>
+
+<script src="/search-client.js"></script>
 </body>
 </html>

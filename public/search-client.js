@@ -1,5 +1,7 @@
 //every page must have a different client file
 
+
+/*
 var dropdownItem = (
 '<option class="listItem">' +'</option>'
 	);
@@ -56,4 +58,38 @@ $(function(){
 	
 	getListItem();
 	showLocationData();
+});
+*/
+
+var SUGGESTION_URL = '/suggestionurl';
+
+function submitAddSuggestion()
+{
+	$('#submit-suggestion').on('click', function(e) {
+		console.log('Suggestion sent!');
+		event.preventDefault();
+		postSuggestion({
+			location: $('#js-new-location').val(),
+			name: $('#js-new-name').val(),
+			email: $('#js-new-email').val()
+		});
+	});
+}
+
+function postSuggestion(data){
+	$.ajax({
+		method: 'POST',
+		url: SUGGESTION_URL,
+		data: JSON.stringify(data),
+		success: function(d){
+			console.log('Suggestion posted successfully!');
+		},
+		dataType: 'json',
+		contentType: 'application/json'
+	});
+};
+
+$(function(){
+	submitAddSuggestion();
+	postSuggestion();
 });

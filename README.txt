@@ -8,4 +8,6 @@ update: can post users, make an http request to them, added basic strategy. Cann
 
 update: isValid is always returning false! needs fixing.
 
-update: hashing working. deleting is not yet
+update: hashing working. deleting is not yet.
+
+update: migrating app from several pages to a single page, with separate login and sign up pages. In the middle of the process, so code is messy. Also worked a bit on the html/css.
