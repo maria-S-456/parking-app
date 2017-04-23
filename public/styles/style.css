@@ -4,6 +4,22 @@
 h1, label{
 	color: black;
 }
+.menu-element{
+	height: 6px;
+	width: 100%;
+	background-color: black;
+	margin: 5px 0px 0px 0px;
+	border-radius: 4px;
+}
+#menu-button{
+	height: 50px;
+	width: 60px;
+	background-color: transparent;
+	border: none;
+}
+#menu-button:hover{
+	border:black;
+}
 label{
 	font-size: 120%;
 }
@@ -63,17 +79,27 @@ input[type="text"]{
 	padding: 30px;
 	padding-top: 40px;
 }
+.title-content{
+	height: 500px;
+	width: 100%;
+	margin-top: -20px;
+	background-image: url('driving2.jpg');
+}
+#title-label{
+	font-size: 120px;
+}
 .main-background{ 
 	width: 100%;
-	background-image: url('driving2.jpg');
+	
 	/* <div class="overlay-background">
   </div> */
-	margin-top: -20px;
+	
 	height: 500px;
 }
 .overlay-background{
+	margin-top: -20px;
 	position: absolute;
-	background-color: rgba(255,255,255,0.4);
+	background-color:rgba(255,255,255,0.4); 
 	width: 100%;
 	height: 500px;
 }
@@ -87,13 +113,15 @@ input[type="text"]{
 }
 .featured-cities{
 	background-color: #FFDAB9;
+	height: 500px;
 }
 .title{
 	text-align: center;
+	color: #093c8c;
 }
 .img-div{
 	position: relative;
-	height: 200px;
+	height: 300px;
 	
 	margin: auto;
 	width: 200px;

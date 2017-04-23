@@ -13,19 +13,31 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav navbar-right">
+    <!--
 			<li><a href="about.html">About</a></li>
 			<li><a href="login.html">Login</a></li>
 			<li class="active"><a href="searchData.html">Search</a></li>
 			<li><a href="helpData.html">New</a></li>
 			<li><a href="contact.html">Contact</a></li>
+      -->
+      <li><button id="menu-button">
+        <div class="menu-element"></div>
+        <div class="menu-element"></div>
+        <div class="menu-element"></div>
+      </button></li>
 
 		</ul>
 	</div>
 </nav>
-<div class="container-fluid main-background">
-  <div class="overlay-background container-fluid">
+<div class="overlay-background container-fluid">
   </div>
+<div class="title-content container-fluid">
+  <h1 id="title-label">ParkingSpot</h1>
+</div>
+
+<div class="container-fluid main-background">
+  
 	<div class="inner-container container-fluid">
 	
 	<div id="floating-panel">
@@ -82,7 +94,7 @@
   
 </div>
 
-<div class="container-fluid page featured-cities">
+<div class="container-fluid featured-cities">
 
   <h1 class="title">Currently featured cities</h1>
   <div class="img-div">
@@ -94,7 +106,8 @@
 
 <div class="container-fluid page">
   <div class="container-fluid inner-page">
-    <p>Didn't find your city? Send me a suggestion! We're always looking forward to expanding ParkingSpot to other locations!</p>
+    <h1>Didn't find your city?</h1>
+    <p>Send me a suggestion! We're always looking forward to expanding ParkingSpot to other locations!</p>
     <form id="suggestion-form">
       <input type="text" placeholder="location" class="suggestion-input" id="js-new-location"></input>
       <input type="text" placeholder="Name" class="suggestion-input" id="js-new-name"> </input>
