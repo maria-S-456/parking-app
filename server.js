@@ -290,6 +290,8 @@ app.get('/user/me',
   (req, res) => res.json({user: req.user.apiRepr()})
 );
 
+
+
 /*
 app.post('/login',
 	passport.authenticate('basic', { successRedirect: '/search', failureRedirect: '/login', failureFlash: true}));
