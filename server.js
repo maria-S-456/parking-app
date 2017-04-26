@@ -32,6 +32,10 @@ var smtpTransport = nodemailer.createTransport({
 app.use(express.static('public'));
 app.use(express.static('styles'));
 
+app.get('/signup', (req,res) => {
+	res.sendFile(__dirname + '/public/signup.html');
+})
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/about.html');
 });
@@ -47,7 +51,7 @@ app.get('/login', (req, res) => {
 app.get('/search', (req, res) => {
   res.sendFile(__dirname + '/public/searchData.html');
 });
-
+/*
 app.get('/api', function(req, res) {
 	Models.spots.find().exec().then(spots => {
 		res.json(spots.map(spot =>spot.apiRepr()));
@@ -58,6 +62,7 @@ app.get('/api', function(req, res) {
 	});
 	
 });
+*/
 
 app.get('/user', function(req, res) {
 	Models.users.find().exec().then(users => {
@@ -76,7 +81,7 @@ app.get('/suggestionurl', function(req, res) {
 		res.status(500).json({error: 'GET failed'});
 	});
 });
-
+/*
 app.get('/api/:location', function(req, res) {
 	Models.spots.find({location:req.params.location}).exec().then(spots => {
 		res.json(spots.map(spot =>spot.apiRepr()));
@@ -85,7 +90,7 @@ app.get('/api/:location', function(req, res) {
 		res.status(500).json({error: 'GET failed'});
 	});
 });
-
+*/
 //nodemailer code
 //***********************
 
@@ -285,7 +290,10 @@ app.get('/user/me',
   (req, res) => res.json({user: req.user.apiRepr()})
 );
 
-
+/*
+app.post('/login',
+	passport.authenticate('basic', { successRedirect: '/search', failureRedirect: '/login', failureFlash: true}));
+*/
 //************************************
 
 app.listen(process.env.PORT || 8000, () => {

@@ -38,7 +38,7 @@ input[type="button"]{
 	width: 100px;
 	
 }
-input[type="text"]{
+input[type="text"], input[type="password"]{
 	border-radius: 10px;
 	display: block;
 	height: 40px;
@@ -86,7 +86,7 @@ input[type="text"]{
 	background-image: url('driving2.jpg');
 }
 #title-label{
-	font-size: 120px;
+	font-size: 150px;
 }
 .main-background{ 
 	width: 100%;
