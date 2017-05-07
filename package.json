@@ -1,24 +1,24 @@
 {
-  "name": "parking-app",
+  "name": "remixed-parking-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "jquery": "^3.2.1",
-    "mocha": "^3.2.0",
-    "mongoose": "^4.9.2",
-    "nodemailer": "^4.0.0",
+    "mongodb": "^2.2.26",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
-    "passport-http": "^0.3.0"
+    "passport-local": "^1.0.0"
   }
 }

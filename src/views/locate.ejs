@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/styles/style.css">
+
+	<style>
+
+
+	</style>
+
+	
+	<title>Find a Parking location</title>
+</head>
+<body>
+	<h1>Parking spot locater</h1>
+
+  <div id="search-div">
+    <input id="address" type="textbox" placeholder="Search">
+    <input id="submit" type="button" value="Search">
+  </div>
+  <div id="locater-div">
+    <div id="search-results">hello</div>
+    <div id="map"></div>
+  </div>
+	<script>
+      function initMap() {
+     
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 41.8781, lng: -87.6298}
+        });
+
+         var geocoder = new google.maps.Geocoder();
+        document.getElementById('submit').addEventListener('click', function() {          
+          geocodeAddress(geocoder, map);
+        });
+      }
+        function geocodeAddress(geocoder, resultsMap)
+        {
+          var address = document.getElementById('address').value;
+          geocoder.geocode({'address':address}, function(results, status){
+            if(status === 'OK'){
+              resultsMap.setCenter(results[0].geometry.location);
+
+              var marker = new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location
+              });
+            } else{
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2qXs7GqgjX55uoSszcXy6WQkm9bW0n1Y&callback=initMap">
+    </script>
+</body>
+</html>
