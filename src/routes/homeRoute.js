@@ -59,20 +59,6 @@ var nodemailer = require('nodemailer');
 			});
 		});
 	});
-	/*
-	var nodemailer = require('nodemailer');
-var authconfig = require('./src/config/authconfig.js');
-var smtpTransport = nodemailer.createTransport({
-	service: "gmail",
-	host: "smtp.gmail.com",
-	auth:{
-		user: authconfig.mailer.auth.user,
-		pass: authconfig.mailer.auth.pass
-	}
-});
 
-homeRoute.route('/contact', function(req, res){
-	smtpTransport.sendMail(mail)
-})
-*/
+	
 module.exports = homeRoute;

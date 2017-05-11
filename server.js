@@ -13,7 +13,7 @@ var authRoute = require('./src/routes/authRoute');
 var homeRoute = require('./src/routes/homeRoute');
 
 //this is to serve static files such as css in the /public directory
-//when navigating to the css file in the ejs file, /public will be the default directory
+//when navigating to the css file in the ejs file, /public will be the default parent directory
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -40,6 +40,10 @@ app.get('/', function(req, res){
 app.get('/login', function(req,res){
 	res.render('login');
 });
+
+app.get('/sample', function(req,res){
+	res.render('sample');
+})
 
 app.listen(port, function(err){
 	console.log('running on port ' + port);

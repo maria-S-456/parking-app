@@ -1,1 +1,3 @@
 Redid parking app using EJS view engine, routes, and with most forms on a single page except login. Working authentication using local database. Map, contact, suggestion, sign up, and login forms work correctly.
+
+update: accessing public api through a sample route to test that it's working. data appearing in console to ensure it's being accessed.

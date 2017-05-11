@@ -2,10 +2,12 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
+//var parkUrl = require('../config/parkconfig.js');
+var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		
-		console.log(req.body);
+		console.log('new user created: ' + req.body);
 
 		var url = 'mongodb://localhost:27017/parkingUsers';
 		mongodb.connect(url, function(err,db){
@@ -53,6 +55,18 @@ var passport = require('passport');
 		console.log('This is the parking finder page.');
 		res.render('locate');
 	});	
+
+	authRoute.route('/apitest').all(function(req,res, next){
+		if(!req.user){
+			res.redirect('/');
+		}
+		next();
+		loadJSON(parkingUrl, gotData, 'jsonp');
+		function gotData(data){
+			console.log(data);
+		}
+	})
+	
 
 
 module.exports = authRoute;
