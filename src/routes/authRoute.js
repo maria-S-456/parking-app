@@ -2,7 +2,6 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
-//var parkUrl = require('../config/parkconfig.js');
 var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
 	
 	authRoute.route('/usersignup').post(function(req,res){
