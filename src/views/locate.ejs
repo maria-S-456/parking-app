@@ -46,6 +46,10 @@
                 map: resultsMap,
                 position: results[0].geometry.location
               });
+              //give me coordinates of location entered by user
+              var x = results[0].geometry.location;
+              //console.log(x); this returns _.F {lat: function, lng: function} . Just use JSON.stringify to get the lat and long.
+              //console.log(JSON.stringify(x)); //gives coordinates of location entered in search box
             } else{
               alert('Geocode was not successful for the following reason: ' + status);
             }
