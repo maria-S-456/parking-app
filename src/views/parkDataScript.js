@@ -4,4 +4,5 @@ $.getJSON(parkingUrl, function(url){
 	for(var i = 0; i < 20; i++){
 		console.log(url.parking_listings[i].location_name);
 	}
+	
 });

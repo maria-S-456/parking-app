@@ -5,3 +5,4 @@ update: accessing public api through a sample route to test that it's working. d
 update: can display list of parking houses in console correctly.
 
 update: Getting coordinates of location entered by user
+		Correct format now.

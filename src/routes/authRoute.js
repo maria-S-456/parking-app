@@ -51,7 +51,7 @@ var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.636959
 		}
 		next();
 	}).get(function(req,res){
-		console.log('This is the parking finder page.');
+		//console.log('This is the parking finder page.');
 		res.render('locate');
 	});	
 
