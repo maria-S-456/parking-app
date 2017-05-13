@@ -11,7 +11,7 @@ $.getJSON(parkingUrl, function(url){
 
 
    	function initMap() {
-     
+     	//after moving google map code to external js file, now getting error "Uncaught ReferenceError: google is not defined". This doesn't stop the map from working though
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
           center: {lat: 41.8781, lng: -87.6298}
@@ -50,9 +50,6 @@ $.getJSON(parkingUrl, function(url){
           });
         }
 
-function runMapData(){
 	initMap();
 	geocodeAddress();
-}
 
-module.exports = runMapData();

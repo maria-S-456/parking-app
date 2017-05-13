@@ -1,1 +1,1 @@
-update: preparing to separate google map code into separate file.
+update: google map code is in separate js file. Works successfully, even with the following error: "Uncaught ReferenceError: google is not defined"
