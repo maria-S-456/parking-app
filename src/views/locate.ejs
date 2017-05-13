@@ -46,17 +46,17 @@
                 map: resultsMap,
                 position: results[0].geometry.location
               });
-              //give me coordinates of location entered by user
               var x = results[0].geometry.location;
-
-              //console.log(x); this returns _.F {lat: function, lng: function} . Just use JSON.stringify to get the lat and long.
-              var coord = JSON.stringify(x);
-              console.log(coord); //gives coordinates of location entered in search box in this format: {"lat":9.999, "lng": 9.999} . the fields still cannot be accessed until JSON.parse() is used.
-              var latitude = JSON.parse(coord).lat;
-              var longitude = JSON.parse(coord).lng;
+              var latitude = JSON.parse(JSON.stringify(x)).lat;
+              var longitude = JSON.parse(JSON.stringify(x)).lng;
               console.log('longitude: ' + longitude + '. latitude: ' + latitude);
 
 
+              var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
+              $.getJSON(parkingUrl, function(url){
+                for(var i = 0; i < 20; i++){
+                console.log(url.parking_listings[i].location_name);}
+              });
             } else{
               alert('Geocode was not successful for the following reason: ' + status);
             }
