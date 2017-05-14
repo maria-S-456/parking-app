@@ -1,13 +1,3 @@
-/*
-var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
-$.getJSON(parkingUrl, function(url){
-
-	for(var i = 0; i < 20; i++){
-		console.log(url.parking_listings[i].location_name);
-	}
-
-});
-*/
 
 
    	function initMap() {
@@ -41,8 +31,13 @@ $.getJSON(parkingUrl, function(url){
 
               var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
               $.getJSON(parkingUrl, function(url){
-                for(var i = 0; i < 20; i++){
-                console.log(url.parking_listings[i].location_name);}
+            /*    for(var i = 0; i < 20; i++){
+                console.log(url.parking_listings[i].location_name);
+            	console.log(url.parking_listings[i].lat);
+            	console.log(url.parking_listings[i].lng);
+            	}
+            	*/
+            	
               });
             } else{
               alert('Geocode was not successful for the following reason: ' + status);
@@ -53,3 +48,9 @@ $.getJSON(parkingUrl, function(url){
 	initMap();
 	geocodeAddress();
 
+
+	//get distance from entered coordinates to every location, then sort by proximity
+	//loop
+	
+	//use 'latitude' and 'longitude' from lines 27 and 28 and use google map directions api to get length of time to each parking house.
+	//make list of parking locations and their distance from entered location
