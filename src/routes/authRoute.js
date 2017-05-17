@@ -2,7 +2,8 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
-var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
+var spotUrl = require('../config/apiconfig.js');
+//var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		
@@ -43,6 +44,7 @@ var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.636959
 
 		console.log("This is my profile.");
 		res.json(req.user);
+		//console.log(spotUrl.url);
 	});
 
 	authRoute.route('/locate').all(function(req,res,next){
@@ -60,7 +62,7 @@ var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.636959
 			res.redirect('/');
 		}
 		next();
-		loadJSON(parkingUrl, gotData, 'jsonp');
+		loadJSON(spotUrl.url, gotData, 'jsonp');
 		function gotData(data){
 			console.log(data);
 		}

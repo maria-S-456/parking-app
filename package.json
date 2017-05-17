@@ -1,7 +1,7 @@
 {
   "name": "remixed-parking-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "update: google map code is in separate js file. Works successfully, even with the following error: \"Uncaught ReferenceError: google is not defined\"",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +18,16 @@
     "jquery": "^3.2.1",
     "mongodb": "^2.2.26",
     "nodemailer": "^4.0.1",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maria-S-456/parking-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maria-S-456/parking-app/issues"
+  },
+  "homepage": "https://github.com/maria-S-456/parking-app#readme"
 }

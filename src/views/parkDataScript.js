@@ -24,26 +24,59 @@
                 position: results[0].geometry.location
               });
               var x = results[0].geometry.location;
-              var latitude = JSON.parse(JSON.stringify(x)).lat;
-              var longitude = JSON.parse(JSON.stringify(x)).lng;
-              console.log('longitude: ' + longitude + '. latitude: ' + latitude);
-
+              var latitude = "";
+              var longitude = "";
+              var latitude = (JSON.parse(JSON.stringify(x)).lat).toString();
+              var longitude = (JSON.parse(JSON.stringify(x)).lng).toString();
+              //console.log('longitude: ' + longitude + '. latitude: ' + latitude);
+              stringifyCoords(latitude, longitude);
 
               var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
-              $.getJSON(parkingUrl, function(url){
-            /*    for(var i = 0; i < 20; i++){
-                console.log(url.parking_listings[i].location_name);
-            	console.log(url.parking_listings[i].lat);
-            	console.log(url.parking_listings[i].lng);
-            	}
-            	*/
-            	
-              });
+              
+          /*    $.getJSON(parkingUrl, function(url){
+               for(var i = 0; i < 20; i++){
+                //console.log(url.parking_listings[i].location_name);
+            	//console.log(url.parking_listings[i].lat);
+            	}            	
+              }); */
             } else{
               alert('Geocode was not successful for the following reason: ' + status);
             }
           });
         }
+      function stringifyCoords(Olat,Olong){
+        //lat and long refer to origin coordinates
+        console.log('using getDistance(). latitude: ' + Olat + '. longitude: ' + Olong);
+        //concatenate coordinates into a string
+        let comma = ",";
+        let origin = Olat.concat(comma, Olong);
+        
+        //console.log(origin);
+      }
+
+      function callback(response, status)
+{
+    if (status == google.maps.DistanceMatrixStatus.OK)
+    {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+      for (var i = 0; i < origins.length; i++)
+      {
+          var results = response.rows[i].elements;
+          for (var j = 0; j < results.length; j++)
+          {
+              var element = results[j];
+              var from = origins[i];
+              var to = destinations[j];
+              var distance = element.distance.text;
+              var duration = element.duration.text;
+              var ResultStr = distance + "&nbsp; (<i>" + duration + "</i>)";
+          }
+      }
+    document.getElementById("Results1").innerHTML = ResultStr;
+    console.log(from);
+    }
+}
 
 	initMap();
 	geocodeAddress();
