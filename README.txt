@@ -2,4 +2,4 @@ This is a parking app which helps users find open parking spots in the city of c
 
 Current status: not complete.
 
-update: stringified coordinates in correct format.
+update: measured distance from entered location to all parkinghouses.
