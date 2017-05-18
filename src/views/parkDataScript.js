@@ -26,7 +26,7 @@ function geocodeAddress(geocoder, resultsMap)
               var latitude = JSON.parse(JSON.stringify(x)).lat;
               var longitude = JSON.parse(JSON.stringify(x)).lng;
               var origin = prepareCoords(latitude, longitude);
-              console.log("Starting coordinates: " + origin);
+              //console.log("Starting coordinates: " + origin);
 
               $.getJSON(parkingUrl, function(url){
                 for(var i = 0; i < url.parking_listings.length; i++){
@@ -54,9 +54,9 @@ function prepareCoords(lat,long)
 
 function GoogleMapDistance(originLatLong, destLatLong)
         {
+          //console.log(destLatLong);
           var service = new google.maps.DistanceMatrixService();
-          service.getDistanceMatrix
-          ({
+          service.getDistanceMatrix({
             origins: [originLatLong],
             destinations: [destLatLong],
             travelMode: google.maps.TravelMode.DRIVING,
@@ -64,30 +64,24 @@ function GoogleMapDistance(originLatLong, destLatLong)
             avoidHighways: false,
             avoidTolls: false
             }, callback);
-          console.log('hello');
+          //console.log(callback);
         }
 
 function callback(response, status)
 {
+   // console.log('response: ' + response);
+    //console.log('status: ' + status);
     if (status == google.maps.DistanceMatrixStatus.OK)
     {
-    let origins = response.originAddresses;
-    let destinations = response.destinationAddresses;
-      for (var i = 0; i < origins.length; i++)
-      {
-          var results = response.rows[i].elements;
-          for (var j = 0; j < results.length; j++)
-          {
-              var element = results[j];
-              var from = origins[i];
-              var to = destinations[j];
-              var distance = element.distance.text;
-              var duration = element.duration.text;
-          }
-      }
-    console.log(duration);
+      console.log('response ' + JSON.stringify(response)); //same
+      var origins = response.originAddresses;
+    //var destinations = response.destinationAddresses;
+   
+    //console.log(origins);
     }
 }
 
 initMap();
 geocodeAddress();
+
+//cannot get mailing address from coordinates, only coordinates
