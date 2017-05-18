@@ -1,3 +1,5 @@
-update: google map code is in separate js file. Works successfully, even with the following error: "Uncaught ReferenceError: google is not defined"
+This is a parking app which helps users find open parking spots in the city of chicago. It is built with javascript, html/css, and node.js.
 
-update: parkingurl in parkDataScript.js needs to be imported from apiconfig.js
+Current status: not complete.
+
+update: stringified coordinates in correct format.

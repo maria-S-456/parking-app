@@ -1,5 +1,6 @@
-
-
+ var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
+var x = "hello";
+console.log(x);
    	function initMap() {
      	//after moving google map code to external js file, now getting error "Uncaught ReferenceError: google is not defined". This doesn't stop the map from working though
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -24,59 +25,36 @@
                 position: results[0].geometry.location
               });
               var x = results[0].geometry.location;
-              var latitude = "";
-              var longitude = "";
-              var latitude = (JSON.parse(JSON.stringify(x)).lat).toString();
-              var longitude = (JSON.parse(JSON.stringify(x)).lng).toString();
-              //console.log('longitude: ' + longitude + '. latitude: ' + latitude);
-              stringifyCoords(latitude, longitude);
+              var latitude = JSON.parse(JSON.stringify(x)).lat;
+              var longitude = JSON.parse(JSON.stringify(x)).lng;
+              var origin = prepareCoords(latitude, longitude);
+              console.log("Starting coordinates: " + origin);
 
-              var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
+              $.getJSON(parkingUrl, function(url){
+                for(var i = 0; i < url.parking_listings.length; i++){
+                  let dLat = url.parking_listings[i].lat;
+                  let dLong = url.parking_listings[i].lng;
+                  let destination = prepareCoords(dLat, dLong);
+                  //send origin and destination to GoogleMapDistance function
+                }
+              });
               
-          /*    $.getJSON(parkingUrl, function(url){
-               for(var i = 0; i < 20; i++){
-                //console.log(url.parking_listings[i].location_name);
-            	//console.log(url.parking_listings[i].lat);
-            	}            	
-              }); */
+             
             } else{
               alert('Geocode was not successful for the following reason: ' + status);
             }
           });
         }
-      function stringifyCoords(Olat,Olong){
-        //lat and long refer to origin coordinates
-        console.log('using getDistance(). latitude: ' + Olat + '. longitude: ' + Olong);
-        //concatenate coordinates into a string
+      function prepareCoords(Olat,Olong)
+        {
+          //this function stringifies latitude and longitude of the entered location, c
+        Olat = Olat.toString();
+        Olong = Olong.toString();
         let comma = ",";
         let origin = Olat.concat(comma, Olong);
-        
-        //console.log(origin);
-      }
+        return origin;
+        }
 
-      function callback(response, status)
-{
-    if (status == google.maps.DistanceMatrixStatus.OK)
-    {
-    var origins = response.originAddresses;
-    var destinations = response.destinationAddresses;
-      for (var i = 0; i < origins.length; i++)
-      {
-          var results = response.rows[i].elements;
-          for (var j = 0; j < results.length; j++)
-          {
-              var element = results[j];
-              var from = origins[i];
-              var to = destinations[j];
-              var distance = element.distance.text;
-              var duration = element.duration.text;
-              var ResultStr = distance + "&nbsp; (<i>" + duration + "</i>)";
-          }
-      }
-    document.getElementById("Results1").innerHTML = ResultStr;
-    console.log(from);
-    }
-}
 
 	initMap();
 	geocodeAddress();
