@@ -14,11 +14,11 @@ var nodemailer = require('nodemailer');
 	}
 });	
 	homeRoute.route('/contact').post(function(req, res){
-		//console.log(req.body.name);
+		
 		var mailOptions = {
-			subject: req.body.name, //name
-			to: req.body.email, //email
-			text: req.body.message //message
+			subject: req.body.name,
+			to: req.body.email, 
+			text: req.body.message 
 		};
 		
 		smtpTransport.sendMail(mailOptions, function(error, response){

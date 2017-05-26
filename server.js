@@ -6,6 +6,17 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var session = require('express-session'); //importing the client-sessions library
 
+var headers = [
+		{
+			fname: 'Harold',
+			lname: 'Finch'
+		},
+		{
+			fname: 'John',
+			lname: 'Reese'
+		}
+]
+
 var port = process.env.PORT || 3000;
 
 //define routes
@@ -42,7 +53,8 @@ app.get('/login', function(req,res){
 });
 
 app.get('/sample', function(req,res){
-	res.render('sample');
+	res.render('sample', {about: 'About', cities: 'Currently Featured Cities', signup: 'Sign Up', suggestions: 'Suggestions', contact: 'Contact'
+	});
 })
 
 app.listen(port, function(err){

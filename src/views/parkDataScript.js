@@ -54,7 +54,7 @@ function prepareCoords(lat,long)
 
 function GoogleMapDistance(originLatLong, destLatLong)
         {
-          //console.log(destLatLong);
+          console.log(destLatLong);
           var service = new google.maps.DistanceMatrixService();
           service.getDistanceMatrix({
             origins: [originLatLong],
@@ -73,11 +73,11 @@ function callback(response, status)
     //console.log('status: ' + status);
     if (status == google.maps.DistanceMatrixStatus.OK)
     {
-      console.log('response ' + JSON.stringify(response)); //same
-      var origins = response.originAddresses;
+      //console.log('response ' + JSON.stringify(response)); //same
+     // var origins = response.originAddresses;
     //var destinations = response.destinationAddresses;
    
-    //console.log(origins);
+    console.log('origins: ' + origins);
     }
 }
 
