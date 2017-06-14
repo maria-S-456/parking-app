@@ -1,6 +1,12 @@
 var express = require('express');
 var app = express();
 
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+const {PORT,DATABASE_URL} = require('./apiconfig');
+var {parkingHouse} = require('./models');
+
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
@@ -17,7 +23,7 @@ var headers = [
 		}
 ]
 
-var port = process.env.PORT || 3000;
+//var port = process.env.PORT || 8000;
 
 //define routes
 var authRoute = require('./src/routes/authRoute');
@@ -25,7 +31,7 @@ var homeRoute = require('./src/routes/homeRoute');
 
 //this is to serve static files such as css in the /public directory
 //when navigating to the css file in the ejs file, /public will be the default parent directory
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser('a'));
@@ -55,8 +61,67 @@ app.get('/login', function(req,res){
 app.get('/sample', function(req,res){
 	res.render('sample', {about: 'About', cities: 'Currently Featured Cities', signup: 'Sign Up', suggestions: 'Suggestions', contact: 'Contact'
 	});
-})
+});
+
+app.get('/parkinghouses',(req,res)=>{
+		//console.log('this is the parking api page');
+		parkingHouse.find().exec().then(locations => {
+			console.log('this is the parking api page');
+			res.json({
+				locations:locations.map((location) => location.apiRepr())
+			});
+		})
+		.catch(
+			err =>{
+				console.log(err);
+				res.status(500).json({message: 'Internal server error'});
+			});
+	});
+
+let server;
+
+// this function connects to our database, then starts the server
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    });
+  });
+}
+
+// this function closes the server, and returns a promise. we'll
+// use it in our integration tests later.
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+     return new Promise((resolve, reject) => {
+       console.log('Closing server');
+       server.close(err => {
+           if (err) {
+               return reject(err);
+           }
+           resolve();
+       });
+     });
+  });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
+/*
 
 app.listen(port, function(err){
 	console.log('running on port ' + port);
 });
+*/
