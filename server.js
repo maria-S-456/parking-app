@@ -23,8 +23,6 @@ var headers = [
 		}
 ]
 
-//var port = process.env.PORT || 8000;
-
 //define routes
 var authRoute = require('./src/routes/authRoute');
 var homeRoute = require('./src/routes/homeRoute');
@@ -119,9 +117,3 @@ function closeServer() {
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
-/*
-
-app.listen(port, function(err){
-	console.log('running on port ' + port);
-});
-*/

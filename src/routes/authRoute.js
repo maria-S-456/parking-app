@@ -2,10 +2,6 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
-var spotUrl = require('../config/apiconfig.js');
-//var parkUrl = 'mongodb://localhost:27017/parkingHouses';
-//const {DATABASE_URL} = require('../config/apiconfig');
-//const {parkingHouse} = require('./models.js');
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		
@@ -45,9 +41,6 @@ var spotUrl = require('../config/apiconfig.js');
 		res.json(req.user);
 	});
 
-//var {DATABASE_URL} = require('./apiconfig.js');
-//var {parkhouse} = require('.models');
-
 	authRoute.route('/locate').all(function(req,res,next){
 		//console.log('hello');
 		if(!req.user){
@@ -60,19 +53,4 @@ var spotUrl = require('../config/apiconfig.js');
 		
 	});	
 
-/*
-	authRoute.get('/parkinghouses',(req,res, next)=>{
-		console.log('this is the parking api page');
-		parkingHouse.find().limit(10).exec().then(locations => {
-			res.json({
-				locations:locations.map((location) => location.apiRepr())
-			});
-		})
-		.catch(
-			err =>{
-				console.log(err);
-				res.status(500).json({message: 'Internal server error'});
-			});
-	});
-	*/
 module.exports = authRoute;
