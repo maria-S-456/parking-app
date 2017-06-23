@@ -69,7 +69,9 @@ app.get('/parkinghouses',(req,res)=>{
 				locations:locations.map((location) => location.apiRepr())
 			});
 			*/
-			res.render('parkapi', {name: locations[2].location_name});
+			//console.log(locations.length);
+		
+			res.render('parkapi', {name: locations[0].location_name, data: locations});
 			
 			//These three lines display parking locations in the console in string format
 			//var jsonVar = {locations:locations.map((location) => location.apiRepr())};

@@ -9,5 +9,16 @@
 	this is the sample page
 	<h1><%= name %></h1>
 
+	<p><%= data[2] %></p>
+	<table>
+	<% for(var i=0; i < data.length; i++){ %>
+		<tr>
+			<td><%=data[i].location_name %></td>
+			<td><%=data[i].address %></td>
+			<td><%=data[i].city %></td>
+			<td><%=data[i].state %></td>
+		</tr>
+		<% } %>
+	</table>
 </body>
 </html>
