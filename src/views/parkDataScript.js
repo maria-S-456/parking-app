@@ -1,6 +1,5 @@
 var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
 
-//console.log('hello');
 function initMap() {
      	//after moving google map code to external js file, now getting error "Uncaught ReferenceError: google is not defined". This doesn't stop the map from working though
         var map = new google.maps.Map(document.getElementById('map'), {
