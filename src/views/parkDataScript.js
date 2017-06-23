@@ -1,3 +1,12 @@
+var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 41.8781, lng: -87.6298},
+          zoom: 20
+        });
+      }
+/*
+
 var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
 
 function initMap() {
@@ -86,3 +95,4 @@ initMap();
 geocodeAddress();
 
 //cannot get mailing address from coordinates, only coordinates
+*/

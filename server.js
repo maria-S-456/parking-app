@@ -68,6 +68,11 @@ app.get('/parkinghouses',(req,res)=>{
 			res.json({
 				locations:locations.map((location) => location.apiRepr())
 			});
+			console.log(locations[2].lat);
+			//These three lines display parking locations in the console in string format
+			//var jsonVar = {locations:locations.map((location) => location.apiRepr())};
+			//var jsonStr = JSON.stringify(jsonVar);
+			//console.log(jsonStr);
 		})
 		.catch(
 			err =>{

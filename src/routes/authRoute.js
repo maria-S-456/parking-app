@@ -2,6 +2,7 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
+var {parkingHouse} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		
@@ -42,7 +43,6 @@ var passport = require('passport');
 	});
 
 	authRoute.route('/locate').all(function(req,res,next){
-		//console.log('hello');
 		if(!req.user){
 			res.redirect('/');
 		};
@@ -52,5 +52,5 @@ var passport = require('passport');
 		res.render('locate');
 		
 	});	
-
+//console.log(parkingHouse);
 module.exports = authRoute;
