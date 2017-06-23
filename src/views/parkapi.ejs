@@ -4,21 +4,23 @@
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="list-styles.css">
 </head>
 <body>
 	this is the sample page
-	<h1><%= name %></h1>
-
-	<p><%= data[2] %></p>
-	<table>
-	<% for(var i=0; i < data.length; i++){ %>
-		<tr>
-			<td><%=data[i].location_name %></td>
-			<td><%=data[i].address %></td>
-			<td><%=data[i].city %></td>
-			<td><%=data[i].state %></td>
-		</tr>
+	<h1>Parking Houses</h1>	
+	<ul>
+		<% for(var i=0; i < data.length; i++){ %>
+			<li>
+				<div>		
+					<p><%=data[i].location_name %></p>
+					<p><%=data[i].address %></p>
+					<p><%=data[i].city %></p>
+					<p><%=data[i].state %></p>
+				</div>	
+			</li>	
 		<% } %>
-	</table>
+	</ul>
+
 </body>
 </html>
