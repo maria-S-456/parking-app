@@ -2,6 +2,7 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
+
 var {parkingHouse} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
@@ -39,18 +40,17 @@ var {parkingHouse} = require('../../models');
 	}).get(function(req,res){
 
 		console.log("This is my profile.");
+		//console.log(parkingHouse);
 		res.json(req.user);
 	});
 
-	authRoute.route('/locate').all(function(req,res,next){
-		if(!req.user){
-			res.redirect('/');
-		};
-		next();
-	}).get(function(req,res){
+	authRoute.get('/locate', (req,res)=>{
 		
-		res.render('locate');
+		parkingHouse.find().exec().then(locations => {
+			console.log('Parking house search page');
+			res.render('locate', {data: locations});
+		});
 		
-	});	
-//console.log(parkingHouse);
+	});
+
 module.exports = authRoute;

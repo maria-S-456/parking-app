@@ -69,7 +69,6 @@ app.get('/parkinghouses',(req,res)=>{
 				locations:locations.map((location) => location.apiRepr())
 			});
 			*/
-			//console.log(locations.length);
 		
 			res.render('parkapi', {name: locations[0].location_name, data: locations});
 			

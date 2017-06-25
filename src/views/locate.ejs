@@ -5,9 +5,10 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     
-   <script async defer
+   <script defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2qXs7GqgjX55uoSszcXy6WQkm9bW0n1Y&callback=initMap">
   </script>
+  <!-- after adding list of locations from database using ejs, was getting 'initmap is not a function' errors, with the map not loading. this was solved by removing 'async' from the google api url -->
 	
 	<title>Find a Parking location</title>
 </head>
@@ -19,7 +20,15 @@
     <input id="submit" type="button" value="Search">
   </div>
   <div id="locater-div">
-    <div id="search-results">hello</div>
+    <div id="search-results">
+    <p><%= data[0].location_name %></p>
+    
+    <% for(var i=0; i < data.length; i++){ %>
+       
+          <p><%= data[i].location_name %></p>
+       
+    <% } %>
+    </div>
     <div id="map"></div>
   </div>
   
