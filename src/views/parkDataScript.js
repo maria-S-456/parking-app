@@ -28,10 +28,11 @@ var map;
                 position: results[0].geometry.location
               });
               //Following three lines get the coordinates of the entered location
-              
-              //var x = results[0].geometry.location;
+
+              var x = results[0].geometry.location;
               //console.log(x); this returns _.F {lat: function, lng: function} . Just use JSON.stringify to get the lat and long.
               //console.log(JSON.stringify(x)); //gives coordinates of location entered in search box
+              console.log(JSON.parse(JSON.stringify(x)).lat); //inputted lat as a number
             } else{
               alert('Geocode was not successful for the following reason: ' + status);
             }
