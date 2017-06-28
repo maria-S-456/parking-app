@@ -21,12 +21,17 @@
   </div>
   <div id="locater-div">
     <div id="search-results">
-    <p><%= data[0].location_name %></p>
     
     <% for(var i=0; i < data.length; i++){ %>
-       
+       <div class='list-objects'>
           <p><%= data[i].location_name %></p>
-       
+          <p><%= data[i].address %></p>
+          <p><%= data[i].city %></p>
+          <p><%= data[i].zip %></p>
+          <p><%= data[i].lat %></p>
+          <p><%= data[i].lng %></p>
+          <p>Price: <%= data[i].price_formatted %></p>
+       </div>
     <% } %>
     </div>
     <div id="map"></div>
