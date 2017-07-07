@@ -40,7 +40,6 @@ var {parkingHouse} = require('../../models');
 	}).get(function(req,res){
 
 		console.log("This is my profile.");
-		//console.log(parkingHouse);
 		res.json(req.user);
 	});
 

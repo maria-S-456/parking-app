@@ -62,20 +62,12 @@ app.get('/sample', function(req,res){
 });
 
 app.get('/parkinghouses',(req,res)=>{
-		//console.log('this is the parking api page');
+
 		parkingHouse.find().exec().then(locations => {
 			console.log('this is the parking api page');
-			/*res.json({
+			res.json({
 				locations:locations.map((location) => location.apiRepr())
 			});
-			*/
-		
-			res.render('parkapi', {name: locations[0].location_name, data: locations});
-			
-			//These three lines display parking locations in the console in string format
-			//var jsonVar = {locations:locations.map((location) => location.apiRepr())};
-			//var jsonStr = JSON.stringify(jsonVar);
-			//console.log(jsonStr);
 		})
 		.catch(
 			err =>{

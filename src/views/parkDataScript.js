@@ -1,43 +1,71 @@
-
 var map;
-      function initMap() {
-        //Set the starting position in Chicago currently
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 41.8781, lng: -87.6298},
-          zoom: 15
-        });
+function initMap() {
+  //Set the starting position in Chicago currently
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 41.8781, lng: -87.6298},
+    zoom: 15
+    });
 
-        //Geocoding is used to get the location entered in the submit box onto the map.
-        var geocoder = new google.maps.Geocoder();
+  //Geocoding is used to get the location entered in the submit box onto the map.
+  var geocoder = new google.maps.Geocoder();
 
-        document.getElementById('submit').addEventListener('click', function() {          
-          geocodeAddress(geocoder, map);
-        });
-      }
 
-             function geocodeAddress(geocoder, resultsMap)
-        {
-          var address = document.getElementById('address').value;
-          geocoder.geocode({'address':address}, function(results, status){
-            if(status === 'OK'){
-              resultsMap.setCenter(results[0].geometry.location);
+  document.getElementById('submit').addEventListener('click', function() {          
+    geocodeAddress(geocoder, map);
+    });
+  }
 
-              //create a marker at the location entered by the user.
-              var marker = new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location
-              });
-              //Following three lines get the coordinates of the entered location
+function geocodeAddress(geocoder, resultsMap)
+{
+  var address = document.getElementById('address').value;
+  
 
-              var x = results[0].geometry.location;
-              //console.log(x); this returns _.F {lat: function, lng: function} . Just use JSON.stringify to get the lat and long.
-              //console.log(JSON.stringify(x)); //gives coordinates of location entered in search box
-              console.log(JSON.parse(JSON.stringify(x)).lat); //inputted lat as a number
-            } else{
-              alert('Geocode was not successful for the following reason: ' + status);
-            }
-          });
-        }
+  geocoder.geocode({'address':address}, function(results, status){
+    if(status === 'OK'){
+      resultsMap.setCenter(results[0].geometry.location);
+
+      //create a marker at the location entered by the user.
+  var marker = new google.maps.Marker({
+  map: resultsMap,
+  position: results[0].geometry.location
+  });
+  //Getting coordinates from inputted data in string format
+  var x = results[0].geometry.location; 
+  var coords = [JSON.parse(JSON.stringify(x)).lat, JSON.parse(JSON.stringify(x)).lng];             
+  //console.log(coords); //inputted lat as a number
+
+  findDistance(coords);
+           
+  } else{
+    alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+function findDistance(startCoords){
+  var directionsService = new google.maps.DistanceMatrixService();
+  var sampleDest = [38.5816, -121.4944];
+  var start = new google.maps.LatLng(startCoords[0], startCoords[1]);
+  var end = new google.maps.LatLng(sampleDest[0], sampleDest[1]);
+  //starCoords and endCoords need to be converted from number to string here!
+
+  directionsService.getDistanceMatrix({
+    origins: ["43.6532, -79.3832"],
+    destinations: ["38.5816, -121.4944"],
+    travelMode: google.maps.TravelMode.DRIVING
+  }, callback);
+
+  function callback(res, stats){
+    if (stats == google.maps.DistanceMatrixStatus.OK){
+      console.log('response: ' + res);
+      var distance = (res.rows[0].elements[0].distance.value)/1609.34;
+      console.log(distance + ' miles');
+    }
+    else{
+      console.log('Error: ' + res.originAddresses);
+    }
+  }
+}
 /*
 
 var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
