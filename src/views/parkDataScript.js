@@ -42,24 +42,22 @@ function geocodeAddress(geocoder, resultsMap)
   });
 }
 
-function findDistance(startCoords){
+function findDistance(start){
   var directionsService = new google.maps.DistanceMatrixService();
-  var sampleDest = [38.5816, -121.4944];
-  var start = new google.maps.LatLng(startCoords[0], startCoords[1]);
-  var end = new google.maps.LatLng(sampleDest[0], sampleDest[1]);
-  //starCoords and endCoords need to be converted from number to string here!
+  var strCoords = (start[0].toString()).concat(",",start[1].toString());
 
   directionsService.getDistanceMatrix({
-    origins: ["43.6532, -79.3832"],
+    origins: [strCoords],
     destinations: ["38.5816, -121.4944"],
     travelMode: google.maps.TravelMode.DRIVING
   }, callback);
 
   function callback(res, stats){
     if (stats == google.maps.DistanceMatrixStatus.OK){
-      console.log('response: ' + res);
+      //console.log('response: ' + res);
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
-      console.log(distance + ' miles');
+      //console.log(res);
+      console.log("Distance: " + distance + ' miles');
     }
     else{
       console.log('Error: ' + res.originAddresses);
