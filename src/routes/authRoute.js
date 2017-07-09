@@ -52,4 +52,27 @@ var {parkingHouse} = require('../../models');
 		
 	});
 
+	authRoute.get('/test', (req,res)=>{
+		
+		parkingHouse.find().exec().then(locations => {
+			console.log('Testing search page');
+			res.render('sample', {data: locations});
+		});
+		
+	});
+
+	authRoute.get('/api', (req,res)=>{
+		parkingHouse.find().exec().then(locations => {
+			console.log('this is the parking api page');
+			res.json({
+				locations:locations.map((location) => location.apiRepr())
+			});
+		})
+		.catch(
+			err =>{
+				console.log(err);
+				res.status(500).json({message: 'Internal server error'});
+			});
+	})
+
 module.exports = authRoute;

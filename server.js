@@ -56,26 +56,6 @@ app.get('/login', function(req,res){
 	res.render('login');
 });
 
-app.get('/sample', function(req,res){
-	res.render('sample', {about: 'About', cities: 'Currently Featured Cities', signup: 'Sign Up', suggestions: 'Suggestions', contact: 'Contact'
-	});
-});
-
-app.get('/parkinghouses',(req,res)=>{
-
-		parkingHouse.find().exec().then(locations => {
-			console.log('this is the parking api page');
-			res.json({
-				locations:locations.map((location) => location.apiRepr())
-			});
-		})
-		.catch(
-			err =>{
-				console.log(err);
-				res.status(500).json({message: 'Internal server error'});
-			});
-	});
-
 let server;
 
 // this function connects to our database, then starts the server

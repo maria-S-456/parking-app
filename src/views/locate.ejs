@@ -8,8 +8,7 @@
    <script defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2qXs7GqgjX55uoSszcXy6WQkm9bW0n1Y&callback=initMap">
   </script>
-  <!-- after adding list of locations from database using ejs, was getting 'initmap is not a function' errors, with the map not loading. this was solved by removing 'async' from the google api url -->
-	
+ 
 	<title>Find a Parking location</title>
 </head>
 <body>
@@ -23,7 +22,7 @@
     <div id="search-results">
     
     <% for(var i=0; i < data.length; i++){ %>
-       <div class='list-objects'>
+       <div class='list-objects' id='list-objects'>
           <p><%= data[i].location_name %></p>
           <p><%= data[i].address %></p>
           <p><%= data[i].city %></p>

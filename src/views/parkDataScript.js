@@ -18,29 +18,28 @@ function initMap() {
 function geocodeAddress(geocoder, resultsMap)
 {
   var address = document.getElementById('address').value;
-  
 
   geocoder.geocode({'address':address}, function(results, status){
     if(status === 'OK'){
       resultsMap.setCenter(results[0].geometry.location);
 
       //create a marker at the location entered by the user.
-  var marker = new google.maps.Marker({
-  map: resultsMap,
-  position: results[0].geometry.location
-  });
-  //Getting coordinates from inputted data in string format
-  var x = results[0].geometry.location; 
-  var coords = [JSON.parse(JSON.stringify(x)).lat, JSON.parse(JSON.stringify(x)).lng];             
-  //console.log(coords); //inputted lat as a number
+      var marker = new google.maps.Marker({
+      map: resultsMap,
+      position: results[0].geometry.location
+      });
 
-  findDistance(coords);
+    //Getting coordinates from inputted data in string format
+    var x = results[0].geometry.location; 
+    var coords = [JSON.parse(JSON.stringify(x)).lat, JSON.parse(JSON.stringify(x)).lng];             
+  
+    findDistance(coords);
            
-  } else{
+    } else{
     alert('Geocode was not successful for the following reason: ' + status);
     }
   });
-}
+};
 
 function findDistance(start){
   var directionsService = new google.maps.DistanceMatrixService();
@@ -51,19 +50,18 @@ function findDistance(start){
     destinations: ["38.5816, -121.4944"],
     travelMode: google.maps.TravelMode.DRIVING
   }, callback);
-
-  function callback(res, stats){
-    if (stats == google.maps.DistanceMatrixStatus.OK){
+};
+function callback(res, stats){
+    if (stats === google.maps.DistanceMatrixStatus.OK){
       //console.log('response: ' + res);
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
-      //console.log(res);
+      
       console.log("Distance: " + distance + ' miles');
     }
     else{
       console.log('Error: ' + res.originAddresses);
     }
-  }
-}
+  };
 /*
 
 var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
