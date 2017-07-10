@@ -63,7 +63,7 @@ var {parkingHouse} = require('../../models');
 
 	authRoute.get('/api', (req,res)=>{
 		parkingHouse.find().exec().then(locations => {
-			console.log('this is the parking api page');
+			//console.log('this is the parking api page');
 			res.json({
 				locations:locations.map((location) => location.apiRepr())
 			});

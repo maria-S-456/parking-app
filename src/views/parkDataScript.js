@@ -12,8 +12,9 @@ function initMap() {
 
   document.getElementById('submit').addEventListener('click', function() {          
     geocodeAddress(geocoder, map);
-    });
-  }
+
+  });
+}
 
 function geocodeAddress(geocoder, resultsMap)
 {
@@ -45,18 +46,41 @@ function findDistance(start){
   var directionsService = new google.maps.DistanceMatrixService();
   var strCoords = (start[0].toString()).concat(",",start[1].toString());
 
-  directionsService.getDistanceMatrix({
-    origins: [strCoords],
-    destinations: ["38.5816, -121.4944"],
-    travelMode: google.maps.TravelMode.DRIVING
-  }, callback);
+  var $list = $('#list');
+   $(function(){
+        $.ajax({
+          type: 'GET',
+          url: '/auth/api',
+          success: function(data){
+            //console.log('success', data.locations);
+
+            $.each(data, function(index, item){
+              $.each(item, function(index2, subitem){
+                var endCoords = (subitem.lat.toString()).concat(",",subitem.lng.toString());
+                //console.log(endCoords); //coordinates of all locations in string format
+
+                directionsService.getDistanceMatrix({
+                origins: [strCoords],
+                destinations: [endCoords],
+                travelMode: google.maps.TravelMode.DRIVING
+                }, callback);
+
+                $list.append('<li>Place Name: ' + subitem.location_name + '</li>' + '<li>Address: ' + subitem.address + '</li>');
+              
+
+              });
+            });
+          }
+        });
+      });
 };
 function callback(res, stats){
     if (stats === google.maps.DistanceMatrixStatus.OK){
-      //console.log('response: ' + res);
+      var $list = $('#list');
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
-      
-      console.log("Distance: " + distance + ' miles');
+      $list.append('<li>Distance: ' + distance + '</li>');
+      //console.log(res.rows[0]);
+      //console.log("Distance: " + distance + ' miles');
     }
     else{
       console.log('Error: ' + res.originAddresses);
