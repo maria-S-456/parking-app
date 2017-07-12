@@ -46,13 +46,13 @@ function findDistance(start){
   var directionsService = new google.maps.DistanceMatrixService();
   var strCoords = (start[0].toString()).concat(",",start[1].toString());
 
-  var $list = $('#list');
+  //var $list = $('#list');
    $(function(){
         $.ajax({
           type: 'GET',
           url: '/auth/api',
           success: function(data){
-            //console.log('success', data.locations);
+            //console.log(data.locations);
 
             $.each(data, function(index, item){
               $.each(item, function(index2, subitem){
@@ -65,7 +65,7 @@ function findDistance(start){
                 travelMode: google.maps.TravelMode.DRIVING
                 }, callback);
 
-                $list.append('<li>Place Name: ' + subitem.location_name + '</li>' + '<li>Address: ' + subitem.address + '</li>');
+                //$list.append('<li>Place Name: ' + subitem.location_name + '</li>' + '<li>Address: ' + subitem.address + '</li>');
               
 
               });
@@ -74,11 +74,44 @@ function findDistance(start){
         });
       });
 };
+
+var arrayItems = [];
+
 function callback(res, stats){
+
+    //callback will run 60 times with every search. it will give the distance 60 times for every parking house location.
+
     if (stats === google.maps.DistanceMatrixStatus.OK){
-      var $list = $('#list');
+      //var $list = $('#list');
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
-      $list.append('<li>Distance: ' + distance + '</li>');
+      arrayItems.push(distance);
+      if(arrayItems.length === 60){
+
+        $(function(){
+          $.ajax({
+            type: 'GET',
+            url: '/auth/api',
+            success: function(data){
+
+              var $list = $('#list');
+
+              console.log('array length: ' + arrayItems.length);
+
+              for(var i = 0; i < arrayItems.length; i++){
+              //console.log(data.locations[i]);
+              $list.append('<li><div><p>Place Name: ' + data.locations[i].location_name + '</p>' + '<p>Address: ' + data.locations[i].address + '</p><p>Distance: ' + arrayItems[i] + '</p></div></li>');
+              
+              }
+
+            }
+          })
+        });
+
+
+        
+      }
+      
+      //$list.append('<li>Distance: ' + distance + '</li>');
       //console.log(res.rows[0]);
       //console.log("Distance: " + distance + ' miles');
     }
