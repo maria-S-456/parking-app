@@ -94,15 +94,14 @@ function callback(res, stats){
             success: function(data){
 
               var $list = $('#list');
-
-              console.log('array length: ' + arrayItems.length);
-
+              $list.removeData();
+              //console.log('array length: ' + arrayItems.length);
               for(var i = 0; i < arrayItems.length; i++){
-              //console.log(data.locations[i]);
               $list.append('<li><div><p>Place Name: ' + data.locations[i].location_name + '</p>' + '<p>Address: ' + data.locations[i].address + '</p><p>Distance: ' + arrayItems[i] + '</p></div></li>');
               
               }
-
+              arrayItems = [];
+              distance = [];
             }
           })
         });
