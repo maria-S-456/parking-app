@@ -85,29 +85,26 @@ function callback(res, stats){
       //var $list = $('#list');
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
       arrayItems.push(distance);
-      if(arrayItems.length === 60){
 
+      if(arrayItems.length === 60){
+        var $list = $('#list');
+        $list.empty();
+        //console.log('distance of first item: ' + arrayItems[0]);
         $(function(){
           $.ajax({
             type: 'GET',
             url: '/auth/api',
             success: function(data){
 
-              var $list = $('#list');
-              $list.removeData();
-              //console.log('array length: ' + arrayItems.length);
               for(var i = 0; i < arrayItems.length; i++){
               $list.append('<li><div><p>Place Name: ' + data.locations[i].location_name + '</p>' + '<p>Address: ' + data.locations[i].address + '</p><p>Distance: ' + arrayItems[i] + '</p></div></li>');
-              
               }
+
               arrayItems = [];
               distance = [];
             }
           })
-        });
-
-
-        
+        });        
       }
       
       //$list.append('<li>Distance: ' + distance + '</li>');
