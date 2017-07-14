@@ -79,26 +79,31 @@ var arrayItems = [];
 
 function callback(res, stats){
 
-    //callback will run 60 times with every search. it will give the distance 60 times for every parking house location.
-
     if (stats === google.maps.DistanceMatrixStatus.OK){
-      //var $list = $('#list');
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
       arrayItems.push(distance);
 
       if(arrayItems.length === 60){
         var $list = $('#list');
         $list.empty();
-        //console.log('distance of first item: ' + arrayItems[0]);
+       
         $(function(){
           $.ajax({
             type: 'GET',
             url: '/auth/api',
             success: function(data){
+              
+              for(var f = 0; f < data.locations.length; f++){                
+                data.locations[f]["distance"] = arrayItems[f];
+              };
+
+              data.locations.sort(function(a,b){
+                return a.distance - b.distance;
+              });
 
               for(var i = 0; i < arrayItems.length; i++){
-              $list.append('<li><div><p>Place Name: ' + data.locations[i].location_name + '</p>' + '<p>Address: ' + data.locations[i].address + '</p><p>Distance: ' + arrayItems[i] + '</p></div></li>');
-              }
+              $list.append('<li><div><p>Place Name: ' + data.locations[i].location_name + '</p>' + '<p>Address: ' + data.locations[i].address + '</p><p>Distance: ' + data.locations[i].distance + '</p><p>State ' + data.locations[i].state + '</p></div></li>');
+              };
 
               arrayItems = [];
               distance = [];
@@ -106,15 +111,12 @@ function callback(res, stats){
           })
         });        
       }
-      
-      //$list.append('<li>Distance: ' + distance + '</li>');
-      //console.log(res.rows[0]);
-      //console.log("Distance: " + distance + ' miles');
     }
     else{
       console.log('Error: ' + res.originAddresses);
     }
-  };
+    //console.log(res.originAddresses);
+};
 /*
 
 var parkingUrl = 'https://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1490681894&end=1490692694&key=62d882d8cfe5680004fa849286b6ce20';
