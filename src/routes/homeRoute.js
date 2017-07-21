@@ -38,7 +38,8 @@ var nodemailer = require('nodemailer');
 
 	homeRoute.route('/suggest').post(function(req,res){
 		//console.log(req.body.name);
-		var url = 'mongodb://localhost:27017/parkingUsers';
+		//var url = 'mongodb://localhost:27017/parkingUsers';
+		var url = 'mongodb://localhost:27017/spotfindersuggestions';
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('suggestions');
 			var suggestions = {
@@ -53,7 +54,7 @@ var nodemailer = require('nodemailer');
 			}
 			//console.log(results.ops[0]);
 			req.login(results.ops[0], function(){
-				console.log("Successfully sent!")
+				console.log("Successfully sent!");
 				res.redirect('/');
 			});
 			

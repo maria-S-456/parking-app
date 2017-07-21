@@ -6,7 +6,7 @@ var passport = require('passport');
 var {parkingHouse} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
-		
+		//console.log(req.body);
 		console.log('new user created: ' + req.body);
 		var url = 'mongodb://localhost:27017/parkingUsers';
 		mongodb.connect(url, function(err,db){
@@ -34,7 +34,7 @@ var {parkingHouse} = require('../../models');
 	//profile route requires authentication
 	authRoute.route('/profile').all(function(req,res, next){
 		if(!req.user){
-			res.redirect('/');
+			res.redirect('/login');
 		}
 		next();
 	}).get(function(req,res){
@@ -52,18 +52,8 @@ var {parkingHouse} = require('../../models');
 		
 	});
 
-	authRoute.get('/test', (req,res)=>{
-		
-		parkingHouse.find().exec().then(locations => {
-			console.log('Testing search page');
-			res.render('sample', {data: locations});
-		});
-		
-	});
-
 	authRoute.get('/api', (req,res)=>{
 		parkingHouse.find().exec().then(locations => {
-			//console.log('this is the parking api page');
 			res.json({
 				locations:locations.map((location) => location.apiRepr())
 			});

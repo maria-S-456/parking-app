@@ -1,45 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="/styles/style.css">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    
-   <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2qXs7GqgjX55uoSszcXy6WQkm9bW0n1Y&callback=initMap">
-  </script>
+<link rel="stylesheet" href="/styles/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2qXs7GqgjX55uoSszcXy6WQkm9bW0n1Y&callback=initMap"></script>
  
 	<title>Find a Parking location</title>
 </head>
-<body>
-	<h1>Parking spot locater</h1>
 
+<body> 
+	<h1>Parking spot locater</h1>  
   <div id="search-div">
     <input id="address" type="textbox" placeholder="Search">
     <input id="submit" type="button" value="Search">
   </div>
+  
   <div id="locater-div">
     <div id="search-results">
-    <!--
-    <% for(var i=0; i < data.length; i++){ %>
-       <div class='list-objects' id='list-objects'>
-          <p><%= data[i].location_name %></p>
-          <p><%= data[i].address %></p>
-          <p><%= data[i].city %></p>
-          <p><%= data[i].zip %></p>
-          <p><%= data[i].lat %></p>
-          <p><%= data[i].lng %></p>
-          <p>Price: <%= data[i].price_formatted %></p>
-       </div>
-    <% } %>  -->
-    <ul id="list">
-
-    </ul>
+      <ul id="list">
+      </ul>
     </div>
-    <div id="map"></div>
+    <div id="map">
+    </div>
   </div>
   
-	<script src="/parkDataScript.js"></script>  
+<script src="/parkDataScript.js"></script>  
 </body>
-
 </html>

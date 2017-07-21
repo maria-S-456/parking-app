@@ -5,4 +5,4 @@ module.exports = {
 }
 */
              
-exports.PORT = process.env.PORT || 8000;
+exports.PORT = process.env.PORT || 3000;

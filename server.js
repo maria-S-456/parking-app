@@ -12,17 +12,6 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var session = require('express-session'); //importing the client-sessions library
 
-var headers = [
-		{
-			fname: 'Harold',
-			lname: 'Finch'
-		},
-		{
-			fname: 'John',
-			lname: 'Reese'
-		}
-]
-
 //define routes
 var authRoute = require('./src/routes/authRoute');
 var homeRoute = require('./src/routes/homeRoute');
