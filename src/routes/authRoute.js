@@ -4,6 +4,7 @@ var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
 
 var {parkingHouse} = require('../../models');
+//var {parkingUsers} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		//console.log(req.body);
@@ -15,10 +16,11 @@ var {parkingHouse} = require('../../models');
 				username: req.body.username,
 				password: req.body.password
 			};
-
+			console.log('hello');
 		collection.insert(users, function(err, results){
 			req.login(results.ops[0], function(){
 				res.redirect('/auth/profile');
+
 			});
 		});
 		});
@@ -27,7 +29,7 @@ var {parkingHouse} = require('../../models');
 	authRoute.route('/userlogin').post(passport.authenticate('local', { 
 		failureRedirect: '/'
 	}), function(req, res){
-		console.log(req.user); //'user' is not the name of the collection containing the user info, but the user credentials of the current session
+		//console.log(req.user); 
 		res.redirect('/auth/profile');
 	});	
 
@@ -38,18 +40,15 @@ var {parkingHouse} = require('../../models');
 		}
 		next();
 	}).get(function(req,res){
-
-		console.log("This is my profile.");
-		res.json(req.user);
+		res.render('profile', {data: req.user.username});
 	});
 
 	authRoute.get('/locate', (req,res)=>{
 		
 		parkingHouse.find().exec().then(locations => {
-			console.log('Parking house search page');
+			//console.log('Parking house search page');
 			res.render('locate', {data: locations});
-		});
-		
+		});		
 	});
 
 	authRoute.get('/api', (req,res)=>{

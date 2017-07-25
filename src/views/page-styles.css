@@ -32,7 +32,16 @@ body{
   width: 100%;
   position: absolute;
   background: linear-gradient( rgba(186, 206, 216, 0.65),rgba(186, 206, 216, 0.65)),url('https://www.walldevil.com/wallpapers/a85/backgrounds-wallpapers-cool-scenery-background-city-sea-images-miscellaneous.jpg');
-  
+  background-attachment: fixed;
+  background-size: cover;
+}
+.background2{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: url('blue-background.jpg');
+  background-attachment: fixed;
+  background-size: cover;
 }
 .login-div{
   position: relative;
@@ -45,13 +54,13 @@ body{
   background:rgba(0,0,0,.30);
   padding-top: 15px;
 }
-.backgroundcolor{
-  background-color: orange;
+.no-margin{
+  margin:0;
+}
+.no-padding{
+  padding: 0;
 }
 
-@media screen and (max-width: 500px){
-
-}
 input[type="text"], input[type="password"]{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -61,5 +70,82 @@ input[type="text"], input[type="password"]{
 }
 *{
   font-family: Verdana, Tahoma;
-  font-size: 16px;
+  font-size: 20px;
+}
+h2{
+  font-size: 56px;
+  text-align: center;
+}
+#about-div{
+  height: 470px;
+  padding-top: 5%;
+  padding-bottom: 20%;
+  background:rgba(0,0,0,.30);
+  
+}
+.box-div{
+  height: 450px;
+  width: 350px;
+  background-color: #394d6d;
+  margin: 0 auto;
+  top: 20%;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.wide-box-div{
+  height: 450px;
+  width: 550px;
+  background-color: #394d6d;
+  margin: 0 auto;
+  top: 20%;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  border-radius: 10px;
+}
+.city-img{
+  height: 230px;
+  width: 230px;
+  margin-top: 5%;
+  margin-left:.5%;
+  margin-right:.5%;
+  display: inline-block;
+  position: relative;
+
+}
+.city-img img{
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+  transition: .3s;
+}
+.city-img :not(img){
+  position: absolute;
+  top: 20%;
+  bottom: 30%;
+  color: white;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  opacity:0;
+  transition:.3s;
+}
+.city-img:hover :not(img){
+  opacity: 1;
+}
+.city-img p{
+  font-size: 12px;
+  top: 50%;
+}
+.city-img:hover img{
+  filter:blur(2px) brightness(60%);
+  box-shadow:0 0 16px cyan;
+}
+#
+{
+  padding: 15px;
 }
