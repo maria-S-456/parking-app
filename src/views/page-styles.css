@@ -107,6 +107,7 @@ h2{
   right: 0;
   position: absolute;
   border-radius: 10px;
+  padding:10px;
 }
 .city-img{
   height: 230px;

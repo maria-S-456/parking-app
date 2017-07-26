@@ -5,7 +5,7 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="/home-js.js"></script>
+   
     <link rel="stylesheet" href="page-styles.css">
     </head>
 
@@ -162,7 +162,57 @@
 				<div class="col-md-3"></div>	
 			</div><!-- end of about div/12 col row -->
 
-<!-- contact div -->
+<!-- start new contact div -->
+<!-- suggest div -->
+<div id="contact-div" class="col-md-12">
+	<div class="col-md-3"></div>
+		<div class="col-md-6 " style="text-align: center">					
+			<h2>Contact</h2>
+			<br>
+			<p>If you have any questions, please send me an email.</p>
+			<br>
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contactModal">Click Here!</button>
+
+				<!--Modal-->
+					<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel">
+				  		<div class="modal-dialog" role="document">
+				    		<div class="modal-content">
+				      			<div class="modal-header">
+				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        			<h4 class="modal-title" id="contactModalLabel">Contact</h4>
+				      			</div>
+				      			<div class="modal-body" style="text-align: left">
+				        			<form id="contact-form" name="contact-form" action="/contact" method="post">
+				        				<div class="form-group">
+				        					<label for="contactemail">Email</label>
+				        					<input class="form-control" type="email" placeholder="email" id="contactemail" name="contactemail"></input>
+				        				</div>
+				        				<div class="form-group">
+											<label for="contactname">Name</label>
+											<input class="form-control" type="text" placeholder="name" id="contactname" name="contactname"></input>
+										</div>
+										<div class="form-group">
+											<label for="contactmessage">Message</label>
+											<input class="form-control" type="text" id="contactmessage" name="contactmessage" placeholder="message"></input>
+										</div>
+											<!-- Make sure to include the submit button WITHIN the form -->
+										<div class="modal-footer">
+							      			<button type="submit" class="btn btn-primary">Submit</button>
+							        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				        
+							      		</div>
+									</form>
+				      			</div><!-- end of modalbody -->
+				    	    </div>
+				  		</div>
+					</div>
+				</div>
+				<div class="col-md-3"></div>	
+			</div><!-- end of about div/12 col row -->
+
+<!-- end new contact div -->
+
+
+<!-- old contact form
 			<div class="col-md-12" style="background-color: yellow">
 				<h2>Contact</h2>
 				<form name="contact-form" action="/contact" method="post">
@@ -175,6 +225,7 @@
 					<input type="submit" value="Send" id="send-email"></input>
 				</form>
 			</div>
+-->
 
 		</div>
 

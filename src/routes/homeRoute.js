@@ -17,9 +17,9 @@ var nodemailer = require('nodemailer');
 	homeRoute.route('/contact').post(function(req, res){
 		
 		var mailOptions = {
-			subject: req.body.name,
-			to: req.body.email, 
-			text: req.body.message 
+			subject: req.body.contactname,
+			to: req.body.contactemail, 
+			text: req.body.contactmessage 
 		};
 		
 		smtpTransport.sendMail(mailOptions, function(error, response){

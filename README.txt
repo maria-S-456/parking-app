@@ -1,3 +1,3 @@
-This is a parking app which helps users find open parking spots in five cities. It is built with javascript, html/css, ejs, and node.js.
+This is a parking app which helps users find open parking spots in five cities. It is built with javascript, html/css, ejs, and node.
 
-update: make suggestion modal, fixed some authentication holes.
+update: Created contact modal

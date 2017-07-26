@@ -39,7 +39,7 @@ var {parkingHouse} = require('../../models');
 			res.redirect('/login');
 			console.log('UNAUTHORIZED');
 		}
-		else(res.render('profile', {data: req.user.username}));
+		else(res.render('profile', {data: [req.user.username, req.user.email]}));
 	});
 
 	authRoute.get('/locate', (req,res)=>{
