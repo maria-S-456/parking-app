@@ -93,6 +93,7 @@ h2{
   left: 0;
   right: 0;
   position: absolute;
+  box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);  
 }
 
 .wide-box-div{
@@ -111,17 +112,18 @@ h2{
   height: 230px;
   width: 230px;
   margin-top: 5%;
-  margin-left:.5%;
-  margin-right:.5%;
+  margin-left:.8%;
+  margin-right:.8%;
   display: inline-block;
   position: relative;
-
+  margin-bottom: 5%;
 }
 .city-img img{
   max-width: 100%;
   max-height: 100%;
   border-radius: 50%;
   transition: .3s;
+
 }
 .city-img :not(img){
   position: absolute;
@@ -148,4 +150,25 @@ h2{
 #
 {
   padding: 15px;
+}
+/*Map styles */
+#search-results{
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+
+#map{
+  height: 100%;
+  width: 70%;
+  float: left;
+}
+#locater-div{
+  width: 100%;
+  height: 500px;
+}
+.list-objects{
+  border: 1px solid black;
+  margin: 5px;
+  list-style: none;
 }

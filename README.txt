@@ -1,3 +1,3 @@
-This is a parking app which helps users find open parking spots in the city of chicago. It is built with javascript, html/css, ejs, and node.js.
+This is a parking app which helps users find open parking spots in five cities. It is built with javascript, html/css, ejs, and node.js.
 
-update: Some more styling.
+update: make suggestion modal, fixed some authentication holes.

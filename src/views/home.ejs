@@ -5,13 +5,13 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
+    <script src="/home-js.js"></script>
     <link rel="stylesheet" href="page-styles.css">
     </head>
 
 	<body >
 	
-		<div class="container-fluid background" >
+		<div class="container-fluid background2" >
 
 		<!-- navbar -->
 			<div class="navbar navbar-inverse row" style="margin-bottom: 0">
@@ -61,22 +61,22 @@
 								<label for="password">Password</label>
 								<input class="form-control" type="password" id="password" name="password" placeholder="password"></input>
 							</div>
-						</form>
-				      </div>
-				      <div class="modal-footer">
+							<div class="modal-footer">
 				      	<button type="button" class="btn btn-primary">Sign Up</button>
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        
 				      </div>
-				    </div>
-				  </div>
-				</div>
+						</form>
+				      </div><!-- end of modalbody -->
+				    </div><!-- end of modal content -->
+				  </div><!-- end of modal dialog -->
+				</div><!-- end of modal fade -->
 				</div><!-- end of 6 col row -->	
 						<div class="col-md-3"></div>	
-			</div><!-- end of 12 col row -->
+			</div><!-- end of about div/12 col row -->
 
 			<!--Currently Featured cities div -->
-			<div class="col-md-12" id="city-div" style="background-color: orange">
+			<div class="col-md-12" id="city-div">
 				<h2>Currently Featured Cities</h2>
 				<div class="city-img">
 					<img src="/chicago.jpg">
@@ -114,20 +114,55 @@
 					<input type="password" id="password" name="password" placeholder="password"></input>
 					<input type="submit" value="Signup"></input>
 				</form>
-			</div>
+			</div> <!-- end of sign up div -->
 
-			<div class="col-md-12" style="background-color: tan">
-				<h2>Suggestions</h2>
-				<form name="suggest-form" action="/suggest" method="post">
-					<label>Location</label>
-					<input name="location" type="text"></input>
-					<label>Name</label>
-					<input name="name" type="text"></input>
-					<label>Email</label>
-					<input name="email" type="text"></input>
-					<input type="submit" value="Send"></input>
-				</form>
-			</div>
+<!-- suggest div -->
+<div id="suggest-div" class="col-md-12">
+	<div class="col-md-3"></div>
+		<div class="col-md-6 " style="text-align: center">					
+			<h2>Suggestion Box</h2>
+			<br>
+			<p>Have a suggestion for Spot Finder? Send me a message!</p>
+			<br>
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#suggestModal">Click Here!</button>
+
+				<!--Modal-->
+					<div class="modal fade" id="suggestModal" tabindex="-1" role="dialog" aria-labelledby="suggestModalLabel">
+				  		<div class="modal-dialog" role="document">
+				    		<div class="modal-content">
+				      			<div class="modal-header">
+				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        			<h4 class="modal-title" id="suggestModalLabel">Suggestion Box</h4>
+				      			</div>
+				      			<div class="modal-body" style="text-align: left">
+				        			<form id="suggest-form" name="suggest-form" action="/suggest" method="post">
+				        				<div class="form-group">
+				        					<label for="suggestemail">Email</label>
+				        					<input class="form-control" type="email" placeholder="email" id="suggestemail" name="suggestemail"></input>
+				        				</div>
+				        				<div class="form-group">
+											<label for="suggestname">Name</label>
+											<input class="form-control" type="text" placeholder="name" id="suggestname" name="suggestname"></input>
+										</div>
+										<div class="form-group">
+											<label for="suggestmessage">Message</label>
+											<input class="form-control" type="text" id="suggestmessage" name="suggestmessage" placeholder="message"></input>
+										</div>
+											<!-- Make sure to include the submit button WITHIN the form -->
+										<div class="modal-footer">
+							      			<button type="submit" class="btn btn-primary">Submit</button>
+							        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				        
+							      		</div>
+									</form>
+				      			</div><!-- end of modalbody -->
+				    	    </div>
+				  		</div>
+					</div>
+				</div>
+				<div class="col-md-3"></div>	
+			</div><!-- end of about div/12 col row -->
+
+<!-- contact div -->
 			<div class="col-md-12" style="background-color: yellow">
 				<h2>Contact</h2>
 				<form name="contact-form" action="/contact" method="post">

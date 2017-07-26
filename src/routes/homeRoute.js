@@ -37,26 +37,26 @@ var nodemailer = require('nodemailer');
 	
 
 	homeRoute.route('/suggest').post(function(req,res){
-		//console.log(req.body.name);
-		//var url = 'mongodb://localhost:27017/parkingUsers';
+		
 		var url = 'mongodb://localhost:27017/spotfindersuggestions';
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('suggestions');
+			console.log('inserting suggestions');
 			var suggestions = {
-				location: req.body.location,
-				name: req.body.name,
-				email: req.body.email
+				suggestemail: req.body.suggestemail,
+				suggestname: req.body.suggestname,
+				suggestmessage: req.body.suggestmessage
 			};
-		collection.insert(suggestions, function(err, results){
 			
-			if(err){
-				console.log('Error sending suggestion message.');
-			}
-			//console.log(results.ops[0]);
-			req.login(results.ops[0], function(){
-				console.log("Successfully sent!");
-				res.redirect('/');
-			});
+			collection.insert(suggestions, function(err, results){
+			
+				if(err){
+					console.log('Error sending suggestion message.');
+				}
+				else{
+					console.log("Successfully sent!");
+					res.redirect('/');
+				}
 			
 			});
 		});

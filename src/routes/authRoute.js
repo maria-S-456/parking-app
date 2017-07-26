@@ -8,7 +8,7 @@ var {parkingHouse} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		//console.log(req.body);
-		console.log('new user created: ' + req.body);
+		//console.log('new user created: ' + req.body);
 		var url = 'mongodb://localhost:27017/parkingUsers';
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('users');
@@ -16,7 +16,7 @@ var {parkingHouse} = require('../../models');
 				username: req.body.username,
 				password: req.body.password
 			};
-			console.log('hello');
+			//console.log('hello');
 		collection.insert(users, function(err, results){
 			req.login(results.ops[0], function(){
 				res.redirect('/auth/profile');
@@ -37,31 +37,42 @@ var {parkingHouse} = require('../../models');
 	authRoute.route('/profile').all(function(req,res, next){
 		if(!req.user){
 			res.redirect('/login');
+			console.log('UNAUTHORIZED');
 		}
-		next();
-	}).get(function(req,res){
-		res.render('profile', {data: req.user.username});
+		else(res.render('profile', {data: req.user.username}));
 	});
 
 	authRoute.get('/locate', (req,res)=>{
-		
-		parkingHouse.find().exec().then(locations => {
+		if(!res.user){
+			res.redirect('/login');
+			console.log('UNAUTHORIZED');
+		}
+		else{
+			parkingHouse.find().exec().then(locations => {
 			//console.log('Parking house search page');
-			res.render('locate', {data: locations});
-		});		
+				res.render('locate', {data: locations});
+			});		
+		}
 	});
 
 	authRoute.get('/api', (req,res)=>{
-		parkingHouse.find().exec().then(locations => {
-			res.json({
-				locations:locations.map((location) => location.apiRepr())
-			});
-		})
-		.catch(
-			err =>{
+		if(!res.user){
+			res.redirect('/login');
+			console.log('UNAUTHORIZED');
+		}
+		else{
+
+			parkingHouse.find().exec().then(locations => {
+				res.json({
+					locations:locations.map((location) => location.apiRepr())
+				});
+			})
+			.catch(err =>{
 				console.log(err);
 				res.status(500).json({message: 'Internal server error'});
 			});
-	})
+		};
+		
+	});
 
 module.exports = authRoute;
