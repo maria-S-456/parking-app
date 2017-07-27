@@ -2,24 +2,46 @@ var express = require('express');
 var authRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var {parkingHouse} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
+		
 		var url = 'mongodb://localhost:27017/parkingUsers';
-		mongodb.connect(url, function(err,db){
-			var collection = db.collection('users');
-			var users = {
+		var newUser = {
 				username: req.body.username,
 				password: req.body.password,
 				email: req.body.email
-			};
-			collection.insert(users, function(err, results){
-				req.login(results.ops[0], function(){
-					res.redirect('/auth/profile');
+		}
+		bcrypt.genSalt(10, function(err, salt){
+			if(err){
+				console.log('Error: ' + err);
+			}
+			bcrypt.hash(newUser.password, salt, function(err, hash){
+				if(err){
+					console.log('Error: ' + err);
+				}
+				var secureUser = {
+					username: req.body.username,
+					password: hash,
+					email: req.body.email
+				}
+				mongodb.connect(url, function(err,db){
+					var collection = db.collection('users');
+
+					collection.insert(secureUser, function(err, results){
+						req.login(results.ops[0], function(){
+							res.redirect('/auth/profile');
+						})
+					})
 				});
-			});
-		});
+
+			})
+			
+		})
+		
 	});
 
 	authRoute.route('/userlogin').post(passport.authenticate('local', { 
@@ -40,10 +62,11 @@ var {parkingHouse} = require('../../models');
 	})
 
 	authRoute.route('/profile').all(function(req,res, next){
+		console.log(req.user);
 		if(!req.user){
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
-			console.log('user' + req.user);
+			
 		}
 		else(res.render('profile', {data: [req.user.username, req.user.email]}));
 	});
@@ -52,7 +75,6 @@ var {parkingHouse} = require('../../models');
 		if(!req.user){
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the locating page');
-			console.log('user: ' + req.user);
 		}
 		else{
 			parkingHouse.find().exec().then(locations => {

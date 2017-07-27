@@ -1,8 +1,8 @@
 {
   "name": "remixed-parking-app",
   "version": "1.0.0",
-  "engines":{
-    "node":"6.11.1"
+  "engines": {
+    "node": "6.11.1"
   },
   "description": "Parking App",
   "main": "server.js",
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@google/maps": "^0.4.1",
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.6",

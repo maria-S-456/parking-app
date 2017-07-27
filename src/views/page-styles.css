@@ -11,8 +11,8 @@
   width: 100%;
   height: 100%;
   left: 0;
-  border-top: 2px solid red;
-  border-bottom: 2px solid red;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
   top: 0px;
 }
 .glyphicon-nav:after {
@@ -22,7 +22,7 @@
   left: 0px;
   height: 2px;
   width: 100%;
-  background: red;
+  background: black;
 }
 li{
   list-style: none;
@@ -163,7 +163,9 @@ h2{
   padding-bottom: 15px;
   background-color: white;
 }
-
+#contact-div{
+  padding-bottom: 15px;
+}
 /*Map styles */
 #search-div{
   padding: 1%;
