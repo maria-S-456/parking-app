@@ -24,13 +24,14 @@
 							<li><a href="/">Home</a></li>
 		    				<li><a href="/login">Login</a></li>
 		    				<li><a href="/auth/profile">Profile</a></li>
+		    				<li><a href="/auth/logout">Logout</a></li>
 	  					</ul>
 					</div>				
 				</ul>
 			</div>
 
 			<!--About div -->
-			<div id="about-div" class="col-md-12">
+			<div id="about-div" class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6 " style="text-align: center">					
 						<h2>Spot Finder</h2>
@@ -48,7 +49,7 @@
 				        <h4 class="modal-title" id="myModalLabel">Create New Account</h4>
 				      </div>
 				      <div class="modal-body" style="text-align: left">
-				        <form action="/auth/usersignup" method="post">
+				        <form name="sign-up-form" action="/auth/usersignup" method="post">
 				        	<div class="form-group">
 				        		<label for="email">Email</label>
 				        		<input class="form-control" type="email" placeholder="email" id="email" name="email"></input>
@@ -62,21 +63,21 @@
 								<input class="form-control" type="password" id="password" name="password" placeholder="password"></input>
 							</div>
 							<div class="modal-footer">
-				      	<button type="button" class="btn btn-primary">Sign Up</button>
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        
-				      </div>
+						     <!-- 	<button type="button" class="btn btn-primary">Sign Up</button> -->
+						     	<input type="submit" class="btn btn-primary" value="Signup"></input>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>						        
+				      		</div>
 						</form>
-				      </div><!-- end of modalbody -->
-				    </div><!-- end of modal content -->
-				  </div><!-- end of modal dialog -->
-				</div><!-- end of modal fade -->
-				</div><!-- end of 6 col row -->	
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</div>
 						<div class="col-md-3"></div>	
-			</div><!-- end of about div/12 col row -->
+			</div>
 
 			<!--Currently Featured cities div -->
-			<div class="col-md-12" id="city-div">
+			<div class="row" id="city-div">
 				<h2>Currently Featured Cities</h2>
 				<div class="city-img">
 					<img src="/chicago.jpg">
@@ -105,19 +106,8 @@
 				</div>
 			</div>
 
-			<div class="col-md-12" style="background-color: violet">
-				<h2>Signup</h2>		
-				<form name="sign-up-form" action="/auth/usersignup" method="post">
-					<label>Username</label>
-					<input type="text" placeholder="username" id="username" name="username"></input>
-					<label>Password</label>
-					<input type="password" id="password" name="password" placeholder="password"></input>
-					<input type="submit" value="Signup"></input>
-				</form>
-			</div> <!-- end of sign up div -->
-
 <!-- suggest div -->
-<div id="suggest-div" class="col-md-12">
+<div id="suggest-div" class="row">
 	<div class="col-md-3"></div>
 		<div class="col-md-6 " style="text-align: center">					
 			<h2>Suggestion Box</h2>
@@ -162,9 +152,8 @@
 				<div class="col-md-3"></div>	
 			</div><!-- end of about div/12 col row -->
 
-<!-- start new contact div -->
-<!-- suggest div -->
-<div id="contact-div" class="col-md-12">
+<!-- contact div -->
+<div id="contact-div" class="row">
 	<div class="col-md-3"></div>
 		<div class="col-md-6 " style="text-align: center">					
 			<h2>Contact</h2>
@@ -208,28 +197,6 @@
 				</div>
 				<div class="col-md-3"></div>	
 			</div><!-- end of about div/12 col row -->
-
-<!-- end new contact div -->
-
-
-<!-- old contact form
-			<div class="col-md-12" style="background-color: yellow">
-				<h2>Contact</h2>
-				<form name="contact-form" action="/contact" method="post">
-					<label>Name</label>
-					<input name="name" type="text" id="contact-name"></input>
-					<label>Email</label>
-					<input name="email" type="text" id="contact-email"></input>
-					<label>Message</label>
-					<input name="message" type="text" id="contact-message"></input>
-					<input type="submit" value="Send" id="send-email"></input>
-				</form>
-			</div>
--->
-
 		</div>
-
-		
 	</body>
-
 </html>

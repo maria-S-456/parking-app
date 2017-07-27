@@ -1,16 +1,12 @@
 var map;
 function initMap() {
   
-  console.log('hello there should be a map here');
-  //Set the starting position in Chicago currently
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 41.8781, lng: -87.6298},
     zoom: 15
     });
 
-  //Geocoding is used to get the location entered in the submit box onto the map.
   var geocoder = new google.maps.Geocoder();
-
 
   document.getElementById('submit').addEventListener('click', function() {          
     geocodeAddress(geocoder, map);
@@ -26,7 +22,6 @@ function geocodeAddress(geocoder, resultsMap)
     if(status === 'OK'){
       resultsMap.setCenter(results[0].geometry.location);
 
-      //create a marker at the location entered by the user.
       var marker = new google.maps.Marker({
       map: resultsMap,
       position: results[0].geometry.location
@@ -48,28 +43,21 @@ function findDistance(start){
   var directionsService = new google.maps.DistanceMatrixService();
   var strCoords = (start[0].toString()).concat(",",start[1].toString());
 
-  //var $list = $('#list');
    $(function(){
         $.ajax({
           type: 'GET',
           url: '/auth/api',
           success: function(data){
-            //console.log(data.locations);
 
             $.each(data, function(index, item){
               $.each(item, function(index2, subitem){
                 var endCoords = (subitem.lat.toString()).concat(",",subitem.lng.toString());
-                //console.log(endCoords); //coordinates of all locations in string format
 
                 directionsService.getDistanceMatrix({
-                origins: [strCoords],
-                destinations: [endCoords],
-                travelMode: google.maps.TravelMode.DRIVING
+                  origins: [strCoords],
+                  destinations: [endCoords],
+                  travelMode: google.maps.TravelMode.DRIVING
                 }, callback);
-
-                //$list.append('<li>Place Name: ' + subitem.location_name + '</li>' + '<li>Address: ' + subitem.address + '</li>');
-              
-
               });
             });
           }
@@ -104,7 +92,7 @@ function callback(res, stats){
               });
 
               for(var i = 0; i < arrayItems.length; i++){
-              $list.append('<li><div><p>Place Name: ' + data.locations[i].location_name + '</p>' + '<p>Address: ' + data.locations[i].address + '</p><p>Distance: ' + data.locations[i].distance + '</p><p>State ' + data.locations[i].state + '</p></div></li>');
+              $list.append('<li><div><p style="font-family:Georgia">' + data.locations[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + data.locations[i].address + ', ' + data.locations[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(data.locations[i].distance) + ' miles</p></div></li>');
               };
 
               arrayItems = [];

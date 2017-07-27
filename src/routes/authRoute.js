@@ -4,48 +4,55 @@ var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
 
 var {parkingHouse} = require('../../models');
-//var {parkingUsers} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
-		//console.log(req.body);
-		//console.log('new user created: ' + req.body);
 		var url = 'mongodb://localhost:27017/parkingUsers';
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('users');
 			var users = {
 				username: req.body.username,
-				password: req.body.password
+				password: req.body.password,
+				email: req.body.email
 			};
-			//console.log('hello');
-		collection.insert(users, function(err, results){
-			req.login(results.ops[0], function(){
-				res.redirect('/auth/profile');
-
+			collection.insert(users, function(err, results){
+				req.login(results.ops[0], function(){
+					res.redirect('/auth/profile');
+				});
 			});
-		});
 		});
 	});
 
 	authRoute.route('/userlogin').post(passport.authenticate('local', { 
 		failureRedirect: '/'
 	}), function(req, res){
-		//console.log(req.user); 
 		res.redirect('/auth/profile');
-	});	
+	});
 
-	//profile route requires authentication
+	authRoute.get('/logout', (req, res)=>{
+		if(!req.user){
+			res.redirect('/');
+		}
+		else{
+			req.logout();
+			res.redirect('/');
+			console.log('you have been logged out.');
+		}
+	})
+
 	authRoute.route('/profile').all(function(req,res, next){
 		if(!req.user){
 			res.redirect('/login');
-			console.log('UNAUTHORIZED');
+			console.log('You are unauthorized to enter the profile page');
+			console.log('user' + req.user);
 		}
 		else(res.render('profile', {data: [req.user.username, req.user.email]}));
 	});
 
 	authRoute.get('/locate', (req,res)=>{
-		if(!res.user){
+		if(!req.user){
 			res.redirect('/login');
-			console.log('UNAUTHORIZED');
+			console.log('You are unauthorized to enter the locating page');
+			console.log('user: ' + req.user);
 		}
 		else{
 			parkingHouse.find().exec().then(locations => {
@@ -56,9 +63,9 @@ var {parkingHouse} = require('../../models');
 	});
 
 	authRoute.get('/api', (req,res)=>{
-		if(!res.user){
+		if(!req.user){
 			res.redirect('/login');
-			console.log('UNAUTHORIZED');
+			console.log('Unauthorized api access');
 		}
 		else{
 
