@@ -82,6 +82,9 @@ input[type="text"], input[type="password"]{
 .login-btn{
   margin-top: 15px;
 }
+.custom-btn{
+  border-radius: 20px;
+}
 *{
   font-family: Verdana, Tahoma;
   font-size: 20px;

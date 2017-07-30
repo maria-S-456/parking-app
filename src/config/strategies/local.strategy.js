@@ -6,6 +6,7 @@ var bcrypt = require('bcrypt');
 function isValidPassword(user, password){
 	return bcrypt.compareSync(password, user.password)
 }
+
 module.exports = function(){
 	passport.use(new LocalStrategy({
 		username: 'username',
@@ -14,7 +15,7 @@ module.exports = function(){
 	function(username, password, done){
 	var url = 'mongodb://localhost:27017/parkingUsers';
 	mongodb.connect(url, function(err, db){
-		
+
 		var collection = db.collection('users');
 		collection.findOne({
 		username: username
@@ -27,6 +28,7 @@ module.exports = function(){
 			done(null, false,{
 			message: 'bad password'
 			});
+			console.log('bad password');
 			}
 		}
 		);

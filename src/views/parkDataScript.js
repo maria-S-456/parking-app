@@ -92,7 +92,7 @@ function callback(res, stats){
               });
 
               for(var i = 0; i < arrayItems.length; i++){
-              $list.append('<li><div><p style="font-family:Georgia">' + data.locations[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + data.locations[i].address + ', ' + data.locations[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(data.locations[i].distance) + ' miles</p></div></li>');
+              $list.append('<li><a href="/login"><div><p style="font-family:Georgia">' + data.locations[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + data.locations[i].address + ', ' + data.locations[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(data.locations[i].distance) + ' miles</p></div></a></li>');
               };
 
               arrayItems = [];

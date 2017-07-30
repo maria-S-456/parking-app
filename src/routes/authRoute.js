@@ -45,7 +45,7 @@ var {parkingHouse} = require('../../models');
 	});
 
 	authRoute.route('/userlogin').post(passport.authenticate('local', { 
-		failureRedirect: '/'
+		failureRedirect: '/login'
 	}), function(req, res){
 		res.redirect('/auth/profile');
 	});
@@ -62,7 +62,7 @@ var {parkingHouse} = require('../../models');
 	})
 
 	authRoute.route('/profile').all(function(req,res, next){
-		console.log(req.user);
+		//console.log(req.user);
 		if(!req.user){
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
