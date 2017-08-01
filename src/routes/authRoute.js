@@ -5,7 +5,28 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-var {parkingHouse} = require('../../models');
+var {parkingHouse, userData} = require('../../models');
+
+
+
+	authRoute.get('/usersapi', (req,res)=>{
+		if(req.user.username != 'maria'){
+			res.redirect('/auth/profile');
+			console.log('You do not have permission to access this page.');
+		}
+		else{
+
+			userData.find().exec().then(users => {
+				res.json({
+					users:users.map((user) => user.apiRepr())
+				});
+			})
+			.catch(err =>{
+				console.log(err);
+				res.status(500).json({message: 'Internal server error'});
+			});
+		};
+	});
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		
@@ -30,7 +51,7 @@ var {parkingHouse} = require('../../models');
 				}
 				mongodb.connect(url, function(err,db){
 					var collection = db.collection('users');
-
+						console.log('collection: ' + collection);
 					collection.insert(secureUser, function(err, results){
 						req.login(results.ops[0], function(){
 							res.redirect('/auth/profile');
@@ -62,7 +83,6 @@ var {parkingHouse} = require('../../models');
 	})
 
 	authRoute.route('/profile').all(function(req,res, next){
-		//console.log(req.user);
 		if(!req.user){
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
@@ -78,7 +98,6 @@ var {parkingHouse} = require('../../models');
 		}
 		else{
 			parkingHouse.find().exec().then(locations => {
-			//console.log('Parking house search page');
 				res.render('locate', {data: locations});
 			});		
 		}

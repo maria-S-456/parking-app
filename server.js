@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const {PORT,DATABASE_URL} = require('./apiconfig');
-var {parkingHouse} = require('./models');
+var {parkingHouse, userData} = require('./models');
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -86,3 +86,5 @@ function closeServer() {
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
+
+module.exports = app;

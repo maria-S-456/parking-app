@@ -25,10 +25,10 @@ module.exports = function(){
 		
 			done(null, user);
 			} else{
-			done(null, false,{
-			message: 'bad password'
-			});
-			console.log('bad password');
+				done(null, false,{
+					message: 'bad password'
+				});
+				console.log('bad password');
 			}
 		}
 		);

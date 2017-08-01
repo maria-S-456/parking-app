@@ -1,5 +1,11 @@
 var mongoose = require('mongoose');
 
+var userSchema = mongoose.Schema({
+	username: {type: String, required: true},
+	password: {type: String, required: false},
+	email: {type: String, required: false}
+});
+
 var parkHouseSchema = mongoose.Schema({
 	location_name: {type: String, required: true},
 	location_id: {type: Number, required: true},
@@ -13,6 +19,15 @@ var parkHouseSchema = mongoose.Schema({
 	price: {type: Number, required: true},
 	price_formatted: {type: String, required: true}		
 });
+
+userSchema.methods.apiRepr = function(){
+	return {
+		id: this._id,
+		username: this.username,
+		password: this.password,
+		email: this.email
+	}
+}
 
 parkHouseSchema.methods.apiRepr = function(){
 	return {
@@ -29,5 +44,6 @@ parkHouseSchema.methods.apiRepr = function(){
 }
 
 const parkingHouse = mongoose.model('locations', parkHouseSchema);
+const userData = mongoose.model('users', userSchema);
 
-module.exports = {parkingHouse};
+module.exports = {parkingHouse, userData};
