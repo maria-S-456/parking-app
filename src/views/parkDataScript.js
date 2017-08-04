@@ -1,16 +1,26 @@
 var map;
-function initMap() {
+
+function load(){
+  var recievedValue = sessionStorage.getItem('textbox');
   
+  if(recievedValue != null){
+    document.getElementById('address').value = recievedValue;
+    document.getElementById('submit').click();
+    sessionStorage.removeItem('textbox');
+  }
+}
+
+function initMap() {
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 41.8781, lng: -87.6298},
     zoom: 15
     });
 
-  var geocoder = new google.maps.Geocoder();
+var geocoder = new google.maps.Geocoder();
 
-  document.getElementById('submit').addEventListener('click', function() {          
+document.getElementById('submit').addEventListener('click', function() {          
     geocodeAddress(geocoder, map);
-
   });
 }
 

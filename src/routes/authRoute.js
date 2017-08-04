@@ -65,7 +65,7 @@ var {parkingHouse, userData} = require('../../models');
 		
 	});
 
-	authRoute.route('/userlogin').post(passport.authenticate('local', { 
+	authRoute.route('/userlogin').post(passport.authenticate('local',  { 
 		failureRedirect: '/login'
 	}), function(req, res){
 		res.redirect('/auth/profile');
@@ -74,6 +74,7 @@ var {parkingHouse, userData} = require('../../models');
 	authRoute.get('/logout', (req, res)=>{
 		if(!req.user){
 			res.redirect('/');
+			console.log('You have to be logged in to log out!')
 		}
 		else{
 			req.logout();
@@ -84,6 +85,7 @@ var {parkingHouse, userData} = require('../../models');
 
 	authRoute.route('/profile').all(function(req,res, next){
 		if(!req.user){
+			//console.log(req.user.username);
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
 			

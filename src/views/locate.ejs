@@ -12,13 +12,13 @@
 	<title>Find a Parking location</title>
 </head>
 
-<body>
+<body onLoad="load()">
   <div class="container-fluid background2">
 
   <!-- navbar -->
     <div class="navbar navbar-inverse row" style="margin-bottom: 0">
     <h1 style="color: white; float: left;">Spot Finder</h1>
-    <ul class="nav navbar-nav" style="float:right; ">         
+    <ul class="nav navbar-nav" style="float:right; margin: .5%;">         
       <div class="dropdown" >
         <button id="dLabel" type="button" class="btn btn-default btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-nav" aria-hidden="true" ></span>
@@ -32,24 +32,9 @@
       </div>        
     </ul>   
   </div>
-<!--
-    <div id="search-div">
-      <input id="address" type="textbox" placeholder="Search"></input>
-      <input id="submit" type="button" value="Search"></input>
-    </div>
-    
-    <div id="locater-div">
-      <div id="search-results">
-        <ul id="list">
-        </ul>
-      </div>
 
-      <div id="map">
-      </div>
-
-    </div> -->
-    <div id="search-bar" class="row">
-        <div class="col-md-10 col-sm-12" >
+    <div class="row search-bar">
+        <div class="col-md-10 col-sm-12">
           <input id="address" type="textbox" placeholder="Please enter your destination."></input>
         </div>
         <div class="col-md-2 col-sm-12" >

@@ -125,9 +125,11 @@ h2{
   box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);  
 }
 .wide-box-div{
+  height:430px;
+  width: 430px;
   background-color: rgba(57, 77, 109, 0.8);
   margin: 0 auto;
-  top: 20%;
+  top: 25%;
   bottom: 20%;
   left: 0;
   right: 0;
@@ -210,37 +212,25 @@ h2{
   margin: 5px;
   list-style: none;
 }
-#search-bar{
+.search-bar{
   background:rgba(0,0,0,.30);
 }
-#search-bar div{
+.search-bar div{
   margin-top: 1%;
   margin-bottom: 1%;
 }
-#search-bar input[type="textbox"]{
+.search-bar input[type="textbox"]{
   width: 100%;
   border-radius: 15px;
 }
-#search-bar input[type="button"]{
+.search-bar input[type="button"]{
   border-radius: 15px;
   width: 100%;
   font-size: 20px;
 }
-#search-bar input[type="button"]:hover{
+.search-bar input[type="button"]:hover{
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .form-group input[type="text"], input[type="password"], input[type="email"]{
   border-radius: 20px;
 }
-/*
-@media (max-width: 1046px){
-  #search-bar input[type="textbox"]{
-    width: 80%;
-  }
-}
-@media (max-width: 555px){
-  #search-bar input[type="textbox"]{
-    width: 50%;
-  }
-}
-*/
