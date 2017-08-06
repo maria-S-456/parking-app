@@ -15,7 +15,7 @@ var {parkingHouse, userData} = require('../../models');
 			console.log('You do not have permission to access this page.');
 		}
 		else{
-
+			console.log(req.user.username);
 			userData.find().exec().then(users => {
 				res.json({
 					users:users.map((user) => user.apiRepr())
@@ -29,8 +29,8 @@ var {parkingHouse, userData} = require('../../models');
 	});
 	
 	authRoute.route('/usersignup').post(function(req,res){
-		
-		var url = 'mongodb://localhost:27017/parkingUsers';
+		var url = 'mongodb://maria:hold7b7@ds135983.mlab.com:35983/parkingusers';
+		//var url = 'mongodb://localhost:27017/parkingUsers';
 		var newUser = {
 				username: req.body.username,
 				password: req.body.password,

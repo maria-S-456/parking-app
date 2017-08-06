@@ -13,7 +13,7 @@ module.exports = function(){
 		password: 'password'
 	},
 	function(username, password, done){
-	var url = 'mongodb://localhost:27017/parkingUsers';
+	var url = 'mongodb://maria:hold7b7@ds135983.mlab.com:35983/parkingusers';
 	mongodb.connect(url, function(err, db){
 
 		var collection = db.collection('users');

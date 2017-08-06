@@ -43,15 +43,12 @@ app.get('/', function(req, res){
 
 app.get('/login', function(req,res){
   if(req.user !== undefined){
-    //console.log(req.user);
     res.redirect('/');
     console.log('Please log out before logging back in!');
   }
   else{
-    //console.log(req.user);
 	  res.render('login');
   }
-  //console.log('login in page ' + req.user);
 });
 
 let server;
