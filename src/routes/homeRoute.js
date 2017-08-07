@@ -7,21 +7,22 @@ var authconfig = require('../config/authconfig.js');
 var nodemailer = require('nodemailer');
 
 	var smtpTransport = nodemailer.createTransport({
-	service: "gmail",
-	host: "smtp.gmail.com",
-	auth:{
-		user : authconfig.mailer.auth.user,
-		pass : authconfig.mailer.auth.pass
-	}
-});	
+		service: "gmail",
+		host: "smtp.gmail.com",
+		auth:{
+			user : authconfig.mailer.auth.user,
+			pass : authconfig.mailer.auth.pass
+		}
+	});
+
 	homeRoute.route('/contact').post(function(req, res){
-		
+			console.log(authconfig.mailer.auth.user);
 		var mailOptions = {
-			subject: req.body.contactname,
-			to: req.body.contactemail, 
+			to: authconfig.mailer.auth.user,
+			subject: req.body.contactname + ' <' + req.body.contactemail + '>',			 
 			text: req.body.contactmessage 
 		};
-		
+
 		smtpTransport.sendMail(mailOptions, function(error, response){
 			if(error){
 				console.log(error);
@@ -33,12 +34,10 @@ var nodemailer = require('nodemailer');
 			}
 		});
 
-	});
-	
+	});	
 
 	homeRoute.route('/suggest').post(function(req,res){
-		
-		var url = 'mongodb://localhost:27017/spotfindersuggestions';
+		var url = 'mongodb://maria:72besF@ds015508.mlab.com:15508/parkingsuggestions';
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('suggestions');
 			console.log('inserting suggestions');

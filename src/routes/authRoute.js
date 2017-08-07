@@ -7,8 +7,6 @@ const saltRounds = 10;
 
 var {parkingHouse, userData} = require('../../models');
 
-
-
 	authRoute.get('/usersapi', (req,res)=>{
 		if(req.user.username != 'maria'){
 			res.redirect('/auth/profile');
@@ -30,7 +28,6 @@ var {parkingHouse, userData} = require('../../models');
 	
 	authRoute.route('/usersignup').post(function(req,res){
 		var url = 'mongodb://maria:hold7b7@ds135983.mlab.com:35983/parkingusers';
-		//var url = 'mongodb://localhost:27017/parkingUsers';
 		var newUser = {
 				username: req.body.username,
 				password: req.body.password,
@@ -85,7 +82,6 @@ var {parkingHouse, userData} = require('../../models');
 
 	authRoute.route('/profile').all(function(req,res, next){
 		if(!req.user){
-			//console.log(req.user.username);
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
 			

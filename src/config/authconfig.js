@@ -1,8 +1,8 @@
-//Your own username and password would be specified here in order to make the nodemailer contact form work. pass is 'password' for privacy.
+//email reciever
 module.exports = {
 	mailer: {
 		auth: {
-			user: 'mars381pika@gmail.com',
+			user: 'bluegriffin633@gmail.com',
 			pass: 'password'
 		}
 	}
