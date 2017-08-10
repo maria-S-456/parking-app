@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const {PORT,DATABASE_URL} = require('./apiconfig');
-var {parkingHouse, userData} = require('./models');
+var {parkingHouse, userData, mailerUser} = require('./models');
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');

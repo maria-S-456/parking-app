@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
 
+var mailerSchema = mongoose.Schema({
+	email: {type: String, required: true},
+	password: {type: String, required: true}
+});
+
 var userSchema = mongoose.Schema({
 	username: {type: String, required: true},
 	password: {type: String, required: false},
@@ -19,6 +24,14 @@ var parkHouseSchema = mongoose.Schema({
 	price: {type: Number, required: true},
 	price_formatted: {type: String, required: true}		
 });
+
+mailerSchema.methods.apiRepr = function(){
+	return {
+		id: this._id,
+		email: this.email,
+		password: this.password
+	}
+}
 
 userSchema.methods.apiRepr = function(){
 	return {
@@ -45,5 +58,6 @@ parkHouseSchema.methods.apiRepr = function(){
 
 const parkingHouse = mongoose.model('locations', parkHouseSchema);
 const userData = mongoose.model('users', userSchema);
+const mailerUser = mongoose.model('credentials', mailerSchema);
 
-module.exports = {parkingHouse, userData};
+module.exports = {parkingHouse, userData, mailerUser};

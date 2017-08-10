@@ -15,10 +15,9 @@ module.exports = function(){
 	function(username, password, done){
 	var url = 'mongodb://maria:hold7b7@ds135983.mlab.com:35983/parkingusers';
 	mongodb.connect(url, function(err, db){
-
 		var collection = db.collection('users');
 		collection.findOne({
-		username: username
+			username: username
 		},
 		function(err, user){
 			if(isValidPassword(user, password)){

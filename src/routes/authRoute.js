@@ -5,7 +5,7 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-var {parkingHouse, userData} = require('../../models');
+var {parkingHouse, userData, mailerUser} = require('../../models');
 
 	authRoute.get('/usersapi', (req,res)=>{
 		if(req.user.username != 'maria'){
@@ -13,7 +13,6 @@ var {parkingHouse, userData} = require('../../models');
 			console.log('You do not have permission to access this page.');
 		}
 		else{
-			console.log(req.user.username);
 			userData.find().exec().then(users => {
 				res.json({
 					users:users.map((user) => user.apiRepr())
@@ -48,7 +47,6 @@ var {parkingHouse, userData} = require('../../models');
 				}
 				mongodb.connect(url, function(err,db){
 					var collection = db.collection('users');
-						console.log('collection: ' + collection);
 					collection.insert(secureUser, function(err, results){
 						req.login(results.ops[0], function(){
 							res.redirect('/auth/profile');
@@ -97,6 +95,7 @@ var {parkingHouse, userData} = require('../../models');
 		else{
 			parkingHouse.find().exec().then(locations => {
 				res.render('locate', {data: locations});
+				//console.log(locations);
 			});		
 		}
 	});
@@ -107,7 +106,6 @@ var {parkingHouse, userData} = require('../../models');
 			console.log('Unauthorized api access');
 		}
 		else{
-
 			parkingHouse.find().exec().then(locations => {
 				res.json({
 					locations:locations.map((location) => location.apiRepr())
