@@ -4,10 +4,14 @@ var express = require('express');
 var homeRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var nodemailer = require('nodemailer');
-var {mailerUser} = require('../../models');	
+//var {mailerUser} = require('../../models');	
 		
 	homeRoute.route('/contact').post(function(req, res){
 		let url = 'mongodb://maria:6fen7grg@ds151431.mlab.com:51431/parkingowner';
+
+		//var blue = process.env.PARKINGDB_OWNER;
+		//console.log('blue ' + blue);
+
 		mongodb.connect(url, function(err, db){
 			if(err){
 				console.log('Unable to connect to Mongo.', err);
