@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "supervisor"
+    "start": "nodemon"
   },
   "author": "Maria Mohl",
   "license": "ISC",
