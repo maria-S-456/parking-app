@@ -1,17 +1,14 @@
 var express = require('express');
 var dotenv = require('dotenv');
 dotenv.load();
+
 //define homeRoute route handler
 var homeRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var nodemailer = require('nodemailer');
-//var {mailerUser} = require('../../models');	
-console.log(process.env.DATABASE_URL, 'database url');
+
 	homeRoute.route('/contact').post(function(req, res){
-		let url = 'mongodb://maria:6fen7grg@ds151431.mlab.com:51431/parkingowner';
-		//console.log(process.env.DATABASE_URL);
-		//var blue = process.env.PARKINGDB_OWNER;
-		//console.log('blue ' + blue);
+		let url = process.env.OWNER_DATABASE_URL;
 
 		mongodb.connect(url, function(err, db){
 			if(err){
@@ -60,7 +57,7 @@ console.log(process.env.DATABASE_URL, 'database url');
 	});	
 
 	homeRoute.route('/suggest').post(function(req,res){
-		let url = 'mongodb://maria:72besF@ds015508.mlab.com:15508/parkingsuggestions';
+		let url = process.env.SUGGESTIONS_DATABASE_URL;
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('suggestions');
 			console.log('inserting suggestions');

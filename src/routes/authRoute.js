@@ -26,7 +26,7 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 	});
 	
 	authRoute.route('/usersignup').post(function(req,res){
-		var url = 'mongodb://maria:hold7b7@ds135983.mlab.com:35983/parkingusers';
+		let url = process.env.USERS_DATABASE_URL;
 		var newUser = {
 				username: req.body.username,
 				password: req.body.password,

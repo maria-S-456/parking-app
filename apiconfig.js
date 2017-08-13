@@ -1,2 +1,2 @@
-exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || 'mongodb://maria:Slum030@ds149437.mlab.com:49437/parkinghouses';
+exports.DATABASE_URL = process.env.PARKINGHOUSE_DATABASE_URL;
 exports.PORT = process.env.PORT || 3000;

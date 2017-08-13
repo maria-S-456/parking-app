@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var dotenv = require('dotenv');
+dotenv.load();
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
