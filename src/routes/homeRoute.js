@@ -1,14 +1,15 @@
 var express = require('express');
-
+var dotenv = require('dotenv');
+dotenv.load();
 //define homeRoute route handler
 var homeRoute = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var nodemailer = require('nodemailer');
 //var {mailerUser} = require('../../models');	
-		
+console.log(process.env.DATABASE_URL, 'database url');
 	homeRoute.route('/contact').post(function(req, res){
 		let url = 'mongodb://maria:6fen7grg@ds151431.mlab.com:51431/parkingowner';
-
+		//console.log(process.env.DATABASE_URL);
 		//var blue = process.env.PARKINGDB_OWNER;
 		//console.log('blue ' + blue);
 
