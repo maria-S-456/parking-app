@@ -27,6 +27,22 @@
 .navbar-search{
   position: relative;
 }
+.btn-navbar{
+  background: white;
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+}
+.icon-bar{
+  background: black;
+  height: 7px;
+  border-radius: 5px;
+  margin-top: 3px;
+}
 li{
   list-style: none;
 }
@@ -48,7 +64,7 @@ body{
   height: 100%;
   width: 100%;
   position: absolute;
-  background: url('blue-background.jpg');
+  background: linear-gradient( rgba(186, 206, 216, 0.65),rgba(186, 206, 216, 0.65)),url('https://petercoatesartanddesign.files.wordpress.com/2014/11/first-rate-well-regarded-new-york-city-street-night-hd-wallpaper-humid-nyc-wallpaper-first-rate-well-regarded-new-york-city-street-night-hd.jpg'); 
   background-attachment: fixed;
   background-size: cover;
 }
@@ -69,17 +85,6 @@ body{
   background-size: cover;
 
 }
-.login-div{
-  position: relative;
-  margin: 0 auto;
-  top: 20%;
-  bottom: 20%;
-  right: 0;
-  left: 0;
-  position: absolute;
-  background:rgba(0,0,0,.30);
-  padding-top: 15px;
-}
 .no-margin{
   margin:0;
 }
@@ -95,10 +100,18 @@ input[type="text"], input[type="password"]{
   margin-top: 15px;
 }
 .custom-btn{
-  border-radius: 20px;
+  border-radius: 30px;
+  height: 80px;
+  font-size: 30px;
+  color: black;
+  width: 300px;
+}
+.modal{
+  color: black;
 }
 *{
   font-family: Verdana, Tahoma;
+
   font-size: 20px;
 }
 h2{
@@ -106,40 +119,24 @@ h2{
   text-align: center;
 }
 #about-div{
-  height: 470px;
+  height: 520px;
   padding-top: 5%;
-  padding-bottom: 20%;
-  margin-bottom: 50px;  
+  padding-bottom: 100px;
+  margin-bottom: 50px;
+  background:rgba(0,0,0,.50);
+  color: white;
 }
 .box-div{
   height: 430px;
   width: 350px;
   background-color: #394d6d;
   margin: 0 auto;
-  top: 160px;
+  top: 170px;
   bottom: 0;
   left: 0;
   right: 0;
   position: absolute;
   box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);  
-}
-#profile-div{
-  top:180px;
-  bottom:0;
-}
-.wide-box-div{
-  height:430px;
-  width: 430px;
-  background-color: rgba(57, 77, 109, 0.8);
-  margin: 0 auto;
-  top: 25%;
-  bottom: 20%;
-  left: 0;
-  right: 0;
-  position: absolute;
-  padding: 3%;
-  padding-top:2%;
-  box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);
 }
 .city-img{
   height: 230px;
@@ -151,6 +148,37 @@ h2{
   position: relative;
   margin-bottom: 5%;
 }
+@media (max-width: 1300px){
+  .city-img{
+    height: 200px;
+    width: 200px;
+  }
+}
+@media (max-width: 1135px){
+  .city-img{
+    height: 170px;
+    width: 170px;
+  }
+}
+@media(max-width: 972px){
+  .city-img{
+    height:140px;
+    width:140px;
+  }
+}
+@media(max-width: 808px){
+  .city-img{
+    height: 230px;
+    width: 230px;
+  }
+}
+@media(max-width: 520px){
+  .city-img{
+    height: 200px;
+    width: 200px;
+  }
+}
+
 .city-img img{
   max-width: 100%;
   max-height: 100%;
@@ -206,7 +234,11 @@ h2{
     height: 300px;
   }
 }
-
+@media (min-width: 768px){
+  .btn-navbar{
+    display: none;
+  }
+}
 #locater-div{
   width: 100%;
   height: 500px;
@@ -220,7 +252,7 @@ h2{
   background:rgba(0,0,0,.30);
 }
 .search-bar div{
-  margin-top: 1%;
+  margin-top: 65px;
   margin-bottom: 1%;
 }
 .search-bar input[type="textbox"]{
