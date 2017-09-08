@@ -1,5 +1,12 @@
 var map;
 
+$('#toggle-btn').click(function(){
+  $('#mapAndResultsDiv > .toggleMe').toggle(),
+  $('#toggle-btn').val(function(i, txt){
+    return txt === "Map" ? "List" : "Map";
+  });
+});
+
 function load(){
   var recievedValue = sessionStorage.getItem('textbox');
   
@@ -102,7 +109,9 @@ function callback(res, stats){
               });
 
               for(var i = 0; i < arrayItems.length; i++){
+                //console.log('name: ' + data.locations[i].location_name + 'distance: ' + data.locations[i].distance);
               $list.append('<li><div><p style="font-family:Georgia">' + data.locations[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + data.locations[i].address + ', ' + data.locations[i].city + ' ' + data.locations[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(data.locations[i].distance) + ' miles</p></div></li>');
+              //console.log('city: ' + data.locations[i].city + '. Location name: ' + data.locations[i].location_name + " " + data.locations[i].state + ". Distance: " + Math.round(data.locations[i].distance));
               };
 
               arrayItems = [];
