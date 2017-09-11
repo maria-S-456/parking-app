@@ -59,22 +59,26 @@ function geocodeAddress(geocoder, resultsMap)
 function findDistance(start){
   var directionsService = new google.maps.DistanceMatrixService();
   var strCoords = (start[0].toString()).concat(",",start[1].toString());
-
+  var locations=[];
    $(function(){
         $.ajax({
           type: 'GET',
           url: '/auth/api',
           success: function(data){
-
+            locations = data;
             $.each(data, function(index, item){
+             
               $.each(item, function(index2, subitem){
+              
                 var endCoords = (subitem.lat.toString()).concat(",",subitem.lng.toString());
 
                 directionsService.getDistanceMatrix({
                   origins: [strCoords],
                   destinations: [endCoords],
                   travelMode: google.maps.TravelMode.DRIVING
-                }, callback);
+                }, function(res, stats){
+                  callback(res, stats, data, index2);
+                });
               });
             });
           }
@@ -84,42 +88,32 @@ function findDistance(start){
 
 var arrayItems = [];
 
-function callback(res, stats){
+function callback(res, stats, data, index2){
 
     if (stats === google.maps.DistanceMatrixStatus.OK){
       var distance = (res.rows[0].elements[0].distance.value)/1609.34;
-      arrayItems.push(distance);
+      var location = data.locations[index2];
+     
+      location["distance"] = distance;
+      arrayItems.push(location);
 
-      if(arrayItems.length === 60){
-        var $list = $('#list');
-        $list.empty();
-       
-        $(function(){
-          $.ajax({
-            type: 'GET',
-            url: '/auth/api',
-            success: function(data){
-              
-              for(var f = 0; f < data.locations.length; f++){                
-                data.locations[f]["distance"] = arrayItems[f];
-              };
-
-              data.locations.sort(function(a,b){
-                return a.distance - b.distance;
-              });
-
-              for(var i = 0; i < arrayItems.length; i++){
-                //console.log('name: ' + data.locations[i].location_name + 'distance: ' + data.locations[i].distance);
-              $list.append('<li><div><p style="font-family:Georgia">' + data.locations[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + data.locations[i].address + ', ' + data.locations[i].city + ' ' + data.locations[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(data.locations[i].distance) + ' miles</p></div></li>');
-              //console.log('city: ' + data.locations[i].city + '. Location name: ' + data.locations[i].location_name + " " + data.locations[i].state + ". Distance: " + Math.round(data.locations[i].distance));
-              };
-
-              arrayItems = [];
-              distance = [];
-            }
-          })
-        });        
+      if(arrayItems.length !== 60){
+        return
       }
+      var $list = $('#list');
+      $list.empty();
+     
+      arrayItems.sort(function(a,b){
+        return a.distance - b.distance;
+      });
+
+      for(var i = 0; i < arrayItems.length; i++){
+        $list.append('<li><div><p style="font-family:Georgia">' + arrayItems[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + arrayItems[i].address + ', ' + arrayItems[i].city + ' ' + arrayItems[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(parseInt(arrayItems[i].distance)) + ' miles</p></div></li>');
+       };
+
+      arrayItems = [];
+      distance = [];               
+      
     }
     else{
       console.log('Error: ' + res.originAddresses);
