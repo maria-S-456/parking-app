@@ -1,3 +1,13 @@
+html {
+  width: 100vw;
+  min-height: 100%
+}
+body {
+  overflow: hidden;
+}
+ul#list {
+  padding: 0;
+}
 .glyphicon-nav {
   width: 18px;
   padding: 8px 0;
@@ -22,6 +32,13 @@
   height: 2px;
   width: 100%;
   background: black;
+}
+.container-fluid{
+  padding-right: 0;
+  margin-right: 0;
+}
+.navbar{
+  padding-right: 30px;
 }
 .navbar-search{
   position: relative;
@@ -223,10 +240,13 @@ h2{
   max-height:100%;
   overflow-y: scroll;
 }
+#mapAndResultsDiv{
+      height: calc(100vh - 114.16px);
+  width: 100%;
+  margin-right: 0;
+}
 #map{
-  padding: 1%;
-  background:rgba(0,0,0,.30);
-  height:600px;  
+  height: 100%;
 }
 @media (max-width: 991px){
   /* When shrinking to 991px width */
@@ -281,6 +301,7 @@ h2{
 .search-bar div{
   margin-top: 65px;
   margin-bottom: 1%;
+
 }
 .search-bar input[type="textbox"]{
   width: 100%;
