@@ -2,7 +2,7 @@ html {
   width: 100vw;
   min-height: 100%
 }
-body {
+.search-page{
   overflow: hidden;
 }
 ul#list {
@@ -178,8 +178,8 @@ h2{
 }
 @media(max-width: 972px){
   .city-img{
-    height:140px;
-    width:140px;
+    height:300px;
+    width:300px;
   }
 }
 @media(max-width: 808px){
@@ -190,11 +190,24 @@ h2{
 }
 @media(max-width: 520px){
   .city-img{
-    height: 200px;
-    width: 200px;
+    height: 40%;
+    width: 40%;
   }
 }
+.footer{
+  height: 100px;
+  padding-top:20px;
+  background-color: grey;
+}
+.inner-footer{
+  width: 200px;
+  height: 100%;
+ margin: 0 auto;
+  text-align: center;
+}
+.inner-footer button{
 
+}
 .city-img img{
   max-width: 100%;
   max-height: 100%;
@@ -248,12 +261,20 @@ h2{
 #map{
   height: 100%;
 }
+
+.hidden{
+  display: none;
+}
+.visible{
+  display: inline;
+}
 @media (max-width: 991px){
   /* When shrinking to 991px width */
   #search-div{
     height: 300px; 
     display: none;
   }
+
   #placeholder-div{
     display:none;
   }
@@ -267,10 +288,13 @@ h2{
   .toggle-btn{
     display:none;
   }
+  #map{
+    display: inline;
+  }
 }
 @media (min-width: 768px){
   .btn-navbar{
-    display: none;
+    display:none;
   }
 }
 @media only screen and (max-width: 768px){
@@ -280,12 +304,6 @@ h2{
   #address #submit{
     font-size: 2em;
   }
-}
-.display-none{
-  display: none;
-}
-.display-block{
-  display: block;
 }
 #locater-div{
   height: 100%;

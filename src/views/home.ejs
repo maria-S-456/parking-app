@@ -76,9 +76,6 @@
 								<input class="form-control" type="password" id="password" name="password" placeholder="password"></input>
 							</div>
 							<div class="modal-footer"> 
-							
-
-
 						     	<input type="submit" class="btn btn-primary" value="Signup"></input>
 						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>						        
 				      		</div>
@@ -119,20 +116,46 @@
 					<p>The Golden Gate Bridge and surfing are a few famous landmarks of this amazing city.</p>
 				</div>
 			</div>
+		
+		<div class="footer row">
+			<div class="inner-footer">
+			<button style="background-color: transparent; border: none" data-toggle="modal" data-target="#contactModal">Contact Me</button>
+			<button style="background-color: transparent; border: none" data-toggle="modal" data-target="#suggestModal">Suggestions?</button>
+			
+			<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel">
+				  		<div class="modal-dialog" role="document">
+				    		<div class="modal-content">
+				      			<div class="modal-header">
+				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        			<h4 class="modal-title" id="contactModalLabel">Contact</h4>
+				      			</div>
+				      			<div class="modal-body" style="text-align: left">
+				        			<form id="contact-form" name="contact-form" action="/contact" method="post">
+				        				<div class="form-group">
+				        					<label for="contactemail">Email</label>
+				        					<input class="form-control" type="email" placeholder="email" id="contactemail" name="contactemail"></input>
+				        				</div>
+				        				<div class="form-group">
+											<label for="contactname">Name</label>
+											<input class="form-control" type="text" placeholder="name" id="contactname" name="contactname"></input>
+										</div>
+										<div class="form-group">
+											<label for="contactmessage">Message</label>
+											<input class="form-control" type="text" id="contactmessage" name="contactmessage" placeholder="message"></input>
+										</div>
+											<!-- Make sure to include the submit button WITHIN the form -->
 
-<!-- suggest div -->
+										<div class="modal-footer">
+							      			<button type="submit" class="btn btn-primary">Submit</button>
+							        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				        
+							      		</div>
+									</form>
+				      			</div><!--end of modal body -->
+				    	    </div><!-- end of modal content -->
+				  		</div><!-- modal dialog -->
+					</div><!-- modal fade -->
 
-<div id="suggest-div" class="row">
-	<div class="col-md-3"></div>
-		<div class="col-md-6 " style="text-align: center">					
-			<h2>Suggestion Box</h2>
-			<br>
-			<p>Have a suggestion for Spot Finder? Send me a message!</p>
-			<br>
-			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#suggestModal">Click Here!</button>
 
-				<!--Modal-->
-				
 					<div class="modal fade" id="suggestModal" tabindex="-1" role="dialog" aria-labelledby="suggestModalLabel">
 				  		<div class="modal-dialog" role="document">
 				    		<div class="modal-content">
@@ -164,62 +187,10 @@
 									</form> 
 				      			</div><!-- end of modalbody -->
 				      			
-				    	    </div>
-				  		</div>
-					</div>
-				</div>
-				<div class="col-md-3"></div>	
-			</div><!-- end of about div/12 col row -->
-
-<!-- contact div -->
-
-<div id="contact-div" class="row">
-	<div class="col-md-3"></div>
-		<div class="col-md-6 " style="text-align: center">					
-			<h2>Contact</h2>
-			<br>
-			<p>If you have any questions, please send me an email.</p>
-			<br>
-			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contactModal">Click Here!</button>
-
-				<!--Modal-->
-				
-					<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel">
-				  		<div class="modal-dialog" role="document">
-				    		<div class="modal-content">
-				      			<div class="modal-header">
-				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        			<h4 class="modal-title" id="contactModalLabel">Contact</h4>
-				      			</div>
-				      			<div class="modal-body" style="text-align: left">
-				        			<form id="contact-form" name="contact-form" action="/contact" method="post">
-				        				<div class="form-group">
-				        					<label for="contactemail">Email</label>
-				        					<input class="form-control" type="email" placeholder="email" id="contactemail" name="contactemail"></input>
-				        				</div>
-				        				<div class="form-group">
-											<label for="contactname">Name</label>
-											<input class="form-control" type="text" placeholder="name" id="contactname" name="contactname"></input>
-										</div>
-										<div class="form-group">
-											<label for="contactmessage">Message</label>
-											<input class="form-control" type="text" id="contactmessage" name="contactmessage" placeholder="message"></input>
-										</div>
-											<!-- Make sure to include the submit button WITHIN the form -->
-
-										<div class="modal-footer">
-							      			<button type="submit" class="btn btn-primary">Submit</button>
-							        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				        
-							      		</div>
-									</form>
-				      			</div>
-				    	    </div>
-				  		</div>
-					</div>
-				</div>
-				<div class="col-md-3"></div>	
-			</div><!-- end of about div/12 col row -->
-		</div>
-		</div>
+				    	    </div><!-- end of modalcontent -->
+				  		</div><!-- end of modaldialog -->
+					</div><!-- end of modal fade -->
+				</div><!-- end of inner footer -->
+		</div><!-- end of footer -->
 	</body>
 </html>

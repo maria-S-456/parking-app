@@ -15,7 +15,7 @@
 	<title>Find a Parking location</title>
 </head>
 
-<body onLoad="load()">
+<body onLoad="load()" class="search-page">
 
   <!-- navbar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" >
@@ -41,7 +41,7 @@
 
   <div class="container-fluid">
     <div class="row search-bar">
-        <div class="col-md-1 col-sm-2 col-xs-2 toggle-btn" style=" padding-right: 0"><input class="btn btn-sm" id="toggle-btn" type="button" value="List" style="color: white; font-size: 18px;"></input></div>
+        <div class="col-md-1 col-sm-2 col-xs-2 toggle-btn" style=" padding-right: 0"><input class="btn btn-sm" id="toggle-btn" type="button" value="List" style="color: white; font-size: 18px"></input></div>
         <div id="placeholder-div" class="col-md-1"></div>
         <div class="col-md-9 col-sm-8 col-xs-8" style=" padding-left: 1%; padding-right: 1%">
           <input id="address" type="textbox" placeholder="Please enter your destination."></input>
@@ -53,7 +53,7 @@
 
   --><div id="mapAndResultsDiv" class="row">
 
-      <div class="col-md-4 col-sm-12" id="search-div"> <!-- outer search results div -->
+      <div class="col-md-4 col-sm-12 toggleMe" id="search-div"> <!-- outer search results div -->
         <div id="locater-div"> <!-- inner search results div -->
           <div id="search-results" >
             <ul id="list">
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div class="col-md-8 col-sm-12" id="map">
+      <div class="col-md-8 col-sm-12 toggleMe" id="map">
       </div>
      
     </div>
