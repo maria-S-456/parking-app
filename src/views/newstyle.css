@@ -1,0 +1,77 @@
+body{
+	margin: 0;
+	font-size: 18px;
+	letter-spacing: 0.0625em;
+	color: white;
+	font-family: 'Open Sans', 'Sans Serif';
+	background:url('new-parking.jpg');
+	background-size: cover;
+}
+
+/* navbar */
+.navbar > ul{
+	float: right;
+	list-style: none;
+	margin: 15px 15px 0 0;
+	font-size: 20px;
+}
+.navbar > ul > li{
+	float: left;
+	margin-right: 15px;
+}
+.container:nth-child(1){
+	height: 600px;
+	width: 99%;
+	display: inline-block; /* solves issue of content 'weighing' down the boxes in child divs */
+}
+/* intro and sign-up divs */
+#intro-box, #signup-box{
+	height: 65%;
+	margin: 2px;
+	text-align: left;
+	display:inline-block;
+	vertical-align: top;
+	padding: 50px 20px 50px 20px;
+}
+
+#intro-box{
+	width: 55%;
+}
+#signup-box{
+	width: 35%;
+}
+.navbar{
+	height: 90px;
+	width: 100%;
+	display: block;
+}
+
+
+/* intro box */
+#intro-box{
+	font-size: 22px;
+}
+#intro-box > input[type="button"]{
+	width: 150px;
+}
+
+/* sign up box */
+
+input{
+	border-radius: 7px;
+	border: 1px solid #dedede;
+	text-indent: 10px;
+	width: 90%;
+	height: 40px;
+	margin-top:15px;
+	font-size: 18px;
+}
+input[type="button"]{
+	width: 91%;
+}
+
+/* second container */
+.container:nth-child(2){
+	width: 100%;
+	height: 100px;
+}
