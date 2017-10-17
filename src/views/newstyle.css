@@ -1,11 +1,14 @@
 body{
 	margin: 0;
 	font-size: 18px;
-	letter-spacing: 0.0625em;
-	color: white;
+	letter-spacing: 0.07em;
 	font-family: 'Open Sans', 'Sans Serif';
-	background:url('new-parking.jpg');
+	background:url('new-parking2.jpg');
 	background-size: cover;
+}
+/* gives the background image a whitewash effect */
+.background-filter{
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* navbar */
@@ -13,16 +16,25 @@ body{
 	float: right;
 	list-style: none;
 	margin: 15px 15px 0 0;
-	font-size: 20px;
+	font-size: 22px;
 }
 .navbar > ul > li{
 	float: left;
 	margin-right: 15px;
 }
+
+.navbar{
+	height: 50px;
+	width: 100%;
+	display: block;
+}
+
+
+/* container elements */
 .container:nth-child(1){
 	height: 600px;
 	width: 99%;
-	display: inline-block; /* solves issue of content 'weighing' down the boxes in child divs */
+	display: inline-block;
 }
 /* intro and sign-up divs */
 #intro-box, #signup-box{
@@ -30,7 +42,7 @@ body{
 	margin: 2px;
 	text-align: left;
 	display:inline-block;
-	vertical-align: top;
+	vertical-align: top; /* solves issue of content 'weighing' down the boxes */
 	padding: 50px 20px 50px 20px;
 }
 
@@ -40,12 +52,6 @@ body{
 #signup-box{
 	width: 35%;
 }
-.navbar{
-	height: 90px;
-	width: 100%;
-	display: block;
-}
-
 
 /* intro box */
 #intro-box{
@@ -68,10 +74,52 @@ input{
 }
 input[type="button"]{
 	width: 91%;
+	background-color: #0b2a5e;
+	border: none;
+	color: white;
 }
 
 /* second container */
 .container:nth-child(2){
-	width: 100%;
-	height: 100px;
+	width: 92%;
+	height: 600px;
+	background-color: #0b2a5e;
+	padding: 30px 4% 0 4%;
+	display: block;
+	color: white;
+	font-size: 22px;
+}
+
+/* divs that hold city images */
+.city-div{
+	margin-top: 50px;
+	height: 90px;
+	width: 230px;
+	display: inline-block;
+	vertical-align: top;
+}
+.city-div > img{
+	max-height: 100%;
+	max-width: 100%;
+}
+
+/* Each city-div is given the background of an image, and then pinpointed on a particular sprite in the div */
+div:nth-child(3){
+	background: url('houston.jpg') -320px -870px;
+}
+
+div:nth-child(4){
+	background: url('chicago.jpg') -320px -1000px;
+}
+
+div:nth-child(5){
+	background: url('san-francisco.jpg') -150px -270px;
+}
+
+div:nth-child(6){
+	background: url('louisville.jpg') -240px -350px;
+}
+
+div:nth-child(7){
+	background: url('new-york.jpg') -80px -820px;
 }
