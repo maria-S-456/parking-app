@@ -1,59 +1,35 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Log In</title>
-	<link rel="icon" href="favicon.ico">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
-	<link rel="stylesheet" href="/page-styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="newstyle.css">
+	<title>Login</title>
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse navbar-fixed-top" >
-    	<div class="container-fluid">
-    		
-    		<a class="btn btn-navbar navbar-left" data-toggle="collapse" data-target=".nav-collapse">
-       			<div class="col-md-12 icon-bar"></div>
-        		<div class="col-md-12 icon-bar"></div>
-        		<div class="col-md-12 icon-bar"></div>
-        		<div class="col-md-12 icon-bar"></div>
-      		</a>
-    		<div class="collapse navbar-collapse nav-collapse">
-    			<ul class="nav navbar-nav navbar-right">
-    			    <li><a href='/'>Home</a></li>
-    			    <li><a href='/auth/profile'>Profile</a></li>
-    			    <li><a href='/login'>Login</a></li>
-    			    <li><a href='/auth/logout'>Logout</a></li>
-    			</ul> 
-    		</div>
-
-    	</div>
-    </nav>
-    
-		<div class="container-fluid">
-			<div id="login-div" class="box-div col-sm-12 col-md-4">
-				<h1 class="text-center">Login</h1>
-				<form name="login-form" action="/auth/userlogin" method="post" >
-					<div class="form-group form-group-lg">
-						<label>Username</label>
-						<input type="text" placeholder="username" name="username" id="username" class="form-control input-lg"></input>
-					</div>
-					<div class="form-group">
-						<label>Password</label>
-						<input type="password" placeholder="password" name="password" id="password" class="form-control input-lg"></input>
-					</div>
-						<div class="col-xs-4"></div>
-						<div class="col-xs-4 text-center">
-							<input class="login-btn btn btn-primary btn-lg" type="submit" value="login"></input>
-						</div>
-						<div class="col-xs-4"></div>
+	<div class="background-filter"> <!-- Gives the background a whitewash effect -->
+		<div class="container" style="height: 657px;">
+			<div class="navbar">
+				<ul style="float: left">					
+					<li><a href="/"><img height="50px" width="50px" src="p-logo.png"></a></li>
+				</ul>
+				<ul>
+					
+					<li><a href="/auth/profile">Account</a></li>
+					<li><a href="test-contact.html">Contact</a></li>
+					<li><a href='/login'>Login</a></li>
+					<li><a href="/auth/logout">Logout</a></li>
+				</ul>
+			</div>
+			<div id="login-box">
+				<h1>Login</h1>
+				<form name="login-form" action="/auth/userlogin" method="post">
+					<input type="text" placeholder="username" id="username" name="username">
+					<input type="password" placeholder="password" id="password" name="password">
+					<input type="submit" value="Login">
 				</form>
-
 			</div>
 		</div>
-	
+		
+	</div>
 </body>
 </html>

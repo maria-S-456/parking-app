@@ -83,15 +83,17 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 		if(!req.user){
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
-			
+			console.log(req.user);
 		}
 		else(res.render('profile', {data: [req.user.username, req.user.email]}));
 	});
 
 	authRoute.get('/locate', (req,res)=>{
 		if(!req.user){
+
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the locating page');
+
 		}
 		else{
 			parkingHouse.find().exec().then(locations => {

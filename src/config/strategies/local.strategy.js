@@ -21,7 +21,7 @@ module.exports = function(){
 		},
 		function(err, user){
 			if(isValidPassword(user, password)){
-		
+			
 			done(null, user);
 			} else{
 				done(null, false,{
