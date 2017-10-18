@@ -6,6 +6,13 @@ body{
 	background:url('new-parking2.jpg');
 	background-size: cover;
 }
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+	color: #0b2a5e;
+}
 /* gives the background image a whitewash effect */
 .background-filter{
 	background-color: rgba(255, 255, 255, 0.5);
@@ -39,7 +46,7 @@ body{
 /* intro and sign-up divs */
 #intro-box, #signup-box{
 	height: 65%;
-	margin: 2px;
+	margin: 0 2px 2px 2px;
 	text-align: left;
 	display:inline-block;
 	vertical-align: top; /* solves issue of content 'weighing' down the boxes */
@@ -47,10 +54,11 @@ body{
 }
 
 #intro-box{
-	width: 55%;
+	width: 50%;
 }
 #signup-box{
-	width: 35%;
+	width: 33%;
+	background: none; /* This is to prevent the div:nth-child(3) to override with an image */
 }
 
 /* intro box */
@@ -74,7 +82,7 @@ input{
 }
 input[type="button"]{
 	width: 91%;
-	background-color: #0b2a5e;
+	background-color: #266ee2;
 	border: none;
 	color: white;
 }
@@ -83,20 +91,21 @@ input[type="button"]{
 .container:nth-child(2){
 	width: 92%;
 	height: 600px;
-	background-color: #0b2a5e;
+	background-color: white;
 	padding: 30px 4% 0 4%;
 	display: block;
-	color: white;
+	color: black;
 	font-size: 22px;
 }
 
 /* divs that hold city images */
 .city-div{
-	margin-top: 50px;
+	margin-top: 50px; 
 	height: 90px;
 	width: 230px;
 	display: inline-block;
 	vertical-align: top;
+	border-radius: 2px;
 }
 .city-div > img{
 	max-height: 100%;
@@ -104,22 +113,78 @@ input[type="button"]{
 }
 
 /* Each city-div is given the background of an image, and then pinpointed on a particular sprite in the div */
-div:nth-child(3){
+#houston-id{
 	background: url('houston.jpg') -320px -870px;
 }
 
-div:nth-child(4){
+#chicago-id{
 	background: url('chicago.jpg') -320px -1000px;
 }
 
-div:nth-child(5){
+#san-francisco-id{
 	background: url('san-francisco.jpg') -150px -270px;
 }
 
-div:nth-child(6){
+#louisville-id{
 	background: url('louisville.jpg') -240px -350px;
 }
 
-div:nth-child(7){
+#new-york-id{
 	background: url('new-york.jpg') -80px -820px;
+}
+
+.city-div > .background-filter{
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* text inside boxes */
+span{
+	color: black;
+	display: block;
+	padding: 20px 0 20px 0;
+	font-weight: bold;
+}
+
+/* ACCOUNT PAGE */
+.account-div{
+	padding-top: 100px;
+	height: 300px;
+	width: 65%;
+	margin: 0 auto;
+}
+
+.picture, #info{
+	height: 100%;
+	display: inline-block;
+	vertical-align: top;
+}
+.picture{
+	width: 39%;
+}
+.picture > img{
+	height: 100%;
+	width: 100%;
+}
+#info{
+	width: 52%;
+	padding-left: 70px;
+	background: none;
+	background-color: rgba(128,128,128, 0.8);
+}
+
+/* LOGIN PAGE */
+#login-box{
+	height: 65%;
+	width: 400px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+/* footer at bottom of each page */
+.footer{
+	background: none;
+	height: 80px;
+	width: 100%;
+	background: grey;
+
 }

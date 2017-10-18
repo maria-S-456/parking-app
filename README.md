@@ -1,3 +1,7 @@
 This is a parking app which helps users find open parking spots in five cities. It is built with javascript, html/css, bootstrap, ejs, and node.
 
-updates: adding of some styles to the revamped home page
+updates: added styling to test pages:
+- logo routing to home page
+- Change of color scheme
+- styling of links
+- various other styling adjustments

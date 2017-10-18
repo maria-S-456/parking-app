@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="newstyle.css">
+	<title>Account</title>
+</head>
+<body>
+	<div class="background-filter"> <!-- Gives the background a whitewash effect -->
+		<div class="container" style="height: 657px;">
+			<div class="navbar">
+				<ul style="float: left">					
+					<li><a href="test-home.html"><img height="50px" width="50px" src="p-logo.png"></a></li>
+				</ul>
+				<ul>
+					<li><a href="test-login.html">Login</a></li>
+					<li><a href="test-account.ejs">Account</a></li>
+					<li>Contact</li>
+				</ul>
+			</div>
+
+			<div class="account-div">
+				<h1>Account</h1>
+				<div class="picture"><img src="profile-pic.png"></div><!--
+			--><div id="info">
+				<p>Username:</p>
+				<p><%= data[0] %></p>
+				<p>Email:</p>
+				<p><%= data[1] %></p>
+			</div>
+			</div>	
+		</div>
+
+	</div>
+</body>
+</html>
