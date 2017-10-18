@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="newstyle.css">
+	<title>Contact</title>
+</head>
+<body>
+	<div class="background-filter">
+		<div class="container" style="height: 657px;">
+			<div class="navbar">
+				<ul style="float: left">					
+					<li><a href="/"><img height="50px" width="50px" src="p-logo.png"></a></li>
+				</ul>
+				<ul>
+					<li><a href="/auth/profile">Account</a></li>
+					<li><a href="test-contact.html">Contact</a></li>
+					<li><a href='/login'>Login</a></li>
+					<li><a href="/logout">Logout</a></li>
+				</ul>
+			</div>
+			<div id="contact-box">
+				<h1>Contact</h1>
+				<form id="contact-form" name="contact-form" action="/contact" method="post">
+					<input type="text" placeholder="name" name='contact_name' id='contact_name'>
+					<input type="email" placeholder="email" name="contact_email" id="contact_email">
+					<textarea placeholder="Message" name="contact_message" id="contact_message"></textarea>
+					<input type="Submit" value="Send">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

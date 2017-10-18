@@ -33,7 +33,7 @@ app.use(session({
 require('./src/config/passport')(app);
 
 app.set('views', './src/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); // on lines 42, 46, and 50, and ejs route is expected, and will give an error if the file is .html or otherwise
 app.use(express.static(__dirname + '/src/views'));
 
 app.use('/auth', authRoute);
@@ -41,6 +41,10 @@ app.use('/', homeRoute);
 
 app.get('/', function(req, res){
 	res.render('home');
+});
+
+app.get('/contact', function(req, res){
+  res.render('contact');
 });
 
 app.get('/login', function(req,res){

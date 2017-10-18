@@ -3,59 +3,38 @@
 <head>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
- 	<link rel="stylesheet" href="/page-styles.css">
-	<title>My Profile</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/newstyle.css">
+	<title>Account</title>
 </head>
 <body>
+	<div class="background-filter"> <!-- Gives the background a whitewash effect -->
+		<div class="container" style="height: 657px;">
+			<div class="navbar">
+				<ul style="float: left">					
+					<li><a href="/"><img height="50px" width="50px" src="/p-logo.png"></a></li>
+				</ul>
+				<ul><li><a href="/auth/profile">Account</a></li>
+					<li><a href="test-contact.html">Contact</a></li>
+					<li><a href='/login'>Login</a></li>
+					<li><a href="/logout">Logout</a></li>
+				</ul>
+			</div>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" >
-    	<div class="container-fluid">
-    		
-    		<a class="btn btn-navbar navbar-left" data-toggle="collapse" data-target=".nav-collapse">
-       			<div class="col-md-12 icon-bar"></div>
-        		<div class="col-md-12 icon-bar"></div>
-        		<div class="col-md-12 icon-bar"></div>
-        		<div class="col-md-12 icon-bar"></div>
-      		</a>
-    		<div class="collapse navbar-collapse nav-collapse">
-    			<ul class="nav navbar-nav navbar-right">
-    			    <li><a href='/'>Home</a></li>
-    			    <li><a href='/auth/profile'>Profile</a></li>
-    			    <li><a href='/login'>Login</a></li>
-    			    <li><a href='/auth/logout'>Logout</a></li>
-    			</ul> 
-    		</div>
-
-    	</div>
-    </nav>
-
-<div class="container-fluid">
-
-	<div class="search-bar row">
-		<form action="/auth/locate">
-		<div class="col-md-10 col-sm-12">
-			<input type="textbox" id="search-from-profile" placeholder="Your destination">
-			</input>
+			<div class="account-div">
+				<h1>Account</h1>
+				<div class="picture">
+					<img src="/profile-pic.png">
+				</div><!--
+			--><div id="info">
+					<p>Username:</p>
+					<p><%= data[0] %></p>
+					<p>Email:</p>
+					<p><%= data[1] %></p>
+				</div>
+			</div>	
 		</div>
-		<div class="col-md-2 col-sm-12" >
-			<input type="submit" id="profileSearch" class=" btn btn-block search-btn btn-primary " value="Search" onClick="save()">
-			</input>
-		</div>				
-		</form>
-	</div>
 
-	<div id="profile-div" class="col-md-4 col-sm-12 box-div row">
-			<h2>Profile</h2>
-			<p>Username:</p>
-			<p><div style="text-align:center"><%= data[0] %></div></p>
-			<p>Email:</p>
-			<p><div style="text-align:center"><%= data[1] %></div></p>
 	</div>
-</div>
-	<script src="/search-js.js"></script>
 </body>
 </html>

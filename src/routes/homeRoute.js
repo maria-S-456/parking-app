@@ -34,8 +34,8 @@ var nodemailer = require('nodemailer');
 
 						var mailOptions = {
 							to: results[0].email,
-							subject: req.body.contactname + ' <' + req.body.contactemail + '>',			 
-							text: req.body.contactmessage 
+							subject: req.body.contact_name + ' <' + req.body.contact_email + '>',			 
+							text: req.body.contact_message 
 						};
 
 						smtpTransport.sendMail(mailOptions, function(error, response){
