@@ -1,196 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<title>Home</title>
-	
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>   
-    <link rel="stylesheet" href="/page-styles.css">
-    </head>
-
-	<body >
-		<!-- navbar -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" >
-    		<div class="container-fluid">
-    			<a class="btn btn-navbar navbar-left" data-toggle="collapse" data-target=".nav-collapse">
-       				<div class="col-md-12 icon-bar"></div>
-        			<div class="col-md-12 icon-bar"></div>
-        			<div class="col-md-12 icon-bar"></div>
-        			<div class="col-md-12 icon-bar"></div>
-      			</a>
-    			<div class="collapse navbar-collapse nav-collapse">
-    				<ul class="nav navbar-nav navbar-right">
-    				    <li><a href='/'>Home</a></li>
-    				    <li><a href='/auth/profile'>Profile</a></li>
-    				    <li><a href='/login'>Login</a></li>
-    				    <li><a href='/auth/logout'>Logout</a></li>
-    				</ul> 
-    			</div>
-    		</div>
-    	</nav>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="newstyle.css">
+	<title>Test home page</title>
+</head>
+<body style="text-align: center">
+<div class="background-filter"> <!-- Gives the background a whitewash effect -->
+	<div class="container">
 		
-			<!--About div -->
-		<div class="container-fluid">
-			<div id="about-div" class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6 " style="text-align: center">					
-						<h2>Spot Finder</h2>
-						<br>
-						<p>Heavy traffic and being short on time can make finding a parking spot in a city a nerve-wracking experience. SpotFinder can help you locate the closest parking houses near your destination.</p>
-					<br>
-					<div>
-					<!--
-						<form action="/auth/locate">
-							<input type="submit" class=" btn btn-block custom-btn btn-primary btn-lg" value="Search!"></input>
-						</form>
-					-->
-						<p> Sign up to use Spot Finder! </p>
-						<button type="submit" class="btn-block custom-btn btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin: 0 auto">Click Here!</button>
-					</div>
-
-				<!--Modal-->
-				
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Create New Account</h4>
-				      </div>
-				      <div class="modal-body" style="text-align: left">
-				        <form name="sign-up-form" action="/auth/usersignup" method="post">
-				        	<div class="form-group">
-				        		<label for="email">Email</label>
-				        		<input class="form-control" type="email" placeholder="email" id="email" name="email"></input>
-				        	</div> 
-				        	<div class="form-group">
-								<label for="username">Username</label>
-								<input class="form-control" type="text" placeholder="username" id="username" name="username"></input>
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label>
-								<input class="form-control" type="password" id="password" name="password" placeholder="password"></input>
-							</div>
-							<div class="modal-footer"> 
-						     	<input type="submit" class="btn btn-primary" value="Signup"></input>
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>						        
-				      		</div>
-						</form>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				</div>
-						<div class="col-md-3"></div>	
-			</div> 
-			
-			<div class="row" id="city-div">
-				<h2>Currently Featured Cities</h2>
-				<div class="city-img">
-					<img src="/chicago.jpg">
-					<h3>Chicago</h3>
-					<p>The Windy City is the third-most populous city in the country, and an architectural capital.</p>
-				</div>
-				<div class="city-img">
-					<img src="/houston.jpg">
-					<h3>Houston</h3>
-					<p>Houston is the home to the Space Center Houston and the largest medical facility in the world.</p>
-				</div>
-				<div class="city-img">
-					<img src="/louisville.jpg">
-					<h3>Louisville</h3>
-					<p>Louisville is famous for hosting the Kentucky Derby and home to the Louisville Slugger Museum.</p>
-				</div>
-				<div class="city-img">
-					<h3>New York</h3>
-					<img src="/new-york.jpg">
-					<p>The Big Apple is perhaps the most famous American city, home to the Empire State Building.</p>
-				</div>
-				<div class="city-img">
-					<h3>San Francisco</h3>
-					<img src="/san-francisco.jpg">
-					<p>The Golden Gate Bridge and surfing are a few famous landmarks of this amazing city.</p>
-				</div>
+			<div class="navbar">
+				<ul style="float: left">					
+					<li><a><img height="50px" width="50px" src="p-logo.png"></a></li>
+				</ul>
+				<ul>
+					<li><a href="test-login.html">Login</a></li>
+					<li><a href="test-account.ejs">Account</a></li>
+					<li><a href="test-contact.html">Contact</a></li>
+				</ul>
+			</div>
+			<div id="intro-box">
+				<h1>ParkHouser</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<form action="#about-section">
+					<input type="submit" value="Learn More">
+				</form>
+			</div>
+			<div id="signup-box">
+				<h1>Sign Up</h1>
+				<form name="sign-up-form" action="/auth/usersignup" method="post">
+					<input type="email" name="signup_email" placeholder="email" id='signup_email'>
+					<input type="text" name="signup_username" placeholder="username" id="signup_username">
+					<input type="password" name="signup_password" placeholder="password" id="signup_password">
+					<input type="submit" value="Sign Up">
+				</form>
 			</div>
 		
-		<div class="footer row">
-			<div class="inner-footer">
-			<button style="background-color: transparent; border: none" data-toggle="modal" data-target="#contactModal">Contact Me</button>
-			<button style="background-color: transparent; border: none" data-toggle="modal" data-target="#suggestModal">Suggestions?</button>
-			
-			<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel">
-				  		<div class="modal-dialog" role="document">
-				    		<div class="modal-content">
-				      			<div class="modal-header">
-				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        			<h4 class="modal-title" id="contactModalLabel">Contact</h4>
-				      			</div>
-				      			<div class="modal-body" style="text-align: left">
-				        			<form id="contact-form" name="contact-form" action="/contact" method="post">
-				        				<div class="form-group">
-				        					<label for="contactemail">Email</label>
-				        					<input class="form-control" type="email" placeholder="email" id="contactemail" name="contactemail"></input>
-				        				</div>
-				        				<div class="form-group">
-											<label for="contactname">Name</label>
-											<input class="form-control" type="text" placeholder="name" id="contactname" name="contactname"></input>
-										</div>
-										<div class="form-group">
-											<label for="contactmessage">Message</label>
-											<input class="form-control" type="text" id="contactmessage" name="contactmessage" placeholder="message"></input>
-										</div>
-											<!-- Make sure to include the submit button WITHIN the form -->
-
-										<div class="modal-footer">
-							      			<button type="submit" class="btn btn-primary">Submit</button>
-							        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				        
-							      		</div>
-									</form>
-				      			</div><!--end of modal body -->
-				    	    </div><!-- end of modal content -->
-				  		</div><!-- modal dialog -->
-					</div><!-- modal fade -->
-
-
-					<div class="modal fade" id="suggestModal" tabindex="-1" role="dialog" aria-labelledby="suggestModalLabel">
-				  		<div class="modal-dialog" role="document">
-				    		<div class="modal-content">
-				      			<div class="modal-header">
-				        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        			<h4 class="modal-title" id="suggestModalLabel">Suggestion Box</h4>
-				      			</div>
-				      			<div class="modal-body" style="text-align: left">
-				        			<form id="suggest-form" name="suggest-form" action="/suggest" method="post">
-				        				<div class="form-group">
-				        					<label for="suggestemail">Email</label>
-				        					<input class="form-control" type="email" placeholder="email" id="suggestemail" name="suggestemail"></input>
-				        				</div>
-				        				<div class="form-group">
-											<label for="suggestname">Name</label>
-											<input class="form-control" type="text" placeholder="name" id="suggestname" name="suggestname"></input>
-										</div>
-										<div class="form-group">
-											<label for="suggestmessage">Message</label>
-											<input class="form-control" type="text" id="suggestmessage" name="suggestmessage" placeholder="message"></input>
-										</div>
-										
-											<!-- Make sure to include the submit button WITHIN the form -->
-								
-										<div class="modal-footer">
-							      			<button type="submit" class="btn btn-primary">Submit</button>
-							        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				        
-							      		</div>
-									</form> 
-				      			</div><!-- end of modalbody -->
-				      			
-				    	    </div><!-- end of modalcontent -->
-				  		</div><!-- end of modaldialog -->
-					</div><!-- end of modal fade -->
-				</div><!-- end of inner footer -->
-		</div><!-- end of footer -->
-	</body>
+	</div>
+	<div class="container" name="about" id="about-section">
+		<h1>About ParkHouser</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ultrices risus vel est rutrum interdum. In varius pharetra urna in tincidunt. Vestibulum posuere convallis tristique. Sed at molestie nisi. Sed accumsan, mi in dictum egestas, dolor ipsum commodo turpis, et elementum felis arcu ac neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nulla malesuada id nibh non interdum. Ut purus ante, venenatis eget quam ac, tincidunt finibus felis. Integer vel ligula eros.</p>
+		
+		<div class="city-div" id="houston-id"><div class="background-filter" style="height: 100%"><span>Houston</span></div></div>
+		<div class="city-div" id="chicago-id"><div class="background-filter" style="height: 100%"><span>Chicago</span></div></div>
+		<div class="city-div" id="san-francisco-id"><div class="background-filter" style="height: 100%"><span>San Francisco</span></div></div>
+		<div class="city-div" id="louisville-id"><div class="background-filter" style="height: 100%"><span>Louisville</span></div></div>
+		<div class="city-div" id="new-york-id"><div class="background-filter" style="height: 100%"><span>New York</span></div></div>
+	</div>
+	<div class="footer">
+		<span>Owner of this site: mars381pika@gmail.com</span>
+	</div>
+</div>
+</body>
 </html>

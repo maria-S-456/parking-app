@@ -28,9 +28,9 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 	authRoute.route('/usersignup').post(function(req,res){
 		let url = process.env.USERS_DATABASE_URL;
 		var newUser = {
-				username: req.body.username,
-				password: req.body.password,
-				email: req.body.email
+				username: req.body.signup_username,
+				password: req.body.signup_password,
+				email: req.body.signup_email
 		}
 		bcrypt.genSalt(10, function(err, salt){
 			if(err){
@@ -41,15 +41,16 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 					console.log('Error: ' + err);
 				}
 				var secureUser = {
-					username: req.body.username,
+					username: req.body.signup_username,
 					password: hash,
-					email: req.body.email
+					email: req.body.signup_email
 				}
 				mongodb.connect(url, function(err,db){
 					var collection = db.collection('users');
 					collection.insert(secureUser, function(err, results){
 						req.login(results.ops[0], function(){
 							res.redirect('/auth/profile');
+							console.log('signed up successfully!');							
 						})
 					})
 				});
