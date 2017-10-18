@@ -65,13 +65,13 @@ a:hover{
 #intro-box{
 	font-size: 22px;
 }
-#intro-box > input[type="button"]{
+#intro-box > form > input[type="submit"]{
 	width: 150px;
 }
 
 /* sign up box */
 
-input{
+input, textarea{
 	border-radius: 7px;
 	border: 1px solid #dedede;
 	text-indent: 10px;
@@ -80,7 +80,7 @@ input{
 	margin-top:15px;
 	font-size: 18px;
 }
-input[type="button"]{
+input[type="button"], input[type="submit"]{
 	width: 91%;
 	background-color: #266ee2;
 	border: none;
@@ -172,19 +172,28 @@ span{
 	background-color: rgba(128,128,128, 0.8);
 }
 
-/* LOGIN PAGE */
-#login-box{
+/* LOGIN PAGE and CONTACT PAGE */
+#login-box, #contact-box{
 	height: 65%;
 	width: 400px;
 	margin: 0 auto;
 	margin-top: 100px;
 }
 
-/* footer at bottom of each page */
+/* footer at bottom of home page */
 .footer{
 	background: none;
 	height: 80px;
 	width: 100%;
 	background: grey;
 
+}
+
+/* CONTACT page */
+textarea{
+	max-width: 90%;
+	max-height: 100px;
+	min-width: 90%;
+	min-height: 100px;
+	font-family: 'Open Sans', 'Sans Serif'; /* overrides default font for textarea */ 
 }
