@@ -10,20 +10,21 @@
 			<div class="navbar">
 				<ul style="float: left">					
 					<li><a href="/"><img height="50px" width="50px" src="p-logo.png"></a></li>
+					<li class="hidden-search hidden"><input type="textbox" placeholder="Please Enter Your Destination"><input type="submit" width="30px"></li>
 				</ul>
 				<ul>
 					<li><a href="/auth/profile">Account</a></li>
-					<li><a href="test-contact.html">Contact</a></li>
+					<li><a href="/contact">Contact</a></li>
 					<li><a href='/login'>Login</a></li>
-					<li><a href="/logout">Logout</a></li>
+					<li><a href="/auth/logout">Logout</a></li>
 				</ul>
 			</div>
 			<div id="contact-box">
 				<h1>Contact</h1>
 				<form id="contact-form" name="contact-form" action="/contact" method="post">
-					<input type="text" placeholder="name" name='contact_name' id='contact_name'>
-					<input type="email" placeholder="email" name="contact_email" id="contact_email">
-					<textarea placeholder="Message" name="contact_message" id="contact_message"></textarea>
+					<input type="text" placeholder="name" name='contactname' id='contactname'>
+					<input type="email" placeholder="email" name="contactemail" id="contactemail">
+					<textarea placeholder="Message" name="contactmessage" id="contactmessage"></textarea>
 					<input type="Submit" value="Send">
 				</form>
 			</div>

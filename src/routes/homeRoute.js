@@ -34,8 +34,8 @@ var nodemailer = require('nodemailer');
 
 						var mailOptions = {
 							to: results[0].email,
-							subject: req.body.contact_name + ' <' + req.body.contact_email + '>',			 
-							text: req.body.contact_message 
+							subject: req.body.contactname + ' <' + req.body.contactemail + '>',			 
+							text: req.body.contactmessage 
 						};
 
 						smtpTransport.sendMail(mailOptions, function(error, response){
@@ -44,7 +44,7 @@ var nodemailer = require('nodemailer');
 								res.end("error");
 							}else{
 								console.log("Message sent");
-								res.redirect('/');
+								//res.redirect('/');
 								res.end("sent");
 							}
 						});
@@ -57,6 +57,7 @@ var nodemailer = require('nodemailer');
 	});	
 
 	homeRoute.route('/suggest').post(function(req,res){
+	
 		let url = process.env.SUGGESTIONS_DATABASE_URL;
 		mongodb.connect(url, function(err,db){
 			var collection = db.collection('suggestions');

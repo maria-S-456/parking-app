@@ -1,5 +1,4 @@
 var map;
-
 $('#toggle-btn').click(function(){
   $('#mapAndResultsDiv > .toggleMe').toggle(),
   $('#toggle-btn').val(function(i, txt){

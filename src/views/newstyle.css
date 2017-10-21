@@ -29,13 +29,22 @@ a:hover{
 	float: left;
 	margin-right: 15px;
 }
-
+.navbar > ul > li > input[type="textbox"]{
+	margin-top: 0;
+	margin-left: 10px;
+	width: 680px;
+	background-color: transparent;
+	border: 1px solid #0b2a5e;
+}
 .navbar{
-	height: 50px;
+	height: 80px;
 	width: 100%;
 	display: block;
 }
-
+.navbar > ul > li > input[type="submit"]{
+	width: 50px;
+	margin-left: 5px;
+}
 
 /* container elements */
 .container:nth-child(1){
@@ -196,4 +205,17 @@ textarea{
 	min-width: 90%;
 	min-height: 100px;
 	font-family: 'Open Sans', 'Sans Serif'; /* overrides default font for textarea */ 
+}
+
+.hidden{
+	display: none;
+}
+
+/* SEARCH page */
+
+/* div containing search bar, results list, and map. Takes full width and height of screen, except the navbar */
+.search-container{
+	height: 88%;
+	width: 100%;
+	background-color: blue;
 }

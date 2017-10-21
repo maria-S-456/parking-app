@@ -48,7 +48,7 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 				mongodb.connect(url, function(err,db){
 					var collection = db.collection('users');
 					collection.insert(secureUser, function(err, results){
-						req.login(results.ops[0], function(){
+						req.login(results.ops[0], function(){							
 							res.redirect('/auth/profile');
 							console.log('signed up successfully!');							
 						})
@@ -77,13 +77,12 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 			res.redirect('/');
 			console.log('you have been logged out.');
 		}
-	})
+	});
 
 	authRoute.route('/profile').all(function(req,res, next){
 		if(!req.user){
 			res.redirect('/login');
 			console.log('You are unauthorized to enter the profile page');
-			console.log(req.user);
 		}
 		else(res.render('profile', {data: [req.user.username, req.user.email]}));
 	});
