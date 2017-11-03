@@ -97,7 +97,6 @@ var {parkingHouse, userData, mailerUser} = require('../../models');
 		else{
 			parkingHouse.find().exec().then(locations => {
 				res.render('locate', {data: locations});
-				//console.log(locations);
 			});		
 		}
 	});

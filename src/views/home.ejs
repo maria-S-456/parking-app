@@ -2,24 +2,27 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="newstyle.css">
-	<title>Test home page</title>
+	<link rel="stylesheet" type="text/css" href="/newstyle.css">
+	<title>Home</title>
 </head>
-<body style="text-align: center">
+<body onload="load()" style="text-align: center">
 <div class="background-filter"> <!-- Gives the background a whitewash effect -->
 	<div class="container">
 		
-			<div class="navbar">
-				<ul style="float: left">					
-					<li><a><img height="50px" width="50px" src="p-logo.png"></a></li>
-					<li class="hidden-search hidden"><input type="textbox" placeholder="Please Enter Your Destination"><input type="submit" width="30px"></li>
-				</ul>
-				<ul>					
+			<div class="navbar">				
+				<ul class="menu-list">
 					<li><a href="/auth/profile">Account</a></li>
 					<li><a href="/contact">Contact</a></li>
 					<li><a href='/login'>Login</a></li>
 					<li><a href="/auth/logout">Logout</a></li>
 				</ul>
+				<ul class="search-list">					
+					<li ><a href="/"><img height="50px" width="50px" src="p-logo.png"></a></li>
+					<form action="/auth/locate">
+						<li style="float:left; display: inline-block;" class="address-list-item" ><input id="address" type="textbox" placeholder="Please Enter Your Destination"></li>
+              			<li style="float:left;" ><input id="submit" type="submit"></li>
+           			</form>
+           		</ul>
 			</div>
 			<div id="intro-box">
 				<h1>ParkHouser</h1>
@@ -39,7 +42,7 @@
 			</div>
 		
 	</div>
-	<div class="container" name="about" id="about-section">
+	<div  name="about" id="about-section">
 		<h1>About ParkHouser</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ultrices risus vel est rutrum interdum. In varius pharetra urna in tincidunt. Vestibulum posuere convallis tristique. Sed at molestie nisi. Sed accumsan, mi in dictum egestas, dolor ipsum commodo turpis, et elementum felis arcu ac neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nulla malesuada id nibh non interdum. Ut purus ante, venenatis eget quam ac, tincidunt finibus felis. Integer vel ligula eros.</p>
 		
@@ -53,5 +56,6 @@
 		<span>Owner of this site: mars381pika@gmail.com</span>
 	</div>
 </div>
+<script type="text/javascript" src="/parkDataScript.js"></script>
 </body>
 </html>

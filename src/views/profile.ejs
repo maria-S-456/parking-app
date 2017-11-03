@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%; width: 100%;">
 <head>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/newstyle.css">
 	<title>Account</title>
-	<script>sessionStorage.setItem("loggedin", "true")</script>
 </head>
-<body>
+<body style="height: 100%; width: 100%;" onload="load()">
 	<div class="background-filter"> <!-- Gives the background a whitewash effect -->
-		<div class="container" style="height: 657px;">
-			<div class="navbar">
-				<ul style="float: left">					
-					<li><a href="/"><img height="50px" width="50px" src="/p-logo.png"></a></li>
-					<li class="hidden-search hidden"><input type="textbox" placeholder="Please Enter Your Destination"><input type="submit" width="30px"></li>
-				</ul>
-				<ul><li><a href="/auth/profile">Account</a></li>
+		<div class="full-page-container">
+			<div class="navbar">				
+				<ul class="menu-list">
+					<li><a href="/auth/profile">Account</a></li>
 					<li><a href="/contact">Contact</a></li>
 					<li><a href='/login'>Login</a></li>
 					<li><a href="/auth/logout">Logout</a></li>
 				</ul>
+				<ul class="search-list">					
+					<li ><a href="/"><img height="50px" width="50px" src="/p-logo.png"></a></li>
+					<form action="/auth/locate">
+						<li style="float:left; display: inline-block;" class="address-list-item" ><input id="address" type="textbox" placeholder="Please Enter Your Destination"></li>
+              			<li style="float:left;" ><input id="submit" type="submit"></li>
+           			</form>
+           		</ul>
 			</div>
 
 			<div class="account-div">
@@ -38,5 +41,6 @@
 		</div>
 
 	</div>
+	<script type="text/javascript" src="/parkDataScript.js"></script>
 </body>
 </html>

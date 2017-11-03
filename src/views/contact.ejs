@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html>
-<head><link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="newstyle.css">
+<html style="height: 100%; width: 100%;">
+<head>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/newstyle.css">
 	<title>Contact</title>
 </head>
-<body>
+<body onload="load()" style="height: 100%; width: 100%;">
 	<div class="background-filter">
-		<div class="container" style="height: 657px;">
-			<div class="navbar">
-				<ul style="float: left">					
-					<li><a href="/"><img height="50px" width="50px" src="p-logo.png"></a></li>
-					<li class="hidden-search hidden"><input type="textbox" placeholder="Please Enter Your Destination"><input type="submit" width="30px"></li>
-				</ul>
-				<ul>
+		<div class="full-page-container">
+			<div class="navbar">				
+				<ul class="menu-list">
 					<li><a href="/auth/profile">Account</a></li>
 					<li><a href="/contact">Contact</a></li>
 					<li><a href='/login'>Login</a></li>
 					<li><a href="/auth/logout">Logout</a></li>
 				</ul>
+				<ul class="search-list">					
+					<li ><a href="/"><img height="50px" width="50px" src="p-logo.png"></a></li>
+					<form action="/auth/locate">
+						<li style="float:left; display: inline-block;" class="address-list-item" ><input id="address" type="textbox" placeholder="Please Enter Your Destination"></li>
+              			<li style="float:left;" ><input id="submit" type="submit"></li>
+           			</form>
+           		</ul>
 			</div>
 			<div id="contact-box">
 				<h1>Contact</h1>
@@ -30,5 +35,6 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="/parkDataScript.js"></script> 
 </body>
 </html>

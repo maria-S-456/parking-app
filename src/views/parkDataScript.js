@@ -1,11 +1,6 @@
 var map;
-$('#toggle-btn').click(function(){
-  $('#mapAndResultsDiv > .toggleMe').toggle(),
-  $('#toggle-btn').val(function(i, txt){
-    return txt === "Map" ? "List" : "Map";
-  });
-});
 
+/* using session storage to store search criteria on any page and run it on the map page */
 function load(){
   var recievedValue = sessionStorage.getItem('textbox');
   
@@ -16,12 +11,13 @@ function load(){
   }
 }
 
+/* The first location pinned on the map upon opening the page is Chicago */
 function initMap() {
-
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 41.8781, lng: -87.6298},
     zoom: 15
     });
+
 
 var geocoder = new google.maps.Geocoder();
 
@@ -107,7 +103,7 @@ function callback(res, stats, data, index2){
       });
 
       for(var i = 0; i < arrayItems.length; i++){
-        $list.append('<li><div><p style="font-family:Georgia">' + arrayItems[i].location_name + '</p>' + '<span style="font-size: 16px; font-family: Georgia">' + arrayItems[i].address + ', ' + arrayItems[i].city + ' ' + arrayItems[i].state + '</span><p style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(parseInt(arrayItems[i].distance)) + ' miles</p></div></li>');
+        $list.append('<li><div><span class="list-text" style="font-family:Georgia; padding-bottom: 15px;">' + arrayItems[i].location_name + '</span>' + '<p class="list-text" style="font-size: 16px; font-family: Georgia">' + arrayItems[i].address + ', ' + arrayItems[i].city + ' ' + arrayItems[i].state + '</p><p class="list-text" style="font-size: 16px; font-family:Georgia">Distance from destination: ' + Math.round(parseInt(arrayItems[i].distance)) + ' miles</p></div></li>');
        };
 
       arrayItems = [];

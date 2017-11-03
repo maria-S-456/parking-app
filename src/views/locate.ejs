@@ -1,73 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%; width: 100%;">
 <head>
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2qXs7GqgjX55uoSszcXy6WQkm9bW0n1Y&callback=initMap"></script>
-  <link rel="stylesheet" href="/page-styles.css">
- 
-  <title>Find a Parking location</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/newstyle.css">
+  <!-- When opening without the server, remove the '/' in the file locations -->
+  <title>Search</title>
 </head>
+<body style="height: 100%; width: 100%;">
+  <div class="background-filter">
+    <div class="full-page-container">
 
-<body onLoad="load()" class="search-page">
-
-  <!-- navbar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" >
-    <div class="container-fluid">
-        
-        <a class="btn btn-navbar navbar-left" data-toggle="collapse" data-target=".nav-collapse">
-            <div class="col-md-12 icon-bar"></div>
-            <div class="col-md-12 icon-bar"></div>
-            <div class="col-md-12 icon-bar"></div>
-            <div class="col-md-12 icon-bar"></div>
-        </a>
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav navbar-right">
-              <li><a href='/'>Home</a></li>
-              <li><a href='/auth/profile'>Profile</a></li>
+      <div class="navbar">
+        <ul class="menu-list">          
+              <li><a href="/auth/profile">Account</a></li>
+              <li><a href="/contact">Contact</a></li>
               <li><a href='/login'>Login</a></li>
-              <li><a href='/auth/logout'>Logout</a></li>
-          </ul> 
-        </div>
-
-    </div>
-  </nav>
-
-  <div class="container-fluid">
-    <div class="row search-bar">
-        <div class="col-md-1 col-sm-2 col-xs-2 toggle-btn" style=" padding-right: 0"><input class="btn btn-sm" id="toggle-btn" type="button" value="List" style="color: white; font-size: 18px"></input></div>
-        <div id="placeholder-div" class="col-md-1"></div>
-        <div class="col-md-9 col-sm-8 col-xs-8" style=" padding-left: 1%; padding-right: 1%">
-          <input id="address" type="textbox" placeholder="Please enter your destination."></input>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2" style="padding-left: 0" >
-          <input class="btn btn-sm" id="submit" type="button" value="Search"></input>
-        </div>
-    </div><!--
-  --><div id="mapAndResultsDiv" class="row">
-
-      <div class="col-md-4 col-sm-12 toggleMe" id="search-div"> <!-- outer search results div -->
-        <div id="locater-div"> <!-- inner search results div -->
-          <div id="search-results" >
-            <ul id="list">
+              <li><a href="/auth/logout">Logout</a></li>
             </ul>
+            <ul class="search-list" style="float: left;">          
+              <li style="display: block;"><a><img height="50px" width="50px" src="/p-logo.png"></a></li>
+              <li class="address-list-item" style="display: block;"><input id="address" type="textbox" placeholder="Please Enter Your Destination"></li>
+              <li style="display: block;"><input id="submit" type="submit" style="height: 45px; width: 85px;"></li>
+            </ul>
+            
           </div>
-        </div>
-      </div>
 
-      <div class="col-md-8 col-sm-12 toggleMe" id="map">
-      </div>
-     
+          <!-- container for map and search results -->
+          <div class="search-container">
+            <div class="results">
+              <ul id="list"></ul>
+            </div><!--
+            --><div class="map" id="map"></div>
+          </div>    
     </div>
-
-  </div><!-- container-fluid div -->
-  
-<script src="/parkDataScript.js"></script>  
+  </div>
+  <script type="text/javascript" src="/parkDataScript.js"></script> 
 </body>
 </html>
